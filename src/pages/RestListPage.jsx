@@ -9,7 +9,7 @@ function RestListPage() {
 
   const getAllRestaurants = () => {
     axios
-      .get(`${API_URL}/api/restaurants`)
+      .get(`${API_URL}/restaurants/read`)
       .then((response) => setRestaurants(response.data))
       .catch((error) => console.log(error));
   };
@@ -20,8 +20,7 @@ function RestListPage() {
 
   return (
     <div className="RestListPage">
-      <AddRestaurants refreshRestaurants={getAllRestaurants} />
-
+      
       {restaurants.map((restaurant) => (
         <div key={restaurant._id}>
           <Link to={`/restaurants/${restaurant._id}`}>
