@@ -23,7 +23,7 @@ function RestListPage() {
       <AddRestaurants refreshRestaurants={getAllRestaurants} />
 
       {restaurants.map((restaurant) => (
-        <div className="ProjectCard" key={restaurant._id}>
+        <div key={restaurant._id}>
           <Link to={`/restaurants/${restaurant._id}`}>
             <h3>{restaurant.title}</h3>
           </Link>
