@@ -11,7 +11,7 @@ function RestListPage() {
 
   const getAllRestaurants = () => {
     axios
-      .get(`http://localhost:5005/restaurants/read`)
+      .get(`/api/restaurants/read`)
       .then(response => { 
         // setRestaurants(response.data) 
         console.log(response.data);
