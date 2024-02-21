@@ -5,12 +5,16 @@ import { Link } from "react-router-dom";
 const API_URL = import.meta.env.VITE_API_URL;
 
 function RestListPage() {
+  // console.log(API_URL);
   const [restaurants, setRestaurants] = useState([]);
 
   const getAllRestaurants = () => {
     axios
-      .get(`${API_URL}/restaurants/read`)
-      .then((response) => setRestaurants(response.data))
+      .get(`http://localhost:5005/restaurants/read`)
+      .then(response => { 
+        // setRestaurants(response.data) 
+        console.log(response.data);
+      })
       .catch((error) => console.log(error));
   };
 
@@ -21,13 +25,13 @@ function RestListPage() {
   return (
     <div className="RestListPage">
       
-      {restaurants.map((restaurant) => (
+      {/* {restaurants.map((restaurant) => (
         <div key={restaurant._id}>
           <Link to={`/restaurants/${restaurant._id}`}>
             <h3>{restaurant.title}</h3>
           </Link>
         </div>
-      ))}
+      ))} */}
     </div>
   );
 }

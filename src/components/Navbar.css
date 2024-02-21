@@ -1,13 +1,20 @@
 nav {
-    background-color: #430707;
-    padding: 10px 20px;
+    background-color: rgb(103, 193, 247);
+    padding: 10vh;
+    text-align: center;   
   }
+
+  .nav-ul {
+    display: block;
+    justify-content: space-between;
+  }
+
   
-  ul {
+  /* ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-  }
+  } */
   
   li {
     display: inline;
