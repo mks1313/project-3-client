@@ -7,6 +7,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 function RestListPage() {
   // console.log(API_URL);
   const [restaurants, setRestaurants] = useState([]);
+  const storedToken = localStorage.getItem("authToken");
 
   const getAllRestaurants = () => {
     axios
@@ -27,7 +28,7 @@ function RestListPage() {
       
       {/* {restaurants.map((restaurant) => (
         <div key={restaurant._id}>
-          <Link to={`/restaurants/${restaurant._id}`}>
+          <Link to={`/restaurants/read/${restaurant._id}`}>
             <h3>{restaurant.title}</h3>
           </Link>
         </div>
