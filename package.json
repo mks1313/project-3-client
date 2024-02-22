@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "antd": "^5.14.1",
     "axios": "^1.6.7",
     "bcryptjs": "^2.4.3",
     "express-jwt": "^8.4.1",

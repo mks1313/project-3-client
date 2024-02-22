@@ -1,0 +1,10 @@
+.image-container {
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+    height: 200px; /* Establece la altura deseada */
+    background-size: cover; /* Ajusta la imagen al tamaño del contenedor */
+    background-position: center; /* Centra la imagen */
+  }
+  
