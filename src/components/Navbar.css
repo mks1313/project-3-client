@@ -1,7 +1,12 @@
 nav {
     background-color: rgb(103, 193, 247);
-    padding: 10vh;
+    padding: 20px;
     text-align: center;   
+    height: 60px; 
+  width: 100%; 
+  position: fixed; 
+  top: 0;
+
   }
 
   .nav-ul {
@@ -33,6 +38,6 @@ nav {
   }
   
   a:hover {
-    color: #ff5a5f;
+    color: #41e77e;
   }
   

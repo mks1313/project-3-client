@@ -1,7 +1,7 @@
 
-import { Comment, Avatar, Typography } from "antd";
+import { Comment, Avatar } from "antd";
 
-const { Text } = Typography;
+
 
 const Comments = ({ comments }) => {
   return (
