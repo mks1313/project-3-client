@@ -1,10 +1,23 @@
 import "./HomePage.css"; 
+import { Link } from 'react-router-dom';
 
 function HomePage() {
   return (
-    <div className="container">
-      <h1>Bienvenido a mi sitio web</h1>
-      <p>Esta es la primera página.</p>
+    <div className="homepage">
+    <div className="content">
+    <Link to="/restaurants">
+    <h1 className="title"> Nyam Nyam😋
+      <div className="aurora">
+        <div className="aurora__item"></div>
+        <div className="aurora__item"></div>
+        <div className="aurora__item"></div>
+        <div className="aurora__item"></div>
+      </div>
+    </h1>
+    <h3 className="subtitle">Hungry Today?</h3>
+    <p>Find Your Favorite Restaurant!</p>
+    </Link>
+  </div>
     </div>
   );
 }
