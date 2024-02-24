@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 
 
 
+
 const { Title, Text } = Typography;
 
 function RestDetailPage() {
@@ -29,12 +30,12 @@ function RestDetailPage() {
   }
 
 
-  const deleteRestaurant = () => {
+  const deleteRestaurant = (id) => {
 
     axios
       .delete(`/api/restaurants/delete/${id}`)
       .then(() => {
-        navigate("/restaurants/read");
+        navigate("/restaurants");
       })
       .catch((err) => console.log(err));
   };
@@ -78,10 +79,10 @@ function RestDetailPage() {
           <Text>{restaurant.price}</Text>
           <br />
 
-          {/* Mostrar comentarios y likes */}
-          {/* <Comments comments={restaurant.comments} /> */}
+          <button onClick={() => deleteRestaurant(id)}>Delete Restaurant</button>
+
       <Link
-  to={`/restaurants/update/${id}`}
+  to={`/restaurants/edit/${id}`}
   style={{ color: 'black' }}
 >
   <button>Edit Project</button>
@@ -90,7 +91,6 @@ function RestDetailPage() {
         </Col>
       </Row>
    
-     <button onClick={deleteRestaurant}>Delete Restaurant</button>
     </div>
   );
 }
