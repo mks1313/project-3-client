@@ -1,14 +1,18 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Typography, Divider, Row, Col, Card } from "antd";
 // import Comments from "../components/Comments";
 import Ratings from "../components/Ratings";
+import { Link } from "react-router-dom";
+
+
 
 const { Title, Text } = Typography;
 
 function RestDetailPage() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [restaurant, setRestaurant] = useState(null);
 
   useEffect(() => {
@@ -24,10 +28,24 @@ function RestDetailPage() {
     return <div>Cargando...</div>;
   }
 
+
+  const deleteRestaurant = () => {
+
+    axios
+      .delete(`/api/restaurants/delete/${id}`)
+      .then(() => {
+        navigate("/restaurants/read");
+      })
+      .catch((err) => console.log(err));
+  };
+
+
+
   return (
     <div className="RestDetailPage">
       <Title level={2}>{restaurant.name}</Title>
       <Divider />
+      
 
       <Row gutter={[16, 16]}>
         <Col xs={24} sm={12}>
@@ -62,9 +80,17 @@ function RestDetailPage() {
 
           {/* Mostrar comentarios y likes */}
           {/* <Comments comments={restaurant.comments} /> */}
+      <Link
+  to={`/restaurants/update/${id}`}
+  style={{ color: 'black' }}
+>
+  <button>Edit Project</button>
+</Link>
           <Ratings ratings={restaurant.ratings} />
         </Col>
       </Row>
+   
+     <button onClick={deleteRestaurant}>Delete Restaurant</button>
     </div>
   );
 }

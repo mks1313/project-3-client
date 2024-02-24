@@ -3,7 +3,8 @@ import './Navbar.css';
 // import SearchBar from './SearchBar';
 
 function Navbar() {
-  return (
+  
+    return (
     <nav className="navbar">
   
       <ul className='nav-ul'>

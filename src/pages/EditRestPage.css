@@ -1,0 +1,55 @@
+.EditRestaurantPage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin-top: 20px;
+  }
+  
+  .EditRestForm {
+    max-width: 400px;
+    width: 100%;
+    padding: 20px;
+    border-radius: 50px;
+    margin-top: 20px;
+    border: none;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 0;
+    font-weight: bolder;
+    font-size: 14px;
+    margin-left: 20px;
+  }
+  
+  input,
+  textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 16px;
+    margin-top: 0;
+    border: 1px solid #ccc;
+    border-radius: 40px;
+  }
+  
+  textarea {
+    height: 200px;
+    resize: none;
+    font-family: sans-serif;
+  }
+  
+  button {
+    width: 450px;
+    padding: 10px;
+    background-color: rgb(103, 193, 247);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  button:hover {
+    background-color: #0069a0;
+  }
