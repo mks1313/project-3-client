@@ -9,7 +9,6 @@ import RestDetailPage from "./pages/RestDetailsPage";
 // import Footer from "./components/Footer"
 // import SignupPage from "./pages/SignUpPage";
 // import LoginPage from "./pages/LoginPage";
-import EditRestaurantPage from "./pages/EditRestPage";
 
 
 function App() {
@@ -21,8 +20,7 @@ function App() {
         <Route path="/restaurants" element={<RestListPage />} />
         <Route path="/restaurants/:id" element={<RestDetailPage />} />
         {/* <Route path="/signup" element={<SignupPage />} /> */}
-        {/* <Route path="/login" element={<LoginPage />} /> */}
-        <Route path="/restaurants/:id/edit" element={<EditRestaurantPage />} />
+        <Route path="/login" element={<LoginPage />} />
       </Routes>
      
     </div>
