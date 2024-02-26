@@ -10,6 +10,7 @@ import RestDetailPage from "./pages/RestDetailsPage";
 // import SignupPage from "./pages/SignUpPage";
 // import LoginPage from "./pages/LoginPage";
 import EditRestPage from "./pages/EditRestPage";
+import CreateRest from "./pages/CreateRest";
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         {/* <Route path="/signup" element={<SignupPage />} /> */}
         {/* <Route path="/login" element={<LoginPage />} /> */}
         <Route path="/restaurants/edit/:id" element={<EditRestPage />} />
+        <Route path="/create" element={<CreateRest />} />
       </Routes>
      
     </div>

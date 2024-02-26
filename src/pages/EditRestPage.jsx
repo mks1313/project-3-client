@@ -12,7 +12,7 @@ const EditRestPage = () => {
     name: "",
     capacity: 0,
     image: "",
-    location: { type: "", coordinates: [] },
+    location: "", 
     phone: "",
     price: "",
     description: "",
@@ -46,7 +46,7 @@ const EditRestPage = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setRestaurant((prevRestaurant) => ({
+    setRestaurant(prevRestaurant => ({
       ...prevRestaurant,
       [name]: value,
     }));

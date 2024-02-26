@@ -16,7 +16,7 @@ nav {
   
   li {
     display: inline;
-    margin-right: 20px;
+    margin-right: 10px;
   }
   
   li:last-child {
@@ -33,4 +33,6 @@ nav {
   a:hover {
     color: #41e77e;
   }
-  
+  #sidebar a.active {
+    color: red;
+  }

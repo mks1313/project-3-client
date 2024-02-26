@@ -2,9 +2,10 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Typography, Divider, Row, Col, Card } from "antd";
-// import Comments from "../components/Comments";
+import Comments from "../components/Comments";
 import Ratings from "../components/Ratings";
 import { Link } from "react-router-dom";
+
 
 
 
@@ -54,40 +55,42 @@ function RestDetailPage() {
         </Col>
         <Col xs={24} sm={12}>
           <Title level={3}>Detalles del restaurante</Title>
-          <Text strong>Dirección:</Text>
+          <Text strong>Adress:</Text>
           <Text>{restaurant.location.coordinates}</Text>
           <br />
-          <Text strong>Descripción:</Text>
+          <Text strong>Descriptión:</Text>
           <Text>{restaurant.description}</Text>
           <br />
-          <Text strong>Capacidad:</Text>
+          <Text strong>Capacity:</Text>
           <Text>{restaurant.capacity}</Text>
           <br />
-          <Text strong>Categoría:</Text>
+          <Text strong>Category:</Text>
           <Text>{restaurant.category}</Text>
           <br />
-          <Text strong>Ciudad:</Text>
+          <Text strong>City:</Text>
           <Text>{restaurant.city}</Text>
           <br />
-          <Text strong>Código postal:</Text>
+          <Text strong>CPost code:</Text>
           <Text>{restaurant.postcode}</Text>
           <br />
-          <Text strong>Teléfono:</Text>
+          <Text strong>Phone:</Text>
           <Text>{restaurant.phone}</Text>
           <br />
-          <Text strong>Precio:</Text>
+          <Text strong>Price:</Text>
           <Text>{restaurant.price}</Text>
           <br />
 
+          
           <button onClick={() => deleteRestaurant(id)}>Delete Restaurant</button>
 
       <Link
   to={`/restaurants/edit/${id}`}
   style={{ color: 'black' }}
 >
-  <button>Edit Project</button>
+  <button>Edit Restaurant</button>
 </Link>
           <Ratings ratings={restaurant.ratings} />
+          <Comments restaurantId={id} />
         </Col>
       </Row>
    
