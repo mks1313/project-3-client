@@ -1,3 +1,6 @@
+.navBarDiv {
+  margin-bottom: 80px;
+}
 nav {
     background-color: rgb(103, 193, 247);
     padding: 20px;
@@ -6,7 +9,6 @@ nav {
   width: 100%; 
   position: fixed; 
   top: 0;
-
   }
 
   .nav-ul {

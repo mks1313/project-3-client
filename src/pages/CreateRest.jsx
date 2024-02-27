@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Modal, Button } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./CreateRest.css";
@@ -8,15 +7,13 @@ const CreateRest = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
-    capacity: 0,
+    capacity: "",
     image: "",
     location: { type: "Point", coordinates: [0, 0] },
     phone: "",
     price: "",
     description: "",
     category: "other",
-    city: "",
-    postcode: "",
     owner: "",
     openingHours: [
       { day: "Monday", open: "", close: "" },
@@ -27,13 +24,33 @@ const CreateRest = () => {
       { day: "Saturday", open: "", close: "" },
       { day: "Sunday", open: "", close: "" },
     ],
+    address: {
+      street: "",
+      number: "",
+      city: "",
+      postcode: "",
+    },
   });
-
-  const [showModal, setShowModal] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+
+    // Manejar los campos anidados correctamente
+    if (name.includes('.')) {
+      const [parent, child] = name.split('.');
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        [parent]: {
+          ...prevFormData[parent],
+          [child]: value,
+        },
+      }));
+    } else {
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        [name]: value,
+      }));
+    }
   };
 
   const handleSubmit = (e) => {
@@ -42,24 +59,15 @@ const CreateRest = () => {
       .post("/api/restaurants/create", formData)
       .then((response) => {
         console.log("Restaurante creado exitosamente:", response.data);
-        navigate(`/restaurants/${response.data._id}`);
+        navigate("/restaurants");
       })
       .catch((error) => {
         console.error("Error al crear el restaurante:", error);
       });
   };
-
-  const handleModalClose = () => {
-    setShowModal(false);
-  };
-
-  const handleModalSave = () => {
-    setShowModal(false);
-  };
-
   return (
     <div className="form">
-      <h2>New Restaurante</h2>
+      <h2>New Restaurant</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="name">Name of the Restaurant:</label>
@@ -69,6 +77,7 @@ const CreateRest = () => {
             name="name"
             value={formData.name}
             onChange={handleInputChange}
+            required
           />
         </div>
         <div>
@@ -79,6 +88,7 @@ const CreateRest = () => {
             name="capacity"
             value={formData.capacity}
             onChange={handleInputChange}
+            required
           />
         </div>
         <div>
@@ -112,7 +122,7 @@ const CreateRest = () => {
           />
         </div>
         <div>
-          <label htmlFor="description">Descriptión:</label>
+          <label htmlFor="description">Description:</label>
           <textarea
             id="description"
             name="description"
@@ -127,40 +137,65 @@ const CreateRest = () => {
             name="category"
             value={formData.category}
             onChange={handleInputChange}
+            required
           >
             <option value="italian">Italian</option>
-            <option value="mexican">Mexican</option>
-            <option value="chinese">Chinese</option>
-            <option value="turkish">Turkish</option>
-            <option value="russian">Russian</option>
-            <option value="french">French</option>
-            <option value="japanese">Japanese</option>
-            <option value="american">American</option>
-            <option value="vegetarian">Vegetarian</option>
-            <option value="vegan">Vegan</option>
-            <option value="fast food">Fast Food</option>
-            <option value="sushi">Sushi</option>
-            <option value="bbq">BBQ</option>
-            <option value="indian">Indian</option>
-            <option value="thai">Thai</option>
-            <option value="mediterranean">Mediterranean</option>
-            <option value="brazilian">Brazilian</option>
-            <option value="african">African</option>
-            <option value="fusion">Fusion</option>
-            <option value="other">Other</option>
-            <option value="spanish">Spanish</option>
-            <option value="german">German</option>
-            <option value="greek">Greek</option>
+          <option value="mexican">Mexican</option>
+          <option value="chinese">Chinese</option>
+          <option value="turkish">Turkish</option>
+          <option value="russian">Russian</option>
+          <option value="french">French</option>
+          <option value="japanese">Japanese</option>
+          <option value="american">American</option>
+          <option value="vegetarian">Vegetarian</option>
+          <option value="vegan">Vegan</option>
+          <option value="fast food">Fast Food</option>
+          <option value="sushi">Sushi</option>
+          <option value="bbq">BBQ</option>
+          <option value="indian">Indian</option>
+          <option value="thai">Thai</option>
+          <option value="mediterranean">Mediterranean</option>
+          <option value="brazilian">Brazilian</option>
+          <option value="african">African</option>
+          <option value="fusion">Fusion</option>
+          <option value="other">Other</option>
+          <option value="spanish">Spanish</option>
+          <option value="german">German</option>
+          <option value="greek">Greek</option>
+     
           </select>
+        </div>
+        <div>
+          <label htmlFor="street">Street:</label>
+          <input
+            type="text"
+            id="street"
+            name="address.street"
+            value={formData.address.street}
+            onChange={handleInputChange}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="number">Number:</label>
+          <input
+            type="text"
+            id="number"
+            name="address.number"
+            value={formData.address.number}
+            onChange={handleInputChange}
+            required
+          />
         </div>
         <div>
           <label htmlFor="city">City:</label>
           <input
             type="text"
             id="city"
-            name="city"
-            value={formData.city}
+            name="address.city"
+            value={formData.address.city}
             onChange={handleInputChange}
+            required
           />
         </div>
         <div>
@@ -168,40 +203,37 @@ const CreateRest = () => {
           <input
             type="text"
             id="postcode"
-            name="postcode"
-            value={formData.postcode}
+            name="address.postcode"
+            value={formData.address.postcode}
             onChange={handleInputChange}
           />
         </div>
-
-        <button onClick={() => setShowModal(true)}>Opening Hours</button>
-        <Modal show={showModal} onHide={handleModalClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>Select Opening Hours</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <div>
-              <label>Open Hours:</label>
+        <div>
+          <label>Opening Hours:</label>
+          {formData.openingHours.map((day, index) => (
+            <div key={index}>
+              <label>{day.day}</label>
               <input
                 type="time"
-                value={formData.openingHours[0].open}
+                value={day.open}
                 onChange={(e) => {
                   const newOpeningHours = [...formData.openingHours];
-                  newOpeningHours[0].open = e.target.value;
+                  newOpeningHours[index].open = e.target.value;
+                  setFormData({ ...formData, openingHours: newOpeningHours });
+                }}
+              />
+              <input
+                type="time"
+                value={day.close}
+                onChange={(e) => {
+                  const newOpeningHours = [...formData.openingHours];
+                  newOpeningHours[index].close = e.target.value;
                   setFormData({ ...formData, openingHours: newOpeningHours });
                 }}
               />
             </div>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={handleModalClose}>
-              Close
-            </Button>
-            <Button variant="primary" onClick={handleModalSave}>
-              Save
-            </Button>
-          </Modal.Footer>
-        </Modal>
+          ))}
+        </div>
         <button type="submit">Create Restaurant</button>
       </form>
     </div>
@@ -209,4 +241,6 @@ const CreateRest = () => {
 };
 
 export default CreateRest;
+
+
 

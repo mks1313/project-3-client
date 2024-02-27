@@ -4,7 +4,7 @@ import "./Navbar.css";
 
 function Navbar() {
   return (
-    <div>
+    <div className="navBarDiv">
       <nav className="navbar" id="sidebar">
         <ul className="nav-ul">
           <li>

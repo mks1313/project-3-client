@@ -10,16 +10,29 @@ const EditRestPage = () => {
 
   const [restaurant, setRestaurant] = useState({
     name: "",
-    capacity: 0,
+    capacity: "",
     image: "",
-    location: "", 
+    location: { type: "Point", coordinates: [0, 0] },
     phone: "",
     price: "",
     description: "",
     category: "other",
-    city: "",
-    postcode: "",
-    openingHours: [],
+    owner: "",
+    openingHours: [
+      { day: "Monday", open: "", close: "" },
+      { day: "Tuesday", open: "", close: "" },
+      { day: "Wednesday", open: "", close: "" },
+      { day: "Thursday", open: "", close: "" },
+      { day: "Friday", open: "", close: "" },
+      { day: "Saturday", open: "", close: "" },
+      { day: "Sunday", open: "", close: "" },
+    ],
+    address: {
+      street: "",
+      number: "",
+      city: "",
+      postcode: "",
+    },
   });
   
   useEffect(() => {
@@ -53,7 +66,7 @@ const EditRestPage = () => {
   };
 
   return (
-    <div className="EditRestaurantPage">
+    <div className="form">
       <h3>Edit Restaurant</h3>
       <form className="EditRestForm" onSubmit={handleFormSubmit}>
         <label>Name:</label>
@@ -142,21 +155,49 @@ const EditRestPage = () => {
           <option value="greek">Greek</option>
         </select>
 
-        <label>City:</label>
-        <input
-          type="text"
-          name="city"
-          value={restaurant.city}
-          onChange={handleInputChange}
-        />
-
-        <label>Postcode:</label>
-        <input
-          type="text"
-          name="postcode"
-          value={restaurant.postcode}
-          onChange={handleInputChange}
-        />
+        <div>
+          <label htmlFor="street">Street:</label>
+          <input
+            type="text"
+            id="street"
+            name="address.street"
+            value={restaurant.address.street}
+            onChange={handleInputChange}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="number">Number:</label>
+          <input
+            type="text"
+            id="number"
+            name="address.number"
+            value={restaurant.address.number}
+            onChange={handleInputChange}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="city">City:</label>
+          <input
+            type="text"
+            id="city"
+            name="address.city"
+            value={restaurant.address.city}
+            onChange={handleInputChange}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="postcode">Postcode:</label>
+          <input
+            type="text"
+            id="postcode"
+            name="address.postcode"
+            value={restaurant.address.postcode}
+            onChange={handleInputChange}
+          />
+        </div>
 
         <button type="submit">Update Restaurant</button> .
         <button>
