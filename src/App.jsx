@@ -10,7 +10,7 @@ import RestDetailPage from "./pages/RestDetailsPage";
 // import SignupPage from "./pages/SignUpPage";
 // import LoginPage from "./pages/LoginPage";
 import EditRestPage from "./pages/EditRestPage";
-import CreateRest from "./pages/CreateRest";
+import CreateRest from "./pages/CreateRestPage";
 
 
 function App() {

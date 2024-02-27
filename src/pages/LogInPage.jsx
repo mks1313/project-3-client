@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 
 const API_URL = import.meta.env.VITE_API_URL; // Recomendable hacer la variable al inicio
-
+//props!!!!!!
 function LoginPage() {
     // console.log("ESTA ES LA URL", API_URL);
     const { storeToken, authenticateUser } = useContext(AuthContext);
@@ -62,7 +62,7 @@ function LoginPage() {
             </form>
             {errorMessage && <p className="error-message">{errorMessage}</p>}
 
-            <p>Don`t have an account yet?</p>
+            <p>Dont have an account yet?</p>
             <Link to={"/signup"}> Sign Up</Link>
         </div>
     )

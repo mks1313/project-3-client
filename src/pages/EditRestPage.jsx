@@ -4,11 +4,12 @@ import axios from "axios";
 import "./EditRestPage.css";
 import { Link } from "react-router-dom";
 
+
 const EditRestPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const [restaurant, setRestaurant] = useState({
+  const [formData, setFormData] = useState({
     name: "",
     capacity: "",
     image: "",
@@ -32,16 +33,17 @@ const EditRestPage = () => {
       number: "",
       city: "",
       postcode: "",
+      
     },
   });
-  
+
   useEffect(() => {
     axios
-    .get(`/api/restaurants/read/${id}`)
-    .then((response) => {
+      .get(`/api/restaurants/read/${id}`)
+      .then((response) => {
         console.log(response);
         const fetchedRestaurant = response.data;
-        setRestaurant(fetchedRestaurant);
+        setFormData(fetchedRestaurant);
       })
       .catch((error) => console.log(error));
   }, [id]);
@@ -49,7 +51,7 @@ const EditRestPage = () => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     axios
-      .put(`/api/restaurants/update/${id}`, restaurant)
+      .put(`/api/restaurants/update/${id}`, formData)
       .then((response) => {
         console.log(response);
         navigate(`/restaurants/${id}`);
@@ -59,78 +61,105 @@ const EditRestPage = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setRestaurant(prevRestaurant => ({
-      ...prevRestaurant,
-      [name]: value,
-    }));
+
+    if (name.includes('.')) {
+      const [parent, child] = name.split('.');
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        [parent]: {
+          ...prevFormData[parent],
+          [child]: value,
+        },
+      }));
+    } else {
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        [name]: value,
+      }));
+    }
   };
 
   return (
     <div className="form">
       <h3>Edit Restaurant</h3>
       <form className="EditRestForm" onSubmit={handleFormSubmit}>
-        <label>Name:</label>
-        <input
-          type="text"
-          name="name"
-          value={restaurant.name}
-          onChange={handleInputChange}
-        />
+        <div>
+          <label>Name:</label>
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleInputChange}
+          />
+        </div>
 
-        <label>Capacity:</label>
-        <input
-          type="number"
-          name="capacity"
-          value={restaurant.capacity}
-          onChange={handleInputChange}
-        />
+        <div>
+          <label>Capacity:</label>
+          <input
+            type="number"
+            name="capacity"
+            value={formData.capacity}
+            onChange={handleInputChange}
+          />
+        </div>
 
-        <label>Image:</label>
-        <input
-          type="text"
-          name="image"
-          value={restaurant.image}
-          onChange={handleInputChange}
-        />
+        <div>
+          <label>Image:</label>
+          <input
+            type="text"
+            name="image"
+            value={formData.image}
+            onChange={handleInputChange}
+          />
+        </div>
 
-        <label>Location:</label>
-        <input
-          type="text"
-          name="location"
-          value={restaurant.location}
-          onChange={handleInputChange}
-        />
+        <div>
+          <label>Location:</label>
+          <input
+            type="text"
+            name="location"
+            value={formData.location}
+            onChange={handleInputChange}
+          />
+        </div>
 
-        <label>Phone:</label>
-        <input
-          type="text"
-          name="phone"
-          value={restaurant.phone}
-          onChange={handleInputChange}
-        />
+        <div>
+          <label>Phone:</label>
+          <input
+            type="text"
+            name="phone"
+            value={formData.phone}
+            onChange={handleInputChange}
+          />
+        </div>
 
-        <label>Price:</label>
-        <input
-          type="text"
-          name="price"
-          value={restaurant.price}
-          onChange={handleInputChange}
-        />
+        <div>
+          <label>Price:</label>
+          <input
+            type="text"
+            name="price"
+            value={formData.price}
+            onChange={handleInputChange}
+          />
+        </div>
 
-        <label>Description:</label>
-        <textarea
-          name="description"
-          value={restaurant.description}
-          onChange={handleInputChange}
-        />
+        <div>
+          <label>Description:</label>
+          <textarea
+            name="description"
+            value={formData.description}
+            onChange={handleInputChange}
+          />
+        </div>
 
-        <label>Category:</label>
-        <select
-          name="category"
-          value={restaurant.category}
-          onChange={handleInputChange}
-        >
-          <option value="italian">Italian</option>
+        <div>
+          <label>Category:</label>
+          <select
+            name="category"
+            value={formData.category}
+            onChange={handleInputChange}
+          >
+            <option value="italian">Italian</option>
           <option value="mexican">Mexican</option>
           <option value="chinese">Chinese</option>
           <option value="turkish">Turkish</option>
@@ -153,7 +182,8 @@ const EditRestPage = () => {
           <option value="spanish">Spanish</option>
           <option value="german">German</option>
           <option value="greek">Greek</option>
-        </select>
+          </select>
+        </div>
 
         <div>
           <label htmlFor="street">Street:</label>
@@ -161,45 +191,48 @@ const EditRestPage = () => {
             type="text"
             id="street"
             name="address.street"
-            value={restaurant.address.street}
+            value={formData.address.street}
             onChange={handleInputChange}
             required
           />
         </div>
+
         <div>
           <label htmlFor="number">Number:</label>
           <input
             type="text"
             id="number"
             name="address.number"
-            value={restaurant.address.number}
+            value={formData.address.number}
             onChange={handleInputChange}
             required
           />
         </div>
+
         <div>
           <label htmlFor="city">City:</label>
           <input
             type="text"
             id="city"
             name="address.city"
-            value={restaurant.address.city}
+            value={formData.address.city}
             onChange={handleInputChange}
             required
           />
         </div>
+
         <div>
           <label htmlFor="postcode">Postcode:</label>
           <input
             type="text"
             id="postcode"
             name="address.postcode"
-            value={restaurant.address.postcode}
+            value={formData.address.postcode}
             onChange={handleInputChange}
           />
         </div>
 
-        <button type="submit">Update Restaurant</button> .
+        <button type="submit">Update Restaurant</button>
         <button>
           <Link to={`/restaurants/${id}`}>Discard</Link>
         </button>
@@ -209,3 +242,4 @@ const EditRestPage = () => {
 };
 
 export default EditRestPage;
+

@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./CreateRest.css";
+import "./CreateRestPage.css";
 
-const CreateRest = () => {
+const CreateRestPage = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
@@ -29,13 +29,13 @@ const CreateRest = () => {
       number: "",
       city: "",
       postcode: "",
+      menus: [],
     },
   });
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
-    // Manejar los campos anidados correctamente
     if (name.includes('.')) {
       const [parent, child] = name.split('.');
       setFormData((prevFormData) => ({
@@ -52,6 +52,7 @@ const CreateRest = () => {
       }));
     }
   };
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -240,7 +241,7 @@ const CreateRest = () => {
   );
 };
 
-export default CreateRest;
+export default CreateRestPage;
 
 
 
