@@ -5,9 +5,9 @@ const { Text } = Typography;
 const Ratings = ({ ratings }) => {
   return (
     <div>
-      <h3>Likes</h3>
+      <h3>Ratings</h3>
       <Rate disabled defaultValue={ratings.length} />
-      <Text>({ratings.length} votos)</Text>
+      <Text>({ratings.length} votes)</Text>
     </div>
   );
 };

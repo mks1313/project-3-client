@@ -1,16 +1,11 @@
-import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./EditRestPage.css";
-import { Link } from "react-router-dom";
+import "./CreateRestPage.css";
 
-
-
-const EditRestPage = () => {
-  const { id } = useParams();
-  const navigate = useNavigate();
+const CreateRestPage = () => {
   const storedToken = localStorage.getItem("authToken");
-
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     capacity: "",
@@ -35,31 +30,9 @@ const EditRestPage = () => {
       number: "",
       city: "",
       postcode: "",
-      
+      menus: [],
     },
   });
-
-  useEffect(() => {
-    axios
-      .get(`/api/restaurants/read/${id}`,{ headers: { Authorization: `Bearer ${storedToken}` } })
-      .then((response) => {
-        console.log(response);
-        const fetchedRestaurant = response.data;
-        setFormData(fetchedRestaurant);
-      })
-      .catch((error) => console.log(error));
-  }, [id, storedToken]);
-
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    axios
-      .put(`/api/restaurants/update/${id}`, formData,{ headers: { Authorization: `Bearer ${storedToken}` } })
-      .then((response) => {
-        console.log(response);
-        navigate(`/restaurants/${id}`);
-      })
-      .catch((error) => console.log(error));
-  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -80,86 +53,93 @@ const EditRestPage = () => {
       }));
     }
   };
+  
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .post("/api/restaurants/create", formData, { headers: { Authorization: `Bearer ${storedToken}` } })
+      .then((response) => {
+        console.log("Restaurante creado exitosamente:", response.data);
+        navigate("/restaurants");
+      })
+      .catch((error) => {
+        console.error("Error al crear el restaurante:", error);
+      });
+  };
   return (
     <div className="form">
-      <h3>Edit Restaurant</h3>
-      <form className="EditRestForm" onSubmit={handleFormSubmit}>
+      <h2>New Restaurant</h2>
+      <form onSubmit={handleSubmit}>
         <div>
-          <label>Name:</label>
+          <label htmlFor="name">Name of the Restaurant:</label>
           <input
             type="text"
+            id="name"
             name="name"
             value={formData.name}
             onChange={handleInputChange}
+            required
           />
         </div>
-
         <div>
-          <label>Capacity:</label>
+          <label htmlFor="capacity">Capacity:</label>
           <input
             type="number"
+            id="capacity"
             name="capacity"
             value={formData.capacity}
             onChange={handleInputChange}
+            required
           />
         </div>
-
         <div>
-          <label>Image:</label>
+          <label htmlFor="image">Image:</label>
           <input
             type="text"
+            id="image"
             name="image"
             value={formData.image}
             onChange={handleInputChange}
           />
         </div>
-
         <div>
-          <label>Location:</label>
+          <label htmlFor="phone">Phone:</label>
           <input
             type="text"
-            name="location"
-            value={formData.location}
-            onChange={handleInputChange}
-          />
-        </div>
-
-        <div>
-          <label>Phone:</label>
-          <input
-            type="text"
+            id="phone"
             name="phone"
             value={formData.phone}
             onChange={handleInputChange}
           />
         </div>
-
         <div>
-          <label>Price:</label>
+          <label htmlFor="price">Price:</label>
           <input
             type="text"
+            id="price"
             name="price"
             value={formData.price}
             onChange={handleInputChange}
           />
         </div>
-
         <div>
-          <label>Description:</label>
+          <label htmlFor="description">Description:</label>
           <textarea
+            id="description"
             name="description"
             value={formData.description}
             onChange={handleInputChange}
           />
         </div>
-
         <div>
-          <label>Category:</label>
+          <label htmlFor="category">Category:</label>
           <select
+            id="category"
             name="category"
             value={formData.category}
             onChange={handleInputChange}
+            required
           >
             <option value="italian">Italian</option>
           <option value="mexican">Mexican</option>
@@ -184,9 +164,9 @@ const EditRestPage = () => {
           <option value="spanish">Spanish</option>
           <option value="german">German</option>
           <option value="greek">Greek</option>
+     
           </select>
         </div>
-
         <div>
           <label htmlFor="street">Street:</label>
           <input
@@ -198,7 +178,6 @@ const EditRestPage = () => {
             required
           />
         </div>
-
         <div>
           <label htmlFor="number">Number:</label>
           <input
@@ -210,7 +189,6 @@ const EditRestPage = () => {
             required
           />
         </div>
-
         <div>
           <label htmlFor="city">City:</label>
           <input
@@ -222,7 +200,6 @@ const EditRestPage = () => {
             required
           />
         </div>
-
         <div>
           <label htmlFor="postcode">Postcode:</label>
           <input
@@ -233,15 +210,39 @@ const EditRestPage = () => {
             onChange={handleInputChange}
           />
         </div>
-
-        <button type="submit">Update Restaurant</button>
-        <button>
-          <Link to={`/restaurants/${id}`}>Discard</Link>
-        </button>
+        <div>
+          <label>Opening Hours:</label>
+          {formData.openingHours.map((day, index) => (
+            <div key={index}>
+              <label>{day.day}</label>
+              <input
+                type="time"
+                value={day.open}
+                onChange={(e) => {
+                  const newOpeningHours = [...formData.openingHours];
+                  newOpeningHours[index].open = e.target.value;
+                  setFormData({ ...formData, openingHours: newOpeningHours });
+                }}
+              />
+              <input
+                type="time"
+                value={day.close}
+                onChange={(e) => {
+                  const newOpeningHours = [...formData.openingHours];
+                  newOpeningHours[index].close = e.target.value;
+                  setFormData({ ...formData, openingHours: newOpeningHours });
+                }}
+              />
+            </div>
+          ))}
+        </div>
+        <button type="submit">Create Restaurant</button>
       </form>
     </div>
   );
 };
 
-export default EditRestPage;
+export default CreateRestPage;
+
+
 

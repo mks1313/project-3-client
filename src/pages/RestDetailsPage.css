@@ -1,0 +1,35 @@
+.RestDetailPage {
+    padding: 20px;
+  }
+  
+  .restaurant-details {
+    display: flex;
+  }
+  
+  .restaurant-image {
+    margin-right: 20px;
+  }
+  
+  .restaurant-image img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+  }
+  
+  .restaurant-info {
+    flex: 1;
+  }
+  
+  .restaurant-info h3 {
+    margin-top: 0;
+  }
+  
+  .restaurant-info p {
+    margin-bottom: 10px;
+  }
+  
+  .restaurant-info button {
+    margin-top: 10px;
+  }
+  
+  

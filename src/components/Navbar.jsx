@@ -1,22 +1,51 @@
-import { Link } from 'react-router-dom';
-import './Navbar.css';
+import { NavLink } from "react-router-dom";
+import "./Navbar.css";
 // import SearchBar from './SearchBar';
 
 function Navbar() {
-  
-    return (
-    <nav className="navbar">
-  
-      <ul className='nav-ul'>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/restaurants">Restaurants</Link></li>
-        <li><Link to="/signUp">SignUp</Link></li>
-        <li><Link to="/login">LogIn</Link></li>
-        <li><Link to="/about">About us</Link></li>
-      </ul>
-    </nav>
+  return (
+    <div className="navBarDiv">
+      <nav className="navbar" id="sidebar">
+        <ul className="nav-ul">
+          <li>
+            <NavLink to="/">
+              Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/restaurants">
+              Restaurants
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/signUp">
+              SignUp
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/login">
+              LogIn
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/about">
+              About us
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/create">
+              Create Restaurant
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/profile">
+              Your Profile
+            </NavLink>
+          </li>
+        </ul>
+      </nav>
+    </div>
   );
 }
 
 export default Navbar;
-

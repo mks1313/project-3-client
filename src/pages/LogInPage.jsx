@@ -3,8 +3,8 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 
-const API_URL = import.meta.env.VITE_API_URL; // Recomendable hacer la variable al inicio
-
+// const API_URL = import.meta.env.VITE_API_URL; // Recomendable hacer la variable al inicio
+//props!!!!!!
 function LoginPage() {
     // console.log("ESTA ES LA URL", API_URL);
     const { storeToken, authenticateUser } = useContext(AuthContext);
@@ -22,7 +22,7 @@ function LoginPage() {
         e.preventDefault();
         const requestBody = { email, password };
 
-        axios.post(`${API_URL}/auth/login`, requestBody)
+        axios.post(`api/auth/login`, requestBody)
             .then((response) => {
                 // Request to the server's endpoint `/auth/login` returns a response
                 // with the JWT string ->  response.data.authToken
@@ -62,7 +62,7 @@ function LoginPage() {
             </form>
             {errorMessage && <p className="error-message">{errorMessage}</p>}
 
-            <p>Don`t have an account yet?</p>
+            <p>Dont have an account yet?</p>
             <Link to={"/signup"}> Sign Up</Link>
         </div>
     )
