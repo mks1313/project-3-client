@@ -39,7 +39,7 @@
     font-family: sans-serif;
   }
   
-  button {
+  btn-create {
     width: 450px;
     padding: 10px;
     background-color: rgb(103, 193, 247);
@@ -50,6 +50,6 @@
     font-size: 16px;
   }
   
-  button:hover {
+  btn-create:hover {
     background-color: #0069a0;
   }

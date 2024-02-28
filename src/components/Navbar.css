@@ -1,5 +1,8 @@
 .navBarDiv {
   margin-bottom: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 nav {
     background-color: rgb(103, 193, 247);
@@ -12,7 +15,7 @@ nav {
   }
 
   .nav-ul {
-    display: block;
+    /* display: block; */
     justify-content: space-between;
   }
   
@@ -37,4 +40,21 @@ nav {
   }
   #sidebar a.active {
     color: red;
+  }
+
+  .button-logout {
+    background-color: #ff0000; 
+    color: #ffffff; 
+    border: none; 
+    padding: 10px 20px; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    margin-left: auto;
+  }
+  
+  .button-logout:hover {
+    background-color: #cc0000; 
+  }
+  button-logout-container {
+    margin-left: auto;
   }

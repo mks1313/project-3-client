@@ -236,7 +236,7 @@ const CreateRestPage = () => {
             </div>
           ))}
         </div>
-        <button type="submit">Create Restaurant</button>
+        <button className="btn-create" type="submit">Create Restaurant</button>
       </form>
     </div>
   );

@@ -1,46 +1,51 @@
 import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../context/auth.context"; 
 import "./Navbar.css";
-// import SearchBar from './SearchBar';
 
 function Navbar() {
+  const { isLoggedIn, logOutUser } = useContext(AuthContext);
+
+  const handleLogout = () => {
+    logOutUser(); 
+    window.location.href = "/"; 
+  };
+
   return (
     <div className="navBarDiv">
       <nav className="navbar" id="sidebar">
         <ul className="nav-ul">
           <li>
-            <NavLink to="/">
-              Home
-            </NavLink>
+            <NavLink to="/">Home</NavLink>
           </li>
           <li>
-            <NavLink to="/restaurants">
-              Restaurants
-            </NavLink>
+            <NavLink to="/restaurants">Restaurants</NavLink>
           </li>
+          {!isLoggedIn && (
+            <>
+              <li>
+                <NavLink to="/signUp">SignUp</NavLink>
+              </li>
+              <li>
+                <NavLink to="/login">LogIn</NavLink>
+              </li>
+            </>
+          )}
+          {isLoggedIn && (
+            <>
+              <li>
+                <NavLink to="/profile">Your Profile</NavLink>
+              </li>
+              <li className="button-logout-container">
+                <button  className="button-logout" onClick={handleLogout}>Logout</button>
+              </li>
+              <li>
+                <NavLink to="/create">Create Restaurant</NavLink>
+              </li>
+            </>
+          )}
           <li>
-            <NavLink to="/signUp">
-              SignUp
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/login">
-              LogIn
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/about">
-              About us
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/create">
-              Create Restaurant
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/profile">
-              Your Profile
-            </NavLink>
+            <NavLink to="/about">About us</NavLink>
           </li>
         </ul>
       </nav>
@@ -49,3 +54,4 @@ function Navbar() {
 }
 
 export default Navbar;
+

@@ -234,8 +234,8 @@ const EditRestPage = () => {
           />
         </div>
 
-        <button type="submit">Update Restaurant</button>
-        <button>
+        <button className=" btn-create" type="submit">Update Restaurant</button>
+        <button className=" btn-create">
           <Link to={`/restaurants/${id}`}>Discard</Link>
         </button>
       </form>

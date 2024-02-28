@@ -26,6 +26,7 @@ const MenuComponent = ({ menuIds }) => {
 
   return (
     <div>
+    <div>
       <h2>Menu</h2>
       <ul>
         {menuItems.map((menuItem, index) => (
@@ -34,8 +35,13 @@ const MenuComponent = ({ menuIds }) => {
             <div>{menuItem.price}</div>
           </li>
         ))}
-      </ul>
+      </ul>      
     </div>
+          <div>
+            
+          </div>
+    </div>
+    
   );
 };
 
