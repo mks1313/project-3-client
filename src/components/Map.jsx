@@ -19,7 +19,7 @@ const Map = () => {
           },
           geometry: {
             type: "Point",
-            coordinates: [2.174356, 41.403629],
+            coordinates: [2.1765223826466493, 41.404284072641694],
           },
         },        
       ],
