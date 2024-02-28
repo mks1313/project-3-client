@@ -29,7 +29,7 @@ const Map = () => {
       container: "map",
       style: "mapbox://styles/mapbox/streets-v12",
       center: [2.174356, 41.403629],
-      zoom: 5,
+      zoom: 15,
     });
 
     
@@ -39,7 +39,7 @@ const Map = () => {
       const width = marker.properties.iconSize[0];
       const height = marker.properties.iconSize[1];
       el.className = "marker";
-      el.style.backgroundImage = `url(https://cdn2.vectorstock.com/i/1000x1000/01/46/fork-and-knife-icon-restaurant-symbol-vector-23190146.jpg)`;
+      el.style.backgroundImage = `url(https://upload.wikimedia.org/wikipedia/en/a/ae/Los_Pollos_Hermanos_logo.png)`;
       el.style.width = `${width}px`;
       el.style.height = `${height}px`;
       el.style.backgroundSize = "100%";

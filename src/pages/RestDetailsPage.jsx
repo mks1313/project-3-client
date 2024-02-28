@@ -4,6 +4,7 @@ import axios from "axios";
 import Comments from "../components/Comments";
 import Ratings from "../components/Ratings";
 import MenuComponent from "../components/MenuComponent";
+import Map from "../components/Map";
 import "./RestDetailsPage.css";
 
 function RestDetailPage() {
@@ -11,20 +12,19 @@ function RestDetailPage() {
   const navigate = useNavigate();
   const [restaurant, setRestaurant] = useState(null);
   const storedToken = localStorage.getItem("authToken");
-
   useEffect(() => {
     axios
-      .get(`/api/restaurants/read/${id}`, { headers: { Authorization: `Bearer ${storedToken}` } })
+      .get(`/api/restaurants/read/${id}`, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
       .then((response) => {
         setRestaurant(response.data);
       })
       .catch((error) => console.log(error));
   }, [id, storedToken]);
-
   if (!restaurant) {
     return <div>Cargando...</div>;
   }
-
   const deleteRestaurant = (id) => {
     axios
       .delete(`/api/restaurants/delete/${id}`)
@@ -33,12 +33,11 @@ function RestDetailPage() {
       })
       .catch((err) => console.log(err));
   };
-
+  
   return (
     <div className="RestDetailPage">
       <h2>{restaurant.name}</h2>
       <hr />
-
       <div className="restaurant-details">
         <div className="restaurant-image">
           <img src={restaurant.image} alt="Descripción de la imagen" />
@@ -69,7 +68,9 @@ function RestDetailPage() {
             <MenuComponent menuIds={restaurant.menus} />
           </div>
           <br />
-          <button onClick={() => deleteRestaurant(id)}>Eliminar Restaurante</button>
+          <button onClick={() => deleteRestaurant(id)}>
+            Eliminar Restaurante
+          </button>
           <Link to={`/restaurants/edit/${id}`} style={{ color: "black" }}>
             <button>Editar Restaurante</button>
           </Link>
@@ -77,8 +78,8 @@ function RestDetailPage() {
           <Comments restaurantId={id} />
         </div>
       </div>
+      <Map coordinates={restaurant.location.coordinates} />
     </div>
   );
 }
-
 export default RestDetailPage;
