@@ -5,9 +5,11 @@ import "./EditRestPage.css";
 import { Link } from "react-router-dom";
 
 
+
 const EditRestPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const storedToken = localStorage.getItem("authToken");
 
   const [formData, setFormData] = useState({
     name: "",
@@ -39,19 +41,19 @@ const EditRestPage = () => {
 
   useEffect(() => {
     axios
-      .get(`/api/restaurants/read/${id}`)
+      .get(`/api/restaurants/read/${id}`,{ headers: { Authorization: `Bearer ${storedToken}` } })
       .then((response) => {
         console.log(response);
         const fetchedRestaurant = response.data;
         setFormData(fetchedRestaurant);
       })
       .catch((error) => console.log(error));
-  }, [id]);
+  }, [id, storedToken]);
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
     axios
-      .put(`/api/restaurants/update/${id}`, formData)
+      .put(`/api/restaurants/update/${id}`, formData,{ headers: { Authorization: `Bearer ${storedToken}` } })
       .then((response) => {
         console.log(response);
         navigate(`/restaurants/${id}`);

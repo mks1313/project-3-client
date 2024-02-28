@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-const API_URL = import.meta.env.VITE_API_URL;
+// const API_URL = import.meta.env.VITE_API_URL;
 
 const AuthContext = React.createContext();
 
@@ -23,7 +23,7 @@ function AuthProviderWrapper({ children }) {
         if (storedToken) {
             // We must send the JWT token in the request's "Authorization" Headers
             return axios.get(
-                `${API_URL}/auth/verify`,
+                `api/auth/verify`,
                 { headers: { Authorization: `Bearer ${storedToken}` } }
             )
                 .then((response) => {
@@ -34,7 +34,7 @@ function AuthProviderWrapper({ children }) {
                     setIsLoading(false);
                     setUser(user);
                 })
-                .catch((error) => {
+                .catch(() => { //poner error como argumento en catch
                     // If the server sends an error response (invalid token) 
                     // Update state variables         
                     setIsLoggedIn(false);

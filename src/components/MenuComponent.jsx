@@ -3,11 +3,12 @@ import axios from 'axios';
 
 const MenuComponent = ({ menuIds }) => {
   const [menuItems, setMenuItems] = useState([]);
+  const storedToken = localStorage.getItem("authToken");
 
   useEffect(() => {
     const fetchMenuItems = () => {
       const promises = menuIds.map(menuId =>
-        axios.get(`/api/menus/get/${menuId}`)
+        axios.get(`/api/menus/get/${menuId}`,{ headers: { Authorization: `Bearer ${storedToken}` } })
       );
 
       Promise.all(promises)
@@ -21,7 +22,7 @@ const MenuComponent = ({ menuIds }) => {
     };
 
     fetchMenuItems();
-  }, [menuIds]);
+  }, [menuIds, storedToken]);
 
   return (
     <div>

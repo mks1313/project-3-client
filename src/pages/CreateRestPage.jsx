@@ -4,6 +4,7 @@ import axios from "axios";
 import "./CreateRestPage.css";
 
 const CreateRestPage = () => {
+  const storedToken = localStorage.getItem("authToken");
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
@@ -57,7 +58,7 @@ const CreateRestPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("/api/restaurants/create", formData)
+      .post("/api/restaurants/create", formData, { headers: { Authorization: `Bearer ${storedToken}` } })
       .then((response) => {
         console.log("Restaurante creado exitosamente:", response.data);
         navigate("/restaurants");

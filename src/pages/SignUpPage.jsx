@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const API_URL = import.meta.env.VITE_API_URL;
+// const API_URL = import.meta.env.VITE_API_URL;
 
 // function SignupPage(props)
 function SignupPage() {
@@ -27,7 +27,7 @@ function SignupPage() {
         // Make an axios request to the API
         // If the POST request is a successful redirect to the login page
         // If the request resolves with an error, set the error message in the state
-        axios.post(`${API_URL}/auth/signup`, requestBody)
+        axios.post(`api/auth/signup`, requestBody)
             .then(() => { //response, va como argumento en then.
                 navigate('/login', );
             })

@@ -4,10 +4,11 @@ import axios from 'axios';
 const Comments = ({ restaurantId }) => {
   const [comments, setComments] = useState([]);
   const [showMore, setShowMore] = useState(false);
+  const storedToken = localStorage.getItem("authToken");
 
   useEffect(() => {
     // Realizar una solicitud GET al servidor para obtener los comentarios
-    axios.get(`/api/comments/${restaurantId}`)
+    axios.get(`/api/comments/${restaurantId}`,{ headers: { Authorization: `Bearer ${storedToken}` } })
       .then(response => {
         // Al recibir la respuesta, actualiza el estado con los comentarios obtenidos
         setComments(response.data);
@@ -15,7 +16,7 @@ const Comments = ({ restaurantId }) => {
       .catch(error => {
         console.error('Error al obtener comentarios:', error);
       });
-  }, [restaurantId]); 
+  }, [restaurantId, storedToken]); 
 
   // Función para manejar el clic en "Mostrar más"
   const handleShowMore = () => {

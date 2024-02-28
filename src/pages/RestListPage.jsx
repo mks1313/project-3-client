@@ -5,15 +5,16 @@ import "./RestListPage.css";
 
 function RestListPage() {
   const [restaurants, setRestaurants] = useState([]);
+  const storedToken = localStorage.getItem("authToken");
 
   useEffect(() => {
     axios
-      .get(`/api/restaurants/read`)
+      .get(`/api/restaurants/read`, { headers: { Authorization: `Bearer ${storedToken}` } })
       .then((response) => {
         setRestaurants(response.data);
       })
       .catch((error) => console.log(error));
-  }, []);
+  }, [storedToken]);
 
   return (
     <div className="RestListPage">
@@ -33,4 +34,5 @@ function RestListPage() {
 }
 
 export default RestListPage;
+
 

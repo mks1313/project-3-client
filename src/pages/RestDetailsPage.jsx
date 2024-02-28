@@ -10,15 +10,16 @@ function RestDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [restaurant, setRestaurant] = useState(null);
+  const storedToken = localStorage.getItem("authToken");
 
   useEffect(() => {
     axios
-      .get(`/api/restaurants/read/${id}`)
+      .get(`/api/restaurants/read/${id}`, { headers: { Authorization: `Bearer ${storedToken}` } })
       .then((response) => {
         setRestaurant(response.data);
       })
       .catch((error) => console.log(error));
-  }, [id]);
+  }, [id, storedToken]);
 
   if (!restaurant) {
     return <div>Cargando...</div>;
