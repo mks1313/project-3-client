@@ -1,37 +1,52 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import EditProfilePage from "./EditProfilePage";
-//TODO mirar, integrar token al enviar formulario
-function ProfilePage() {
+import "./ProfilePage.css";
+
+const ProfilePage = () => {
   const [userData, setUserData] = useState(null);
   const storedToken = localStorage.getItem("authToken");
 
-  const handleSubmit = (formData) => {
-    axios.put('/api/users/profile', formData)
-      .then((response) => {
-        setUserData(response.data.user);
-        alert('User profile updated successfully.');
-      })
-      .catch((error) => {
-        console.error('Error updating user profile:', error);
-        alert('An error occurred while updating user profile.');
-      });
-  };
-
   useEffect(() => {
     const fetchUserData = () => {
-      axios.get("/api/users/profile", { headers: { Authorization: `Bearer ${storedToken}` } })
-        .then(response => {
-          setUserData(response.data.user); 
+      axios.get("/api/users/profile", {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
+        .then((response) => {
+          const user = response.data.user;
+  
+          if (user.isOwner && user.restaurant.length > 0) {
+            const restaurantPromises = user.restaurant.map((restaurantId) => {
+              return axios.get(`/api/restaurants/read/${restaurantId}`, {
+                headers: { Authorization: `Bearer ${storedToken}` },
+              });
+            });
+  
+            Promise.all(restaurantPromises)
+              .then((restaurantResponses) => {
+                const restaurants = restaurantResponses.map((restaurantResponse) => restaurantResponse.data);
+  
+                user.restaurantDetails = restaurants;
+  
+                setUserData(user);
+              })
+              .catch((error) => {
+                console.error("Error fetching restaurant data:", error);
+                setUserData(user); // Aunque haya ocurrido un error, establecemos userData con el usuario sin los detalles de los restaurantes
+              });
+          } else {
+            setUserData(user);
+          }
         })
-        .catch(error => {
+        .catch((error) => {
           console.error("Error fetching user data:", error);
         });
     };
-
-    fetchUserData();
+  
+    if (storedToken) {
+      fetchUserData();
+    }
   }, [storedToken]);
-
+  
   return (
     <div className="profile-page">
       <h1>User Profile</h1>
@@ -43,14 +58,18 @@ function ProfilePage() {
           <p>Sex: {userData.sex}</p>
           <p>Birthday: {new Date(userData.birthday).toLocaleDateString()}</p>
           <p>Owner: {userData.isOwner ? 'Yes' : 'No'}</p>
-          <EditProfilePage onSubmit={handleSubmit} />
+          {userData.isOwner && userData.restaurantDetails && (
+            <div>
+            <p>Restaurants: {userData.restaurantDetails.map((restaurant) => restaurant.name).join(', ')}</p>
+          </div>
+          )}
         </div>
       ) : (
-        <p>Loading user data...</p>
+        <p className="loading-message">Loading user data...</p>
       )}
     </div>
   );
+  
 }
 
 export default ProfilePage;
-

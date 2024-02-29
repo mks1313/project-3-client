@@ -27,7 +27,9 @@ function RestDetailPage() {
   }
   const deleteRestaurant = (id) => {
     axios
-      .delete(`/api/restaurants/delete/${id}`)
+      .delete(`/api/restaurants/delete/${id}`, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
       .then(() => {
         navigate("/restaurants");
       })
