@@ -12,6 +12,7 @@ import LoginPage from "./pages/LoginPage";
 import EditRestPage from "./pages/EditRestPage";
 import CreateRestPage from "./pages/CreateRestPage";
 import ProfilePage from "./pages/ProfilePage";
+import EditProfilePage from "./pages/EditProfilePage";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/restaurants/edit/:id" element={<EditRestPage />} />
         <Route path="/create" element={<CreateRestPage />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/edit-profile" element={<EditProfilePage />} />
       </Routes>
     </div>
   );
