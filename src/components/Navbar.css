@@ -3,6 +3,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-family: 'Raleway', Arial, sans-serif;
+
 }
 nav {
     background-color: rgb(103, 193, 247);

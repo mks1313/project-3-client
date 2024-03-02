@@ -1,6 +1,5 @@
 import "./HomePage.css"; 
 import { Link } from 'react-router-dom';
-import Map from "../components/Map";
 
 function HomePage() {
   return (
@@ -19,7 +18,6 @@ function HomePage() {
     <p>Find Your Favorite Restaurant!</p>
     </Link>
   </div>
-  <Map />
     </div>
   );
 }

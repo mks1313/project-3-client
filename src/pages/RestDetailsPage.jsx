@@ -4,14 +4,16 @@ import axios from "axios";
 import Comments from "../components/Comments";
 import Ratings from "../components/Ratings";
 import MenuComponent from "../components/MenuComponent";
-import Map from "../components/Map";
 import "./RestDetailsPage.css";
+import ConfirmationDialog from "../components/ConfirmationDialog";
 
 function RestDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [restaurant, setRestaurant] = useState(null);
   const storedToken = localStorage.getItem("authToken");
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  
   useEffect(() => {
     axios
       .get(`/api/restaurants/read/${id}`, {
@@ -25,7 +27,11 @@ function RestDetailPage() {
   if (!restaurant) {
     return <div>Cargando...</div>;
   }
-  const deleteRestaurant = (id) => {
+  const handleDeleteRestaurant = () => {
+    setShowConfirmation(true);
+  };
+
+  const confirmDeleteRestaurant = () => {
     axios
       .delete(`/api/restaurants/delete/${id}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
@@ -34,6 +40,10 @@ function RestDetailPage() {
         navigate("/restaurants");
       })
       .catch((err) => console.log(err));
+  };
+
+  const cancelDeleteRestaurant = () => {
+    setShowConfirmation(false);
   };
   
   return (
@@ -70,7 +80,7 @@ function RestDetailPage() {
             <MenuComponent menuIds={restaurant.menus} />
           </div>
           <br />
-          <button onClick={() => deleteRestaurant(id)}>
+          <button onClick={() => handleDeleteRestaurant(id)}>
             Eliminar Restaurante
           </button>
           <Link to={`/restaurants/edit/${id}`} style={{ color: "black" }}>
@@ -80,7 +90,13 @@ function RestDetailPage() {
           <Comments restaurantId={id} />
         </div>
       </div>
-      <Map coordinates={restaurant.location.coordinates} />
+      {showConfirmation && (
+        <ConfirmationDialog
+          message="¿Estás seguro de que quieres eliminar este restaurante? Esta acción no se puede deshacer."
+          onConfirm={confirmDeleteRestaurant}
+          onCancel={cancelDeleteRestaurant}
+        />
+      )}
     </div>
   );
 }

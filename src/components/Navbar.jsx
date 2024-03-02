@@ -40,7 +40,7 @@ function Navbar() {
                 <button  className="button-logout" onClick={handleLogout}>Logout</button>
               </li>
               <li>
-                <NavLink to="/create">Create Restaurant</NavLink>
+                <NavLink to="/create">Register my restaurant</NavLink>
               </li>
             </>
           )}

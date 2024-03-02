@@ -4,6 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./ProfilePage.css";
 import ConfirmationDialog from "../components/ConfirmationDialog";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 const ProfilePage = () => {
@@ -63,9 +65,11 @@ const ProfilePage = () => {
         localStorage.removeItem('authToken');
         logOutUser(); 
         navigate("/"); 
+        toast.success("Profile deleted successfully");
       })
       .catch(error => {
         console.error('Error deleting profile:', error);
+        toast.error("An error occurred while deleting the profile");
       });
   };
 
@@ -104,6 +108,7 @@ const ProfilePage = () => {
           onCancel={cancelDeleteProfile}
         />
       )}
+      <ToastContainer autoClose={5000} />
     </div>
   );
 }

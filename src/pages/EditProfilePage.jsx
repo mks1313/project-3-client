@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "./EditProfilePage.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 
 const EditProfilePage = () => {
@@ -122,6 +122,9 @@ const EditProfilePage = () => {
             onChange={(e) => setProfileImage(e.target.files[0])}
           />
           <button type="submit">Save Changes</button>
+          <button className=" btn">
+          <Link to={`/profile`}>Discard</Link>
+        </button>
         </form>
       ) : (
         <p className="loading-message">Loading user data...</p>
