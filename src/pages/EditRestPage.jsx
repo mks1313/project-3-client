@@ -15,7 +15,6 @@ const EditRestPage = () => {
     name: "",
     capacity: "",
     image: "",
-    location: { type: "Point", coordinates: [0, 0] },
     phone: "",
     price: "",
     description: "",
@@ -43,7 +42,6 @@ const EditRestPage = () => {
     axios
       .get(`/api/restaurants/read/${id}`,{ headers: { Authorization: `Bearer ${storedToken}` } })
       .then((response) => {
-        console.log(response);
         const fetchedRestaurant = response.data;
         setFormData(fetchedRestaurant);
       })
@@ -54,8 +52,7 @@ const EditRestPage = () => {
     e.preventDefault();
     axios
       .put(`/api/restaurants/update/${id}`, formData,{ headers: { Authorization: `Bearer ${storedToken}` } })
-      .then((response) => {
-        console.log(response);
+      .then(() => {
         navigate(`/restaurants/${id}`);
       })
       .catch((error) => console.log(error));
@@ -111,16 +108,6 @@ const EditRestPage = () => {
             type="text"
             name="image"
             value={formData.image}
-            onChange={handleInputChange}
-          />
-        </div>
-
-        <div>
-          <label>Location:</label>
-          <input
-            type="text"
-            name="location"
-            value={formData.location}
             onChange={handleInputChange}
           />
         </div>

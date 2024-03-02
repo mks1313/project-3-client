@@ -59,8 +59,7 @@ const CreateRestPage = () => {
     e.preventDefault();
     axios
       .post("/api/restaurants/create", formData, { headers: { Authorization: `Bearer ${storedToken}` } })
-      .then((response) => {
-        console.log("Restaurante creado exitosamente:", response.data);
+      .then(() => {
         navigate("/restaurants");
       })
       .catch((error) => {
