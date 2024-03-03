@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import "./EditProfilePage.css";
 import { useNavigate, Link } from "react-router-dom";
-
 
 const EditProfilePage = () => {
   const [userData, setUserData] = useState(null);
@@ -21,23 +19,32 @@ const EditProfilePage = () => {
       axios.get("/api/users/profile", {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
-        .then((response) => {
-          setUserData(response.data.user);
-        })
-        .catch((error) => {
-          console.error("Error fetching user data:", error);
-        });
+      .then((response) => {
+        const user = response.data.user;
+        setUserData(user);
+        // Convertir la fecha de nacimiento a formato ISOString
+        const userBirthday = new Date(user.birthday).toISOString().split('T')[0];
+        setBirthday(userBirthday);
+        // Asignar otros datos del usuario a los estados correspondientes
+        setName(user.name);
+        setEmail(user.email);
+        setSex(user.sex);
+      })
+      .catch((error) => {
+        console.error("Error fetching user data:", error);
+      });
     };
-
+  
     if (storedToken) {
       fetchUserData();
     }
   }, [storedToken]);
+  
+  
 
   const handleSubmit = (event) => {
     event.preventDefault();
   
-    // Aquí obtienes los valores actualizados del formulario
     const updatedData = {
       name: event.target.name.value,
       email: event.target.email.value,
@@ -48,7 +55,6 @@ const EditProfilePage = () => {
       image: profileImage,
     };
   
-    // Realiza la solicitud PUT al backend para actualizar el perfil
     axios
       .put("/api/users/profile/update", updatedData, {
         headers: {
@@ -121,8 +127,8 @@ const EditProfilePage = () => {
           />
           <button type="submit">Save Changes</button>
           <button className=" btn">
-          <Link to={`/profile`}>Discard</Link>
-        </button>
+            <Link to={`/profile`}>Discard</Link>
+          </button>
         </form>
       ) : (
         <p className="loading-message">Loading user data...</p>
@@ -132,6 +138,7 @@ const EditProfilePage = () => {
 }
 
 export default EditProfilePage;
+
 
 
 

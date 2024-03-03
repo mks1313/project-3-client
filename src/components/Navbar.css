@@ -17,7 +17,7 @@ nav {
   }
 
   .nav-ul {
-    /* display: block; */
+    display: block;
     justify-content: space-between;
   }
   

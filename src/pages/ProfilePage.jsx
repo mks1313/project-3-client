@@ -28,7 +28,7 @@ const ProfilePage = () => {
               headers: { Authorization: `Bearer ${storedToken}` },
             });
           });
-
+      
           Promise.all(restaurantPromises)
           .then((restaurantResponses) => {
             const restaurants = restaurantResponses.map((restaurantResponse) => restaurantResponse.data);
@@ -43,6 +43,7 @@ const ProfilePage = () => {
           setUserData(user);
         }
       })
+      
       .catch((error) => {
         console.error("Error fetching user data:", error);
       });
