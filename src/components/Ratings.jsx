@@ -1,29 +1,35 @@
 import { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../context/auth.context";
 import axios from "axios";
-//TODO terminar con la logica de ratings
+
 function Ratings({ restaurantId, totalVotes, averageRating }) {
   const [rating, setRating] = useState(0);
   const [userRating, setUserRating] = useState(null);
-  const { isLoggedIn, user } = useContext(AuthContext); 
+  const { isLoggedIn, user } = useContext(AuthContext);
   const storedToken = localStorage.getItem("authToken");
+  const [hasUserRated, setHasUserRated] = useState(false);
 
   useEffect(() => {
     if (isLoggedIn) {
-      // Verificar si el usuario logeado ya valoró este restaurante
       axios.get(`/api/ratings/${restaurantId}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
-        const userRating = response.data.find(
+        console.log(response);
+        console.log("ID de usuario:", user._id);
+        const userRating = response.data.ratings.find(
           (rating) => rating.author === user._id
         );
         if (userRating) {
           setUserRating(userRating.value);
+          setHasUserRated(true);
         }
+      })
+      .catch((error) => {
+        console.error("Error al obtener la valoración del usuario:", error);
       });
     }
-  }, [isLoggedIn, restaurantId, user,storedToken]);
+  }, [isLoggedIn, restaurantId, user, storedToken]);
 
   const handleRatingChange = (event) => {
     setRating(event.target.value);
@@ -31,7 +37,7 @@ function Ratings({ restaurantId, totalVotes, averageRating }) {
 
   const handleRatingSubmit = () => {
     if (isLoggedIn) {
-      axios.post("/api/ratings", {
+      axios.post("/api/ratings/rate", {
         author: user._id,
         value: rating,
         restaurant: restaurantId,
@@ -40,34 +46,37 @@ function Ratings({ restaurantId, totalVotes, averageRating }) {
       })
       .then(() => {
         setUserRating(rating);
+        setRating(0);
+        setHasUserRated(true);
       })
       .catch((error) => {
         console.error("Error al enviar la valoración:", error);
       });
-    } else {
-      // Manejar el caso donde el usuario no está logeado
-    }
+    } 
   };
 
   return (
     <div>
-      <p>Total de votes: {totalVotes}</p>
+      <p>Total de votos: {totalVotes}</p>
       <p>Rating: {averageRating}</p>
-      <div>
-        <input
-          type="number"
-          min="1"
-          max="10"
-          value={rating}
-          onChange={handleRatingChange}
-        />
-        <button onClick={handleRatingSubmit}>Valorar</button>
-      </div>
-      {userRating !== null && (
+      {hasUserRated ? (
         <p>Tu valoración actual: {userRating}</p>
+      ) : (
+        <div>
+          <input
+            type="number"
+            min="1"
+            max="10"
+            value={rating}
+            onChange={handleRatingChange}
+          />
+          <button onClick={handleRatingSubmit}>Valorar</button>
+        </div>
       )}
     </div>
   );
 }
 
 export default Ratings;
+
+

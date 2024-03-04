@@ -22,10 +22,8 @@ const EditProfilePage = () => {
       .then((response) => {
         const user = response.data.user;
         setUserData(user);
-        // Convertir la fecha de nacimiento a formato ISOString
         const userBirthday = new Date(user.birthday).toISOString().split('T')[0];
         setBirthday(userBirthday);
-        // Asignar otros datos del usuario a los estados correspondientes
         setName(user.name);
         setEmail(user.email);
         setSex(user.sex);
