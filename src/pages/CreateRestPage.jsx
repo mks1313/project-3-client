@@ -9,8 +9,6 @@ const CreateRestPage = () => {
   const [formData, setFormData] = useState({
     name: "",
     capacity: "",
-    image: "",
-    location: { type: "Point", coordinates: [0, 0] },
     phone: "",
     price: "",
     description: "",
@@ -33,6 +31,7 @@ const CreateRestPage = () => {
       menus: [],
     },
   });
+  const [restaurantImage, setRestaurantImage] = useState(null);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -53,19 +52,30 @@ const CreateRestPage = () => {
       }));
     }
   };
-  
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    axios
-      .post("/api/restaurants/create", formData, { headers: { Authorization: `Bearer ${storedToken}` } })
-      .then(() => {
-        navigate("/restaurants");
-      })
-      .catch((error) => {
-        console.error("Error al crear el restaurante:", error);
-      });
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    setRestaurantImage(file);
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const formDataCopy = { ...formData };
+      if (restaurantImage) {
+        formDataCopy.image = restaurantImage;
+      }
+      const response = await axios.post(
+        "/api/restaurants/create",
+        formDataCopy,
+        { headers: { Authorization: `Bearer ${storedToken}` } }
+      );
+      navigate("/restaurants");
+    } catch (error) {
+      console.error("Error al crear el restaurante:", error);
+    }
+  };
+
   return (
     <div className="form">
       <h2>New Restaurant</h2>
@@ -90,16 +100,6 @@ const CreateRestPage = () => {
             value={formData.capacity}
             onChange={handleInputChange}
             required
-          />
-        </div>
-        <div>
-          <label htmlFor="image">Image:</label>
-          <input
-            type="text"
-            id="image"
-            name="image"
-            value={formData.image}
-            onChange={handleInputChange}
           />
         </div>
         <div>
@@ -140,7 +140,7 @@ const CreateRestPage = () => {
             onChange={handleInputChange}
             required
           >
-            <option value="italian">Italian</option>
+           <option value="italian">Italian</option>
           <option value="mexican">Mexican</option>
           <option value="chinese">Chinese</option>
           <option value="turkish">Turkish</option>
@@ -163,8 +163,16 @@ const CreateRestPage = () => {
           <option value="spanish">Spanish</option>
           <option value="german">German</option>
           <option value="greek">Greek</option>
-     
           </select>
+        </div>
+        <div>
+          <label htmlFor="image">Image:</label>
+          <input
+            type="file"
+            id="image"
+            name="image"
+            onChange={handleImageChange}
+          />
         </div>
         <div>
           <label htmlFor="street">Street:</label>
@@ -210,7 +218,7 @@ const CreateRestPage = () => {
           />
         </div>
         <div>
-          <label>Opening Hours:</label>
+        <label>Opening Hours:</label>
           {formData.openingHours.map((day, index) => (
             <div key={index}>
               <label>{day.day}</label>
@@ -242,6 +250,3 @@ const CreateRestPage = () => {
 };
 
 export default CreateRestPage;
-
-
-
