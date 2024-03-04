@@ -1,16 +1,17 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
+import { AuthContext } from "../context/auth.context";
 
 const Comments = ({ restaurantId }) => {
   const [comments, setComments] = useState([]);
-  const [showMore, setShowMore] = useState(false);
+  const [newComment, setNewComment] = useState('');
+  const [showCommentForm, setShowCommentForm] = useState(true); 
   const storedToken = localStorage.getItem("authToken");
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
-    // Realizar una solicitud GET al servidor para obtener los comentarios
-    axios.get(`/api/comments/${restaurantId}`,{ headers: { Authorization: `Bearer ${storedToken}` } })
+    axios.get(`/api/comments/${restaurantId}`, { headers: { Authorization: `Bearer ${storedToken}` } })
       .then(response => {
-        // Al recibir la respuesta, actualiza el estado con los comentarios obtenidos
         setComments(response.data);
       })
       .catch(error => {
@@ -18,30 +19,60 @@ const Comments = ({ restaurantId }) => {
       });
   }, [restaurantId, storedToken]); 
 
-  // Función para manejar el clic en "Mostrar más"
-  const handleShowMore = () => {
-    setShowMore(true);
+  useEffect(() => {
+    if (comments.some(comment => comment.author === user._id)) {
+      setShowCommentForm(false);
+    }
+  }, [comments, user]);
+
+  const handleNewCommentChange = (event) => {
+    setNewComment(event.target.value);
+  };
+
+  const handleNewCommentSubmit = () => {
+    axios.post('/api/comments/create', {
+      content: newComment,
+      restaurant: restaurantId,
+    }, { headers: { Authorization: `Bearer ${storedToken}` } })
+      .then(response => {
+        setComments([...comments, response.data]);
+        setNewComment('');
+        setShowCommentForm(false);
+      })
+      .catch(error => {
+        console.error('Error al enviar el comentario:', error);
+      });
   };
 
   return (
     <div className="comments">
-      <h2>Comments</h2>
+      <h2>Comentarios</h2>
       <ul>
-        {comments.slice(0, showMore ? comments.length : 5).map(comment => (
+        {comments.map(comment => (
           <li key={comment._id}>
             <p>{comment.content}</p>
-            <p>By: {comment.author}</p>
-            <p>Replies: {comment.replies}</p>
+            <p>Por: {comment.author}</p>
+            <p>Respuestas: {comment.replies}</p>
           </li>
         ))}
       </ul>
-      {!showMore && comments.length > 5 && (
-        <button onClick={handleShowMore}>Mostrar más comentarios</button>
+      {showCommentForm && ( 
+        <div>
+          <textarea
+            placeholder="Escribe tu comentario aquí"
+            value={newComment}
+            onChange={handleNewCommentChange}
+          />
+          <button onClick={handleNewCommentSubmit}>Agregar comentario</button>
+        </div>
       )}
     </div>
   );
 };
 
 export default Comments;
+
+
+
 
 
