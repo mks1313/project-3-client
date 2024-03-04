@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { AuthContext } from "../context/auth.context";
+import "./Comments.css";
 
 const Comments = ({ restaurantId }) => {
   const [comments, setComments] = useState([]);
@@ -12,6 +13,7 @@ const Comments = ({ restaurantId }) => {
   useEffect(() => {
     axios.get(`/api/comments/${restaurantId}`, { headers: { Authorization: `Bearer ${storedToken}` } })
       .then(response => {
+        console.log(response.data);
         setComments(response.data);
       })
       .catch(error => {
@@ -45,19 +47,21 @@ const Comments = ({ restaurantId }) => {
   };
 
   return (
-    <div className="comments">
+    <div className="comments-container">
       <h2>Comentarios</h2>
-      <ul>
+      <ul className="comments-list">
         {comments.map(comment => (
-          <li key={comment._id}>
-            <p>{comment.content}</p>
-            <p>Por: {comment.author}</p>
-            <p>Respuestas: {comment.replies}</p>
+          <li key={comment._id} className="comment-item">
+            <div className="comment-content">
+              <p>{comment.content}</p>
+              <p>Por: {comment.author.name}</p>
+              <p>Respuestas: {comment.replies}</p>
+            </div>
           </li>
         ))}
       </ul>
-      {showCommentForm && ( 
-        <div>
+      {showCommentForm && (
+        <div className="comment-form">
           <textarea
             placeholder="Escribe tu comentario aquí"
             value={newComment}

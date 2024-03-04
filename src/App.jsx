@@ -1,7 +1,7 @@
 import "./App.css";
 import "./pages/RestListPage.css";
 // import "./components/Footer.css"
-// import Footer from "./components/Footer"
+import Footer from "./components/Footer"
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage";
@@ -18,6 +18,8 @@ import IsPrivate from './components/IsPrivate';
 
 function App() {
   return (
+    <>
+
     <div className="App">
       <Navbar />
       <Routes>
@@ -32,6 +34,10 @@ function App() {
         <Route path="/edit-profile" element={<IsPrivate><EditProfilePage /></IsPrivate>} />
       </Routes>
     </div>
+    <div>
+      <Footer />
+    </div>
+    </>
   );
 }
 

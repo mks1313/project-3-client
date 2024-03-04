@@ -15,8 +15,8 @@ function Ratings({ restaurantId, totalVotes, averageRating }) {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
-        console.log(response);
-        console.log("ID de usuario:", user._id);
+        // console.log(response);
+        // console.log("ID de usuario:", user._id);
         const userRating = response.data.ratings.find(
           (rating) => rating.author === user._id
         );
