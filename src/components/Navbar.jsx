@@ -7,6 +7,7 @@ import "./Navbar.css";
 function Navbar() {
   const { isLoggedIn, logOutUser } = useContext(AuthContext);
   const imageUrl = "/image/avatarImage.jpg";
+  const homeImage = "/image/restaurant.png";
 
   const handleLogout = () => {
     logOutUser();
@@ -17,11 +18,23 @@ function Navbar() {
     <div className="navBarDiv">
       <nav className="navbar" id="sidebar">
         <ul className="nav-ul">
-          <li>
-            <NavLink to="/">Home</NavLink>
-          </li>
+        <li>
+                <div className="get-in-container">
+                  <NavLink to="/">
+                    <img
+                      src={homeImage}
+                      alt="homeImage"
+                      className="get-in-image"
+                    />
+                    Nyam Nyam
+                  </NavLink>
+                </div>
+              </li>
           <li>
             <NavLink to="/restaurants">Restaurants</NavLink>
+          </li>
+          <li>
+            <NavLink to="/about">About us</NavLink>
           </li>
           {!isLoggedIn && (
             <>
@@ -33,7 +46,6 @@ function Navbar() {
                       alt="Get In"
                       className="get-in-image"
                     />
-                    Get in
                   </NavLink>
                 </div>
               </li>
@@ -54,9 +66,6 @@ function Navbar() {
               </li>
             </>
           )}
-          <li>
-            <NavLink to="/about">About us</NavLink>
-          </li>
         </ul>
       </nav>
     </div>

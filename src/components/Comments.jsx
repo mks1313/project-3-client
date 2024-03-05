@@ -54,7 +54,7 @@ const Comments = ({ restaurantId }) => {
           <li key={comment._id} className="comment-item">
             <div className="comment-content">
               <p>{comment.content}</p>
-              <p>Por: {comment.author.name}</p>
+              <p>Por: {comment.author ? comment.author.name : 'Anónimo'}</p>
               <p>Respuestas: {comment.replies}</p>
             </div>
           </li>
@@ -75,6 +75,7 @@ const Comments = ({ restaurantId }) => {
 };
 
 export default Comments;
+
 
 
 

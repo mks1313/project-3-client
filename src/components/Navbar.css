@@ -1,5 +1,5 @@
 .navBarDiv {
-  margin-bottom: 80px;
+  /* margin-bottom: 80px; */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -7,15 +7,16 @@
 }
 nav {
   background-color: rgb(103, 193, 247);
-  padding: 20px;
+  padding: 10px;
   text-align: center;
-  height: 60px;
+  /* height: 60px; */
   width: 100%;
   position: fixed;
   top: 0;
 }
 
 .nav-ul {
+  display: flex;
   /* display: block; */
   justify-content: space-between;
 }
@@ -60,13 +61,13 @@ button-logout-container {
   margin-left: auto;
 }
 .get-in-container {
-  display: flex;
-  align-items: center; /* Centra verticalmente la imagen y el texto */
+  /* display: flex; */
+  align-items: center; 
 }
 
 .get-in-image {
-  width: 40px; /* Ajusta el ancho de la imagen según tus necesidades */
-  height: auto; /* Ajusta la altura automáticamente para mantener la proporción */
-  margin-right: 10px; /* Espacio entre la imagen y el texto */
+  width: 40px;
+  height: auto; 
+  margin-right: 10px; 
   border-radius: 50px;
 }

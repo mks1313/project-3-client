@@ -55,7 +55,7 @@ function LoginPage() {
         setIsSignUp(!isSignUp);
         setErrorMessage(undefined); 
     };
-
+//TODO modificar los estilos de inputs para cada uno
     return (
         <div className="wrapper fadeInDown">
             <div id="formContent">
