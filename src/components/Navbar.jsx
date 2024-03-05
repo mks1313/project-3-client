@@ -1,14 +1,16 @@
 import { NavLink } from "react-router-dom";
 import { useContext } from "react";
-import { AuthContext } from "../context/auth.context"; 
+import { AuthContext } from "../context/auth.context";
 import "./Navbar.css";
+
 
 function Navbar() {
   const { isLoggedIn, logOutUser } = useContext(AuthContext);
+  const imageUrl = "/image/avatarImage.jpg";
 
   const handleLogout = () => {
-    logOutUser(); 
-    window.location.href = "/"; 
+    logOutUser();
+    window.location.href = "/";
   };
 
   return (
@@ -24,10 +26,16 @@ function Navbar() {
           {!isLoggedIn && (
             <>
               <li>
-                <NavLink to="/signUp">SignUp</NavLink>
-              </li>
-              <li>
-                <NavLink to="/login">LogIn</NavLink>
+                <div className="get-in-container">
+                  <NavLink to="/login">
+                    <img
+                      src={imageUrl}
+                      alt="Get In"
+                      className="get-in-image"
+                    />
+                    Get in
+                  </NavLink>
+                </div>
               </li>
             </>
           )}
@@ -37,7 +45,9 @@ function Navbar() {
                 <NavLink to="/profile">Your Profile</NavLink>
               </li>
               <li className="button-logout-container">
-                <button  className="button-logout" onClick={handleLogout}>Logout</button>
+                <button className="button-logout" onClick={handleLogout}>
+                  Logout
+                </button>
               </li>
               <li>
                 <NavLink to="/create">Register my restaurant</NavLink>
@@ -54,4 +64,3 @@ function Navbar() {
 }
 
 export default Navbar;
-

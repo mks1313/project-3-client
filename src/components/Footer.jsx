@@ -4,7 +4,7 @@ const { Footer } = Layout;
 
 const CustomFooter = () => {
   return (
-    <Footer style={{ textAlign: "center", backgroundColor: "#001529", color: "#fff" }}>
+    <Footer style={{ textAlign: "center", marginTop: "auto", backgroundColor: "#001529", color: "#fff" }}>
       <div style={{ padding: "20px 0" }}>
         Este es un pie de página chulo.
       </div>

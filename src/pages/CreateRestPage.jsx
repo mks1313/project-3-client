@@ -70,6 +70,7 @@ const CreateRestPage = () => {
         formDataCopy,
         { headers: { Authorization: `Bearer ${storedToken}` } }
       );
+      console.log(response);
       navigate("/restaurants");
     } catch (error) {
       console.error("Error al crear el restaurante:", error);

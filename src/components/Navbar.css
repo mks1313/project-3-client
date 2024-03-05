@@ -3,60 +3,70 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-family: 'Raleway', Arial, sans-serif;
-
+  font-family: "Raleway", Arial, sans-serif;
 }
 nav {
-    background-color: rgb(103, 193, 247);
-    padding: 20px;
-    text-align: center;   
-    height: 60px; 
-  width: 100%; 
-  position: fixed; 
+  background-color: rgb(103, 193, 247);
+  padding: 20px;
+  text-align: center;
+  height: 60px;
+  width: 100%;
+  position: fixed;
   top: 0;
-  }
+}
 
-  .nav-ul {
-    display: block;
-    justify-content: space-between;
-  }
-  
-  li {
-    display: inline;
-    margin-right: 10px;
-  }
-  
-  li:last-child {
-    margin-right: 0;
-  }
-  
-  a {
-    text-decoration: none;
-    color: #fff;
-    font-weight: bold;
-    transition: color 0.3s ease;
-  }
-  
-  a:hover {
-    color: #41e77e;
-  }
-  #sidebar a.active {
-    color: red;
-  }
+.nav-ul {
+  /* display: block; */
+  justify-content: space-between;
+}
 
-  .button-logout {
-    background-color: #ff0000; 
-    color: #ffffff; 
-    border: none; 
-    padding: 10px 20px; 
-    border-radius: 5px; 
-    cursor: pointer; 
-    margin-left: auto;
-  }
-  
-  .button-logout:hover {
-    background-color: #cc0000; 
-  }
-  button-logout-container {
-    margin-left: auto;
-  }
+li {
+  display: inline;
+  margin-right: 10px;
+}
+
+li:last-child {
+  margin-right: 0;
+}
+
+a {
+  text-decoration: double;
+  color: #fff;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #41e77e;
+}
+#sidebar a.active {
+  color: red;
+}
+
+.button-logout {
+  background-color: #ff0000;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.button-logout:hover {
+  background-color: #cc0000;
+}
+button-logout-container {
+  margin-left: auto;
+}
+.get-in-container {
+  display: flex;
+  align-items: center; /* Centra verticalmente la imagen y el texto */
+}
+
+.get-in-image {
+  width: 40px; /* Ajusta el ancho de la imagen según tus necesidades */
+  height: auto; /* Ajusta la altura automáticamente para mantener la proporción */
+  margin-right: 10px; /* Espacio entre la imagen y el texto */
+  border-radius: 50px;
+}

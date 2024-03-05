@@ -54,11 +54,15 @@ function Ratings({ restaurantId, totalVotes, averageRating }) {
       });
     } 
   };
+  console.log("Total votes:", totalVotes);
+  console.log("Average rating:", averageRating);
+  console.log("User rating:", userRating);
+  console.log("Has user rated:", hasUserRated);
 
   return (
     <div>
       <p>Total de votos: {totalVotes}</p>
-      <p>Rating: {averageRating}</p>
+      <p>Rating: {averageRating !== null ? averageRating : "Aún no hay calificaciones"}</p>
       {hasUserRated ? (
         <p>Tu valoración actual: {userRating}</p>
       ) : (
