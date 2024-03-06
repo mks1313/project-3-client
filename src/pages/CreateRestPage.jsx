@@ -7,12 +7,12 @@ const CreateRestPage = () => {
   const storedToken = localStorage.getItem("authToken");
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    name: "",
-    capacity: "",
-    phone: "",
-    price: "",
-    description: "",
-    category: "other",
+    name: "prueba",
+    capacity: "50",
+    phone: "1234",
+    price: "$$",
+    description: "probando",
+    category: "Other",
     owner: "",
     openingHours: [
       { day: "Monday", open: "", close: "" },
@@ -24,10 +24,10 @@ const CreateRestPage = () => {
       { day: "Sunday", open: "", close: "" },
     ],
     address: {
-      street: "",
-      number: "",
-      city: "",
-      postcode: "",
+      street: "arago",
+      number: "333",
+      city: "alicante",
+      postcode: "08015",
       menus: [],
     },
   });
@@ -58,24 +58,24 @@ const CreateRestPage = () => {
     setRestaurantImage(file);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const formDataCopy = { ...formData };
-      if (restaurantImage) {
-        formDataCopy.image = restaurantImage;
-      }
-      const response = await axios.post(
-        "/api/restaurants/create",
-        formDataCopy,
-        { headers: { Authorization: `Bearer ${storedToken}` } }
-      );
+  const handleSubmit = (e) => {
+  e.preventDefault();
+  let formDataCopy = { ...formData };
+  if (restaurantImage) {
+    formDataCopy.image = restaurantImage;
+  }
+  axios
+    .post("/api/restaurants/create", formDataCopy, {
+      headers: { Authorization: `Bearer ${storedToken}` },
+    })
+    .then((response) => {
       console.log(response);
       navigate("/restaurants");
-    } catch (error) {
+    })
+    .catch((error) => {
       console.error("Error al crear el restaurante:", error);
-    }
-  };
+    });
+};
 
 
   return (
