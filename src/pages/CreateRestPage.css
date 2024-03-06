@@ -1,4 +1,4 @@
-.EditRestaurantPage {
+/* .EditRestaurantPage {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -52,4 +52,60 @@
   
   btn-create:hover {
     background-color: #0069a0;
-  }
+  } */
+  .EditRestaurantPage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin-top: 20px;
+}
+
+.create-rest-form {
+    max-width: 400px;
+    width: 100%;
+    padding: 20px;
+    border-radius: 50px;
+    margin-top: 20px;
+    border: none;
+}
+
+.create-rest-form label {
+    display: block;
+    margin-bottom: 0;
+    font-weight: bolder;
+    font-size: 14px;
+    margin-left: 20px;
+}
+
+.create-rest-form input,
+.create-rest-form textarea,
+.create-rest-form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 16px;
+    margin-top: 0;
+    border: 1px solid #ccc;
+    border-radius: 40px;
+}
+
+.create-rest-form textarea {
+    height: 200px;
+    resize: none;
+    font-family: sans-serif;
+}
+
+.create-rest-form .btn-create {
+    width: 100%;
+    padding: 10px;
+    background-color: rgb(103, 193, 247);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.create-rest-form .btn-create:hover {
+    background-color: #0069a0;
+}

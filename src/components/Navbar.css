@@ -1,5 +1,4 @@
 .navBarDiv {
-  /* margin-bottom: 80px; */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -9,7 +8,6 @@ nav {
   background-color: rgb(103, 193, 247);
   padding: 10px;
   text-align: center;
-  /* height: 60px; */
   width: 100%;
   position: fixed;
   top: 0;
@@ -17,7 +15,6 @@ nav {
 
 .nav-ul {
   display: flex;
-  /* display: block; */
   justify-content: space-between;
 }
 
@@ -61,7 +58,6 @@ button-logout-container {
   margin-left: auto;
 }
 .get-in-container {
-  /* display: flex; */
   align-items: center; 
 }
 

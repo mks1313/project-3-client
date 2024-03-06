@@ -49,17 +49,17 @@ const Comments = ({ restaurantId }) => {
   return (
     <div className="comments-container">
       <h2>Comentarios</h2>
-      <ul className="comments-list">
+      <div className="comments-list">
         {comments.map(comment => (
-          <li key={comment._id} className="comment-item">
+          <div key={comment._id} className="comment-item">
             <div className="comment-content">
               <p>{comment.content}</p>
               <p>Por: {comment.author ? comment.author.name : 'Anónimo'}</p>
               <p>Respuestas: {comment.replies}</p>
             </div>
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
       {showCommentForm && (
         <div className="comment-form">
           <textarea
@@ -75,6 +75,7 @@ const Comments = ({ restaurantId }) => {
 };
 
 export default Comments;
+
 
 
 

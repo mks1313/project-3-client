@@ -1,18 +1,23 @@
-import { Layout } from "antd";
+import "./Footer.css";
 
-const { Footer } = Layout;
-
-const CustomFooter = () => {
+const Footer = () => {
   return (
-    <Footer style={{ textAlign: "center", marginTop: "auto", backgroundColor: "#001529", color: "#fff" }}>
-      <div style={{ padding: "20px 0" }}>
-        Este es un pie de página chulo.
-      </div>
-      <div>
-        Creado con amor por <a href="https://www.ejemplo.com">Tu Nombre</a>
-      </div>
-    </Footer>
+    <footer className="footer">
+      <p>Este es un sitio esta hecho para ti!!!</p>
+      <p>
+        Creado con amor por{" "}
+        <a
+          className="footer-link"
+          href="https://www.ironhack.com/es-en/barcelona?utm_campaign=BCN_Spain_Barcelona_Global_Search_Brand_EN&utm_source=google&utm_medium=cpc&utm_content=search-brand&utm_term=ironhack&adgroup=brand_en&gad_source=1&gclid=CjwKCAiAxaCvBhBaEiwAvsLmWH5LhY3r5i0m_oOmsG3xorSfXOYhVo7i9kNVUSJvmayzeTyVsO2quhoCUaEQAvD_BwE"
+        >
+          Maksim y Jose
+        </a>
+      </p>
+    </footer>
   );
 };
 
-export default CustomFooter;
+export default Footer;
+
+
+

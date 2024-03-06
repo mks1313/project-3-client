@@ -3,6 +3,7 @@
 .wrapper fadeInDown {
     height: 100vh;
     background-color: #56baed;
+   
 }
 
 h2 {
@@ -23,9 +24,10 @@ h2 {
   width: 100%;
   min-height: 100%;
   padding: 20px;
+  margin-top: 17rem;
 }
 
-#formContent {
+#formContentLogin {
   -webkit-border-radius: 10px 10px 10px 10px;
   border-radius: 10px 10px 10px 10px;
   background: #fff;
@@ -113,7 +115,7 @@ input[type=text] {
   -o-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
   -webkit-border-radius: 5px 5px 5px 5px;
-  border-radius: 5px 5px 5px 5px;
+  border-radius: 25px 25px 25px 25px;
 }
 
 input[type=text]:focus {
@@ -185,7 +187,6 @@ input[type=text]:placeholder {
   animation-delay: 1s;
 }
 
-/* Simple CSS3 Fade-in Animation */
 .underlineHover:after {
   display: block;
   left: 0;
@@ -213,6 +214,13 @@ input[type=text]:placeholder {
   width:60%;
 }
 
-* {
-  box-sizing: border-box;
+.video-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  width: 100% !important;
+  height: 100%;
+  z-index: -1;
 }

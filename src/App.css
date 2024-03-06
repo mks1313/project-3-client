@@ -1,3 +1,23 @@
-/* .App {
-    height: 1000px;
-} */
+  .App {
+    display: flex;
+    /* flex-direction: column; */
+    min-height: 100vh; 
+  }
+  
+
+  .content {
+    flex: 1; 
+  }
+  
+  .footer {
+    background-color: #001529;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+  
+  }
+  
+  .footer a {
+    color: #fff; 
+  }
+  

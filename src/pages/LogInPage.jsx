@@ -1,10 +1,11 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./LoginPage.css";
+import "./LogInPage.css";
 import { AuthContext } from "../context/auth.context";
+import ReactPlayer from "react-player";
 
-function LoginPage() {
+function LogInPage() {
     const { storeToken, authenticateUser } = useContext(AuthContext);
     const [isSignUp, setIsSignUp] = useState(false);
     const [email, setEmail] = useState("");
@@ -56,9 +57,21 @@ function LoginPage() {
         setErrorMessage(undefined); 
     };
 //TODO modificar los estilos de inputs para cada uno
-    return (
-        <div className="wrapper fadeInDown">
-            <div id="formContent">
+return (
+    <div className="login-page">
+       <div className="video-container">
+            <ReactPlayer
+                url='https://player.vimeo.com/video/157269920?title=0&portrait=0&byline=0&autoplay=1&loop=1&transparent=1&muted=1'
+                playing
+                loop
+                muted
+                width='100%'
+                height='100%'
+                style={{ position: 'absolute', top: 0, left: 0 }} 
+            />
+        </div>
+        <div className="wrapper fadeInDown" style={{ zIndex: 1 }}> 
+            <div id="formContentLogin">
                 <h2 className={isSignUp ? "inactive underlineHover" : "active"} onClick={handleFormToggle}> Login </h2>
                 <h2 className={isSignUp ? "active" : "inactive underlineHover"} onClick={handleFormToggle}> Sign Up </h2>
 
@@ -96,7 +109,8 @@ function LoginPage() {
                 {errorMessage && <p className="error-message">{errorMessage}</p>}
             </div>
         </div>
-    );
+    </div>
+);
 }
 
-export default LoginPage;
+export default LogInPage;
