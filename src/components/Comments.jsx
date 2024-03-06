@@ -13,7 +13,6 @@ const Comments = ({ restaurantId }) => {
   useEffect(() => {
     axios.get(`/api/comments/${restaurantId}`, { headers: { Authorization: `Bearer ${storedToken}` } })
       .then(response => {
-        console.log(response.data);
         setComments(response.data);
       })
       .catch(error => {
@@ -48,14 +47,14 @@ const Comments = ({ restaurantId }) => {
 
   return (
     <div className="comments-container">
-      <h2>Comentarios</h2>
+      <h2>Comments:</h2>
       <div className="comments-list">
         {comments.map(comment => (
           <div key={comment._id} className="comment-item">
             <div className="comment-content">
               <p>{comment.content}</p>
-              <p>Por: {comment.author ? comment.author.name : 'Anónimo'}</p>
-              <p>Respuestas: {comment.replies}</p>
+              <p>By: {comment.author ? comment.author.name : 'Anónimo'}</p>
+              <p>Replies: {comment.replies}</p>
             </div>
           </div>
         ))}
@@ -63,11 +62,11 @@ const Comments = ({ restaurantId }) => {
       {showCommentForm && (
         <div className="comment-form">
           <textarea
-            placeholder="Escribe tu comentario aquí"
+            placeholder="Leave your comment here...."
             value={newComment}
             onChange={handleNewCommentChange}
           />
-          <button onClick={handleNewCommentSubmit}>Agregar comentario</button>
+          <button onClick={handleNewCommentSubmit}>Add Comment</button>
         </div>
       )}
     </div>

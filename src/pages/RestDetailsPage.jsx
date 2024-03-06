@@ -3,7 +3,7 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import Comments from "../components/Comments";
 import Ratings from "../components/Ratings";
-import MenuComponent from "../components/MenuComponent";
+// import MenuComponent from "../components/MenuComponent";
 import "./RestDetailsPage.css";
 import ConfirmationDialog from "../components/ConfirmationDialog";
 import { AuthContext } from "../context/auth.context";
@@ -15,6 +15,11 @@ function RestDetailPage() {
   const [restaurant, setRestaurant] = useState(null);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const storedToken = localStorage.getItem("authToken");
+  const [averageRating, setAverageRating] = useState(0); // Estado para almacenar el averageRating
+
+  const handleAverageRatingChange = (newAverageRating) => {
+    setAverageRating(newAverageRating); // Actualizar el estado con el nuevo averageRating
+  };
 
   useEffect(() => {
     axios
@@ -24,10 +29,8 @@ function RestDetailPage() {
       .then((response) => {
         const restaurantData = response.data;
 
-        // Verificar si el usuario puede editar el restaurante
         if (user && restaurantData.owner === user._id) {
-          //acciones específicas si el usuario puede editar
-          console.log("El usuario puede editar el restaurante.");
+          // console.log("El usuario puede editar el restaurante.");
         }
 
         setRestaurant(restaurantData);
@@ -61,61 +64,71 @@ function RestDetailPage() {
           <h2>{restaurant.name}</h2>
           <hr />
           <div className="restaurant-details">
-            <div className="restaurant-image">
-              <img src={restaurant.image} alt="Descripción de la imagen" />
-            </div>
-            <div className="restaurant-info">
-              <h3>Detalles del restaurante</h3>
-              <p>
-                <strong>Dirección:</strong> {restaurant.address.street}{" "}
-                {restaurant.address.number}, {restaurant.address.city}{" "}
-                {restaurant.address.postcode}
-              </p>
-              <p>
-                <strong>Description:</strong> {restaurant.description}
-              </p>
-              <p>
-                <strong>Capacity:</strong> {restaurant.capacity}
-              </p>
-              <p>
-                <strong>Category:</strong> {restaurant.category}
-              </p>
-              <p>
-                <strong>Phone:</strong> {restaurant.phone}
-              </p>
-              <p>
-                <strong>Price:</strong> {restaurant.price}
-              </p>
-              <div>
-                <MenuComponent menuIds={restaurant.menus} />
+            <div className="section">
+              <div className="restaurant-image">
+                <img src={restaurant.image} alt="Descripción de la imagen" />
               </div>
-              <br />
               {user && user._id === restaurant.owner && (
-                <>
+                <div className="buttons">
                   <button onClick={handleDeleteRestaurant}>
-                    Eliminar Restaurante
+                    Delete restaurant
                   </button>
                   <Link
                     to={`/restaurants/edit/${id}`}
                     style={{ color: "black" }}
                   >
-                    <button>Editar Restaurante</button>
+                    <button>Edit Restaurant</button>
                   </Link>
-                </>
+                </div>
               )}
+              <br />
               <Ratings
                 restaurantId={restaurant._id}
                 totalVotes={restaurant.ratings.length}
-                averageRating={restaurant.averageRating || 0}
+                averageRating={averageRating} 
+                onAverageRatingChange={handleAverageRatingChange} //
               />
-              <Comments restaurantId={id} />
+            </div>
+            <div className="section">
+              <div className="restaurant-info">
+                <h3>Restaurant details</h3>
+                <p>
+                  <strong>Dirección:</strong> {restaurant.address.street}{" "}
+                  {restaurant.address.number}, {restaurant.address.city}{" "}
+                  {restaurant.address.postcode}
+                </p>
+                <p>
+                  <strong>Capacity:</strong> {restaurant.capacity}
+                </p>
+                <p>
+                  <strong>Category:</strong> {restaurant.category}
+                </p>
+                <p>
+                  <strong>Phone:</strong> {restaurant.phone}
+                </p>
+                <p>
+                  <strong>Price:</strong> {restaurant.price}
+                </p>
+                <p className="description-rest">
+                  <strong>Description:</strong> {restaurant.description}
+                </p>
+              </div>
+            </div>
+            <div className="section">
+              <div className="ratings-comments">
+                {user && (
+                  <>
+                    <Comments restaurantId={id} />
+                  </>
+                )}
+              </div>
             </div>
           </div>
         </>
       )}
       {showConfirmation && (
         <ConfirmationDialog
-          message="¿Estás seguro de que quieres eliminar este restaurante? Esta acción no se puede deshacer."
+          message="Are you sure you want to delete this restaurant? This action can not be undone."
           onConfirm={confirmDeleteRestaurant}
           onCancel={cancelDeleteRestaurant}
         />

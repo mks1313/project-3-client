@@ -80,7 +80,7 @@ const ProfilePage = () => {
 
   return (
     <div className="profile-page">
-      <h1>User Profile</h1>
+      <h1>Wellcome, {userData && userData.name} </h1>
       {userData ? (
         <div className="user-info">
           <img src={userData.profileImage} alt="Profile" />
@@ -99,7 +99,7 @@ const ProfilePage = () => {
         <p className="loading-message">Loading user data...</p>
       )}
       <Link to="/edit-profile">
-        <button>Edit Profile</button>
+        <button>Edit</button>
       </Link>
       <button onClick={handleDeleteProfile}>Delete Profile</button>
       {showConfirmation && (

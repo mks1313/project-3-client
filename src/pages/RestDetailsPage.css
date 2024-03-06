@@ -1,36 +1,33 @@
 .RestDetailPage {
-    padding: 20px;
-    margin-bottom: 5rem;
-  }
-  
-  .restaurant-details {
-    display: flex;
-  }
-  
-  .restaurant-image {
-    margin-right: 20px;
-  }
-  
-  .restaurant-image img {
-    width: 100%;
-    max-width: 300px;
-    height: auto;
-  }
-  
-  .restaurant-info {
-    flex: 1;
-  }
-  
-  .restaurant-info h3 {
-    margin-top: 0;
-  }
-  
-  .restaurant-info p {
-    margin-bottom: 10px;
-  }
-  
-  .restaurant-info button {
-    margin-top: 10px;
-  }
-  
+  padding: 20px;
+  margin-bottom: 5rem;
+}
+
+.restaurant-details {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.section {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.restaurant-image img {
+  width: 100%;
+  max-width: 700px;
+  height: auto;
+}
+
+.buttons {
+  margin-top: 10px;
+}
+
+.ratings-comments {
+  margin-top: 20px;
+}
+.description-rest {
+  margin-top: 3rem;
+}
+
   

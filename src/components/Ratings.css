@@ -1,0 +1,54 @@
+.ratings-container {
+    margin-top: 20px;
+    font-size: 18px;
+  }
+  
+  .rating-input {
+    margin-top: 10px;
+  }
+  
+  .rating-input input {
+    width: 60px;
+    margin-right: 10px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  .rating-input button {
+    padding: 6px 12px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 17px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .rating-input button:hover {
+    background-color: #5496dd;
+  }
+  
+  .votes-text {
+    font-size: 20px;
+    opacity: 0.8;
+  }
+  
+  .rating-text {
+    font-size: 20px;
+  }
+  
+  .average-rating {
+    font-size: 24px;
+    opacity: 0.7;
+  }
+  
+  .rating-input {
+    margin-top: 10px;
+  }
+  
+  .user-rating {
+    font-size: 20px;
+  }
+  

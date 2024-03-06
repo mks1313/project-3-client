@@ -42,21 +42,19 @@ a:hover {
 }
 
 .button-logout {
-  background-color: #ff0000;
+  background-color: #545faf;
   color: #ffffff;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
-  margin-left: auto;
+  margin-left: 10px;
 }
 
 .button-logout:hover {
-  background-color: #cc0000;
+  background-color: #1fcc00;
 }
-button-logout-container {
-  margin-left: auto;
-}
+
 .get-in-container {
   align-items: center; 
 }
@@ -66,4 +64,6 @@ button-logout-container {
   height: auto; 
   margin-right: 10px; 
   border-radius: 50px;
+  background-color: aliceblue;
+  /* filter: brightness(100000) contrast(100%) hue-rotate(40deg); */
 }

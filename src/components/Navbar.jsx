@@ -26,7 +26,6 @@ function Navbar() {
                       alt="homeImage"
                       className="get-in-image"
                     />
-                    Nyam Nyam
                   </NavLink>
                 </div>
               </li>
