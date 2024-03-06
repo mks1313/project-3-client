@@ -14,17 +14,7 @@ import CreateRestPage from "./pages/CreateRestPage";
 import ProfilePage from "./pages/ProfilePage";
 import EditProfilePage from "./pages/EditProfilePage";
 import IsPrivate from './components/IsPrivate';
-import {Cloudinary} from "@cloudinary/url-gen";
 
-const App = () => {
-
-  // Create a Cloudinary instance and set your cloud name.
-  const cld = new Cloudinary({
-    cloud: {
-      cloudName: 'djetyayyd'
-    }
-  });
-};
 
 
 function App() {
