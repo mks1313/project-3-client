@@ -16,6 +16,7 @@ import EditProfilePage from "./pages/EditProfilePage";
 import IsPrivate from './components/IsPrivate';
 
 
+
 function App() {
   return (
     <div className="App">
