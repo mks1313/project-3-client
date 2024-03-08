@@ -99,9 +99,9 @@ const ProfilePage = () => {
         <p className="loading-message">Loading user data...</p>
       )}
       <Link to="/edit-profile">
-        <button>Edit</button>
+      <button className="btn-edit">Edit</button>
       </Link>
-      <button onClick={handleDeleteProfile}>Delete Profile</button>
+      <button className="btn-delete" onClick={handleDeleteProfile}>Delete Profile</button>
       {showConfirmation && (
         <ConfirmationDialog
           message="Are you sure you want to delete your profile? This action can not be undone."

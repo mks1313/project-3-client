@@ -88,12 +88,12 @@ select {
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 16px;
-  background-color: #26798c;
+  background-color: #fff;
   cursor: pointer;
   transition: border-color 0.3s ease;
 }
 
 select:hover,
 select:focus {
-  border-color: #26798c; /* Cambia el color del borde al pasar el cursor o al enfocarse */
+  border-color: #26798c; 
 }
