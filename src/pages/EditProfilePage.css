@@ -1,2 +1,53 @@
-
-
+.edit-profile-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .edit-profile-page h1 {
+    margin-bottom: 20px;
+  }
+  
+  .edit-profile-page form {
+    max-width: 400px;
+    width: 100%;
+  }
+  
+  .edit-profile-page button[type="submit"] {
+    background-color: #26798c;
+    color: white;
+    padding: 15px 30px;
+    border: 2px solid #0b0b0b;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    margin-right: 10px;
+  }
+  
+  .edit-profile-page button[type="submit"]:hover {
+    background-color: #45a049;
+    border-color: #080808;
+  }
+  
+  .edit-profile-page .discard-btn {
+    background-color: #f44336;
+    color: white;
+    padding: 15px 30px;
+    border: 2px solid #080808;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .edit-profile-page .discard-btn:hover {
+    background-color: #d32f2f;
+    border-color: #080808;
+  }
+  
+  .edit-profile-page .discard-btn:hover,
+  .edit-profile-page .discard-btn:focus {
+    color: white;
+  }
+  

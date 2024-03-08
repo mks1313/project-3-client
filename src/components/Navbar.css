@@ -5,7 +5,7 @@
   font-family: "Raleway", Arial, sans-serif;
 }
 nav {
-  background-color: rgb(103, 193, 247);
+  background-color: #26798c;
   padding: 10px;
   text-align: center;
   width: 100%;
@@ -35,14 +35,14 @@ a {
 }
 
 a:hover {
-  color: #41e77e;
+  color: #05481d;
 }
 #sidebar a.active {
   color: red;
 }
 
 .button-logout {
-  background-color: #545faf;
+  background-color: #e1e3f0;
   color: #ffffff;
   border: none;
   padding: 10px 20px;
@@ -52,7 +52,7 @@ a:hover {
 }
 
 .button-logout:hover {
-  background-color: #1fcc00;
+  background-color: #700410;
 }
 
 .get-in-container {

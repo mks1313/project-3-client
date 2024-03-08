@@ -80,7 +80,7 @@ const ProfilePage = () => {
 
   return (
     <div className="profile-page">
-      <h1>Wellcome, {userData && userData.name} </h1>
+      <h1>Welcome, {userData && userData.name} </h1>
       {userData ? (
         <div className="user-info">
           <img src={userData.profileImage} alt="Profile" />
