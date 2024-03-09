@@ -72,7 +72,7 @@ const EditRestPage = () => {
 
   return (
     <div className="form">
-      <h3>Edit Restaurant</h3>
+      <h1>Edit Restaurant</h1>
       <form className="EditRestForm" onSubmit={handleFormSubmit}>
         <div>
           <label>Name:</label>
@@ -220,7 +220,7 @@ const EditRestPage = () => {
         <button className=" btn-create" type="submit">
           Update Restaurant
         </button>
-        <button className=" btn-create">
+        <button className="discard-btn">
           <Link to={`/restaurants/${id}`}>Discard</Link>
         </button>
       </form>

@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
+import "./EditProfilePage.css";
+
 
 const EditProfilePage = () => {
   const [userData, setUserData] = useState(null);
@@ -124,7 +126,7 @@ const EditProfilePage = () => {
             onChange={(e) => setProfileImage(e.target.files[0])}
           />
           <button type="submit">Save Changes</button>
-          <button className=" btn">
+          <button className="discard-btn">
             <Link to={`/profile`}>Discard</Link>
           </button>
         </form>

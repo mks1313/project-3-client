@@ -1,56 +1,99 @@
-.EditRestaurantPage {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin-top: 17rem;
-  }
-  
-  .EditRestForm {
-    max-width: 400px;
-    width: 100%;
-    padding: 20px;
-    border-radius: 50px;
-    margin-top: 20px;
-    border: none;
-    margin-bottom: 7rem;
-  }
-  
-  label {
-    display: block;
-    margin-bottom: 0;
-    font-weight: bolder;
-    font-size: 14px;
-    margin-left: 20px;
-  }
-  
-  input,
-  textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 16px;
-    margin-top: 0;
-    border: 1px solid #ccc;
-    border-radius: 40px;
-  }
-  
-  textarea {
-    height: 200px;
-    resize: none;
-    font-family: sans-serif;
-  }
-  
-  btn-create {
-    width: 450px;
-    padding: 10px;
-    background-color: rgb(103, 193, 247);
+h1 {
+  margin-bottom: 20px;
+}
+
+body, form {
+  margin: 0;
+  padding: 0;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 60px; 
+}
+
+.EditRestForm {
+  max-width: 400px;
+  width: 100%;
+  padding: 20px;
+  border-radius: 50px;
+  margin-top: 20px;
+  border: none;
+}
+
+label {
+  display: block;
+  margin-bottom: 0;
+  font-weight: bolder;
+  font-size: 14px;
+  margin-left: 20px;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 16px;
+  margin-top: 0;
+  border: 1px solid #ccc;
+  border-radius: 40px;
+}
+
+textarea {
+  height: 200px;
+  resize: none;
+  font-family: sans-serif;
+}
+
+.btn-create {
+  background-color: #26798c;
+  color: white;
+  padding: 15px 30px;
+  border: 2px solid #0b0b0b;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  margin-right: 10px;
+}
+
+.btn-create:hover {
+  background-color: #45a049;
+  border-color: #080808;
+}
+
+.discard-btn {
+  background-color: #f44336;
     color: white;
-    border: none;
-    border-radius: 50px;
+    padding: 15px 30px;
+    border: 2px solid #080808;
+    border-radius: 6px;
     cursor: pointer;
-    font-size: 16px;
-  }
-  
-  btn-create:hover {
-    background-color: #0069a0;
-  }
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.discard-btn:hover {
+  background-color: #d32f2f;
+  border-color: #080808;
+}
+
+.discard-btn:hover,
+.discard-btn:focus {
+  color: white;
+}
+
+select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: #fff;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+select:hover,
+select:focus {
+  border-color: #26798c; 
+}
