@@ -9,10 +9,10 @@ const EditRestPage = () => {
   const navigate = useNavigate();
   const storedToken = localStorage.getItem("authToken");
 
+  const [image, setImage] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     capacity: "",
-    image: "",
     phone: "",
     price: "",
     description: "",
@@ -40,12 +40,28 @@ const EditRestPage = () => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
+
+    const uploadData = new FormData();
+    uploadData.append("image", image);
+
+    // uploadData.set("image", image)
+
     axios
-      .put(`/api/restaurants/update/${id}`, formData, {
+      .post(`/api/restaurants/upload`, uploadData, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
-      .then(() => {
-        navigate(`/restaurants/${id}`);
+      .then((response) => {
+        const newImage = response.data.fileURlImage;
+        formData.image = newImage;
+
+        axios
+          .put(`/api/restaurants/update/${id}`, formData, {
+            headers: { Authorization: `Bearer ${storedToken}` },
+          })
+          .then(() => {
+            navigate(`/restaurants/${id}`);
+          })
+          .catch((error) => console.log(error));
       })
       .catch((error) => console.log(error));
   };
@@ -53,8 +69,8 @@ const EditRestPage = () => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
-    if (name.includes(".")) {
-      const [parent, child] = name.split(".");
+    if (name.includes('.')) {
+      const [parent, child] = name.split('.');
       setFormData((prevFormData) => ({
         ...prevFormData,
         [parent]: {
@@ -97,11 +113,10 @@ const EditRestPage = () => {
         <div>
           <label htmlFor="image">Image:</label>
           <input
-            type="file"
-            id="image"
+            type="text"
             name="image"
+            value={formData.image}
             onChange={handleInputChange}
-            className="create-rest-input"
           />
         </div>
 
@@ -144,29 +159,29 @@ const EditRestPage = () => {
             required
             className="create-rest-input"
           >
-            <option value="Italian">Italian</option>
-            <option value="Mexican">Mexican</option>
-            <option value="Chinese">Chinese</option>
-            <option value="Turkish">Turkish</option>
-            <option value="Russian">Russian</option>
-            <option value="French">French</option>
-            <option value="Japanese">Japanese</option>
-            <option value="American">American</option>
-            <option value="Vegetarian">Vegetarian</option>
-            <option value="Vegan">Vegan</option>
-            <option value="Fast food">Fast Food</option>
-            <option value="Sushi">Sushi</option>
-            <option value="BBQ">BBQ</option>
-            <option value="Indian">Indian</option>
-            <option value="Thai">Thai</option>
-            <option value="Mediterranean">Mediterranean</option>
-            <option value="Brazilian">Brazilian</option>
-            <option value="African">African</option>
-            <option value="Fusion">Fusion</option>
-            <option value="Other">Other</option>
-            <option value="Spanish">Spanish</option>
-            <option value="German">German</option>
-            <option value="Greek">Greek</option>
+            <option value="italian">Italian</option>
+          <option value="mexican">Mexican</option>
+          <option value="chinese">Chinese</option>
+          <option value="turkish">Turkish</option>
+          <option value="russian">Russian</option>
+          <option value="french">French</option>
+          <option value="japanese">Japanese</option>
+          <option value="american">American</option>
+          <option value="vegetarian">Vegetarian</option>
+          <option value="vegan">Vegan</option>
+          <option value="fast food">Fast Food</option>
+          <option value="sushi">Sushi</option>
+          <option value="bbq">BBQ</option>
+          <option value="indian">Indian</option>
+          <option value="thai">Thai</option>
+          <option value="mediterranean">Mediterranean</option>
+          <option value="brazilian">Brazilian</option>
+          <option value="african">African</option>
+          <option value="fusion">Fusion</option>
+          <option value="other">Other</option>
+          <option value="spanish">Spanish</option>
+          <option value="german">German</option>
+          <option value="greek">Greek</option>
           </select>
         </div>
 
