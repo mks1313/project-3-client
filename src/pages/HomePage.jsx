@@ -1,9 +1,21 @@
 import "./HomePage.css"; 
 import { Link } from 'react-router-dom';
+import ReactPlayer from "react-player";
 
 function HomePage() {
   return (
     <div className="homepage">
+    <div className="video-container">
+            <ReactPlayer
+                url='https://player.vimeo.com/video/157269920?title=0&portrait=0&byline=0&autoplay=1&loop=1&transparent=1&muted=1'
+                playing
+                loop
+                muted
+                width='100%'
+                height='100%'
+                style={{ position: 'absolute', top: 0, left: 0, zIndex: 2 }} 
+            />
+        </div>
     <div className="content-homepage">
     <Link to="/restaurants">
     <h1 className="title"> Nyam Nyam😋
