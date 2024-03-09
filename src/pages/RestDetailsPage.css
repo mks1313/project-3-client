@@ -1,6 +1,14 @@
 .RestDetailPage {
   padding: 20px;
   margin-bottom: 5rem;
+  margin-top: 3rem;
+}
+#rest-name {
+  font-size: 60px; 
+  text-align: center;
+  margin-top: 20px; 
+  margin-bottom: 20px; 
+  opacity: 0.5;
 }
 
 .restaurant-details {
@@ -23,11 +31,15 @@
   margin-top: 10px;
 }
 
-.ratings-comments {
+.comments {
   margin-top: 20px;
+  
 }
 .description-rest {
   margin-top: 3rem;
+  
 }
-
+.comment-item {
+  background-color: blanchedalmond;
+}
   

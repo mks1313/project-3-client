@@ -18,15 +18,6 @@ const EditRestPage = () => {
     description: "",
     category: "other",
     owner: "",
-    openingHours: [
-      { day: "Monday", open: "", close: "" },
-      { day: "Tuesday", open: "", close: "" },
-      { day: "Wednesday", open: "", close: "" },
-      { day: "Thursday", open: "", close: "" },
-      { day: "Friday", open: "", close: "" },
-      { day: "Saturday", open: "", close: "" },
-      { day: "Sunday", open: "", close: "" },
-    ],
     address: {
       street: "",
       number: "",
@@ -78,8 +69,8 @@ const EditRestPage = () => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
-    if (name.includes(".")) {
-      const [parent, child] = name.split(".");
+    if (name.includes('.')) {
+      const [parent, child] = name.split('.');
       setFormData((prevFormData) => ({
         ...prevFormData,
         [parent]: {
@@ -120,12 +111,12 @@ const EditRestPage = () => {
         </div>
 
         <div>
-          <label>Image:</label>
+          <label htmlFor="image">Image:</label>
           <input
-            type="file"
+            type="text"
             name="image"
-            // value={formData.image}
-            onChange={(e) => setImage(e.target.files[0])}
+            value={formData.image}
+            onChange={handleInputChange}
           />
         </div>
 
@@ -159,35 +150,38 @@ const EditRestPage = () => {
         </div>
 
         <div>
-          <label>Category:</label>
+          <label htmlFor="category">Category:</label>
           <select
+            id="category"
             name="category"
             value={formData.category}
             onChange={handleInputChange}
+            required
+            className="create-rest-input"
           >
             <option value="italian">Italian</option>
-            <option value="mexican">Mexican</option>
-            <option value="chinese">Chinese</option>
-            <option value="turkish">Turkish</option>
-            <option value="russian">Russian</option>
-            <option value="french">French</option>
-            <option value="japanese">Japanese</option>
-            <option value="american">American</option>
-            <option value="vegetarian">Vegetarian</option>
-            <option value="vegan">Vegan</option>
-            <option value="fast food">Fast Food</option>
-            <option value="sushi">Sushi</option>
-            <option value="bbq">BBQ</option>
-            <option value="indian">Indian</option>
-            <option value="thai">Thai</option>
-            <option value="mediterranean">Mediterranean</option>
-            <option value="brazilian">Brazilian</option>
-            <option value="african">African</option>
-            <option value="fusion">Fusion</option>
-            <option value="other">Other</option>
-            <option value="spanish">Spanish</option>
-            <option value="german">German</option>
-            <option value="greek">Greek</option>
+          <option value="mexican">Mexican</option>
+          <option value="chinese">Chinese</option>
+          <option value="turkish">Turkish</option>
+          <option value="russian">Russian</option>
+          <option value="french">French</option>
+          <option value="japanese">Japanese</option>
+          <option value="american">American</option>
+          <option value="vegetarian">Vegetarian</option>
+          <option value="vegan">Vegan</option>
+          <option value="fast food">Fast Food</option>
+          <option value="sushi">Sushi</option>
+          <option value="bbq">BBQ</option>
+          <option value="indian">Indian</option>
+          <option value="thai">Thai</option>
+          <option value="mediterranean">Mediterranean</option>
+          <option value="brazilian">Brazilian</option>
+          <option value="african">African</option>
+          <option value="fusion">Fusion</option>
+          <option value="other">Other</option>
+          <option value="spanish">Spanish</option>
+          <option value="german">German</option>
+          <option value="greek">Greek</option>
           </select>
         </div>
 

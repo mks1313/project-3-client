@@ -20,8 +20,8 @@ import IsPrivate from './components/IsPrivate';
 function App() {
   return (
     <div className="App">
-      <Navbar />
       <div className="content">
+      <Navbar />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/restaurants" element={<RestListPage />} />

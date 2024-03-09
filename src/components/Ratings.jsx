@@ -3,7 +3,7 @@ import axios from "axios";
 import { AuthContext } from "../context/auth.context";
 import "./Ratings.css";
 
-function Ratings({ restaurantId, totalVotes, onAverageRatingChange }) {
+function Ratings({ restaurantId, onAverageRatingChange }) {
   const [averageRating, setAverageRating] = useState(null);
   const [userRating, setUserRating] = useState(null);
   const [hasUserRated, setHasUserRated] = useState(false);
@@ -12,19 +12,20 @@ function Ratings({ restaurantId, totalVotes, onAverageRatingChange }) {
   const [rating, setRating] = useState(0);
 
   useEffect(() => {
-    if (isLoggedIn) {
+    if (isLoggedIn && user && storedToken) { 
       axios
         .get(`/api/ratings/${restaurantId}`, {
           headers: { Authorization: `Bearer ${storedToken}` },
         })
         .then((response) => {
-          console.log(response);
+          // console.log(response);
           const { averageRating, ratings } = response.data;
           onAverageRatingChange(averageRating);
           setAverageRating(averageRating);
 
           const userRatingData = ratings.find(
-            (rating) => rating.author === user._id
+            
+            (rating) => rating.author._id === user._id 
           );
           if (userRatingData) {
             setUserRating(userRatingData.value);
@@ -35,13 +36,12 @@ function Ratings({ restaurantId, totalVotes, onAverageRatingChange }) {
           console.error("Error fetching user rating:", error);
         });
     }
-  }, [isLoggedIn, restaurantId, user, storedToken, onAverageRatingChange]);
+  }, [isLoggedIn, user, storedToken, restaurantId, onAverageRatingChange]);
 
   const handleRatingChange = (event) => {
     setRating(event.target.value);
   };
-//TODO, falta, extraer id de user y comparar en rating y comments, para ocultar. 
-//TODO navbar, footer, arreglos estilos, pgs de editar.
+
   const handleRatingSubmit = () => {
     if (isLoggedIn) {
       axios
@@ -69,11 +69,11 @@ function Ratings({ restaurantId, totalVotes, onAverageRatingChange }) {
 
   return (
     <div className="ratings-container">
-      <p className="votes-text">Total votes: {totalVotes}</p>
+      {/* <p className="votes-text">Total votes: {totalVotes}</p> */}
       <p className="rating-text">
-        Rating:{" "}
+        {" "}
         <span className="average-rating">
-          {averageRating !== null ? averageRating.toFixed(1) : "No rates yet"}
+          {averageRating !== null ? averageRating.toFixed(1) : "0"}
         </span>{" "}
         /10
       </p>
