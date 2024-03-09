@@ -4,17 +4,15 @@ import axios from "axios";
 import "./EditRestPage.css";
 import { Link } from "react-router-dom";
 
-
-
 const EditRestPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const storedToken = localStorage.getItem("authToken");
 
+  const [image, setImage] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     capacity: "",
-    image: "",
     phone: "",
     price: "",
     description: "",
@@ -34,13 +32,14 @@ const EditRestPage = () => {
       number: "",
       city: "",
       postcode: "",
-      
     },
   });
 
   useEffect(() => {
     axios
-      .get(`/api/restaurants/read/${id}`,{ headers: { Authorization: `Bearer ${storedToken}` } })
+      .get(`/api/restaurants/read/${id}`, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
       .then((response) => {
         const fetchedRestaurant = response.data;
         setFormData(fetchedRestaurant);
@@ -50,10 +49,28 @@ const EditRestPage = () => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
+
+    const uploadData = new FormData();
+    uploadData.append("image", image);
+
+    // uploadData.set("image", image)
+
     axios
-      .put(`/api/restaurants/update/${id}`, formData,{ headers: { Authorization: `Bearer ${storedToken}` } })
-      .then(() => {
-        navigate(`/restaurants/${id}`);
+      .post(`/api/restaurants/upload`, uploadData, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
+      .then((response) => {
+        const newImage = response.data.fileURlImage;
+        formData.image = newImage;
+
+        axios
+          .put(`/api/restaurants/update/${id}`, formData, {
+            headers: { Authorization: `Bearer ${storedToken}` },
+          })
+          .then(() => {
+            navigate(`/restaurants/${id}`);
+          })
+          .catch((error) => console.log(error));
       })
       .catch((error) => console.log(error));
   };
@@ -61,8 +78,8 @@ const EditRestPage = () => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
-    if (name.includes('.')) {
-      const [parent, child] = name.split('.');
+    if (name.includes(".")) {
+      const [parent, child] = name.split(".");
       setFormData((prevFormData) => ({
         ...prevFormData,
         [parent]: {
@@ -105,10 +122,10 @@ const EditRestPage = () => {
         <div>
           <label>Image:</label>
           <input
-            type="text"
+            type="file"
             name="image"
-            value={formData.image}
-            onChange={handleInputChange}
+            // value={formData.image}
+            onChange={(e) => setImage(e.target.files[0])}
           />
         </div>
 
@@ -149,28 +166,28 @@ const EditRestPage = () => {
             onChange={handleInputChange}
           >
             <option value="italian">Italian</option>
-          <option value="mexican">Mexican</option>
-          <option value="chinese">Chinese</option>
-          <option value="turkish">Turkish</option>
-          <option value="russian">Russian</option>
-          <option value="french">French</option>
-          <option value="japanese">Japanese</option>
-          <option value="american">American</option>
-          <option value="vegetarian">Vegetarian</option>
-          <option value="vegan">Vegan</option>
-          <option value="fast food">Fast Food</option>
-          <option value="sushi">Sushi</option>
-          <option value="bbq">BBQ</option>
-          <option value="indian">Indian</option>
-          <option value="thai">Thai</option>
-          <option value="mediterranean">Mediterranean</option>
-          <option value="brazilian">Brazilian</option>
-          <option value="african">African</option>
-          <option value="fusion">Fusion</option>
-          <option value="other">Other</option>
-          <option value="spanish">Spanish</option>
-          <option value="german">German</option>
-          <option value="greek">Greek</option>
+            <option value="mexican">Mexican</option>
+            <option value="chinese">Chinese</option>
+            <option value="turkish">Turkish</option>
+            <option value="russian">Russian</option>
+            <option value="french">French</option>
+            <option value="japanese">Japanese</option>
+            <option value="american">American</option>
+            <option value="vegetarian">Vegetarian</option>
+            <option value="vegan">Vegan</option>
+            <option value="fast food">Fast Food</option>
+            <option value="sushi">Sushi</option>
+            <option value="bbq">BBQ</option>
+            <option value="indian">Indian</option>
+            <option value="thai">Thai</option>
+            <option value="mediterranean">Mediterranean</option>
+            <option value="brazilian">Brazilian</option>
+            <option value="african">African</option>
+            <option value="fusion">Fusion</option>
+            <option value="other">Other</option>
+            <option value="spanish">Spanish</option>
+            <option value="german">German</option>
+            <option value="greek">Greek</option>
           </select>
         </div>
 
@@ -221,7 +238,9 @@ const EditRestPage = () => {
           />
         </div>
 
-        <button className=" btn-create" type="submit">Update Restaurant</button>
+        <button className=" btn-create" type="submit">
+          Update Restaurant
+        </button>
         <button className="discard-btn">
           <Link to={`/restaurants/${id}`}>Discard</Link>
         </button>
@@ -231,4 +250,3 @@ const EditRestPage = () => {
 };
 
 export default EditRestPage;
-
