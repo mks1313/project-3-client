@@ -19,16 +19,19 @@ function Navbar() {
     <div className="navBarDiv">
       <nav className="navbar" id="sidebar">
         <ul className="nav-ul">
+        <ul className='home-about'>
+
           <li>
             <div className="get-in-container">
               <HomeLink />
             </div>
           </li>
           <li>
-            <NavLink to="/restaurants">Restaurants</NavLink>
-          </li>
-          <li>
             <NavLink to="/about">About us</NavLink>
+          </li>
+        </ul>
+          <li>
+            <NavLink to="/restaurants">Restaurants</NavLink>
           </li>
           {!isLoggedIn && (
             <li>
@@ -48,6 +51,7 @@ function Navbar() {
               <li>
                 <NavLink to="/create">Register my 🍽️</NavLink>
               </li>
+              <ul className='profile-logout'>
               <li>
                 <ProfileLink />
               </li>
@@ -56,6 +60,8 @@ function Navbar() {
                   Logout
                 </button>
               </li>
+
+              </ul>
             </>
           )}
         </ul>

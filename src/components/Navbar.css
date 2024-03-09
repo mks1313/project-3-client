@@ -69,8 +69,14 @@ a:hover {
 
 }
 
-
-
+.profile-logout {
+	display: flex;
+}
+.home-about {
+	display: flex;
+	justify-content: initial;
+	
+}
 /* .menu {
 	width: 100%;
 	height: 100vh;
