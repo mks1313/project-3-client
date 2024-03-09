@@ -46,15 +46,15 @@ function Navbar() {
           {isLoggedIn && (
             <>
               <li>
+                <NavLink to="/create">Register my 🍽️</NavLink>
+              </li>
+              <li>
                 <ProfileLink />
               </li>
               <li className="button-logout-container">
                 <button className="button-logout" onClick={handleLogout}>
                   Logout
                 </button>
-              </li>
-              <li>
-                <NavLink to="/create">Register my restaurant</NavLink>
               </li>
             </>
           )}
