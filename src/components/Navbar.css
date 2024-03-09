@@ -364,3 +364,6 @@ input:checked + label[for=m-profile] {
 @media only screen and (orientation: portrait) {
 	label { color: transparent !important; text-shadow: none !important;}
 } */
+/* Estilos para el enlace personalizado */
+
+  

@@ -33,7 +33,7 @@ function App() {
           <Route path="/edit-profile" element={<IsPrivate><EditProfilePage /></IsPrivate>} />
         </Routes>
       </div>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }
