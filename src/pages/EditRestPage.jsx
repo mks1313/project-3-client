@@ -113,10 +113,10 @@ const EditRestPage = () => {
         <div>
           <label htmlFor="image">Image:</label>
           <input
-            type="text"
+            type="file"
             name="image"
-            value={formData.image}
-            onChange={handleInputChange}
+            // value={formData.image}
+            onChange={(e) => setImage(e.target.files[0])}
           />
         </div>
 
