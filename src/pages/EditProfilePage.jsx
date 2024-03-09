@@ -12,7 +12,7 @@ const EditProfilePage = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [birthday, setBirthday] = useState("");
   const [sex, setSex] = useState("");
-  const [profileImage, setProfileImage] = useState(null);
+  const [profileImage, setProfileImage] = useState("");
   const storedToken = localStorage.getItem("authToken");
   const navigate = useNavigate();
 
@@ -44,19 +44,19 @@ const EditProfilePage = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-  
-    const updatedData = {
-      name: event.target.name.value,
-      email: event.target.email.value,
-      password: event.target.password.value,
-      confirmPassword: event.target.confirmPassword.value,
-      birthday: event.target.birthday.value,
-      sex: event.target.sex.value,
-      image: profileImage,
-    };
+
+    const uploadData = new FormData();
+    uploadData.append("image", profileImage);
+    uploadData.append("name", name);
+    uploadData.append("birthday", birthday);
+    uploadData.append("sex", sex);
+    uploadData.append("email", email);
+
+    
+     
   
     axios
-      .put("/api/users/profile/update", updatedData, {
+      .post("/api/users/profile/update", uploadData, {
         headers: {
           Authorization: `Bearer ${storedToken}`,
         },
