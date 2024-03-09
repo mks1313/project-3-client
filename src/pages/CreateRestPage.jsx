@@ -7,31 +7,21 @@ const CreateRestPage = () => {
   const storedToken = localStorage.getItem("authToken");
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    name: "prueba",
-    capacity: "50",
-    phone: "1234",
-    price: "$$",
-    description: "probando",
+    name: "",
+    capacity: "",
+    phone: "",
+    price: "",
+    description: "",
     category: "Other",
     owner: "",
-    openingHours: [
-      { day: "Monday", open: "", close: "" },
-      { day: "Tuesday", open: "", close: "" },
-      { day: "Wednesday", open: "", close: "" },
-      { day: "Thursday", open: "", close: "" },
-      { day: "Friday", open: "", close: "" },
-      { day: "Saturday", open: "", close: "" },
-      { day: "Sunday", open: "", close: "" },
-    ],
     address: {
-      street: "arago",
-      number: "333",
-      city: "alicante",
-      postcode: "08015",
-      menus: [],
+      street: "",
+      number: "",
+      city: "",
+      postcode: "",
     },
+    image: null, 
   });
-  const [restaurantImage, setRestaurantImage] = useState(null);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -55,28 +45,27 @@ const CreateRestPage = () => {
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
-    setRestaurantImage(file);
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      image: file, 
+    }));
   };
 
   const handleSubmit = (e) => {
-  e.preventDefault();
-  let formDataCopy = { ...formData };
-  if (restaurantImage) {
-    formDataCopy.image = restaurantImage;
-  }
-  axios
-    .post("/api/restaurants/create", formDataCopy, {
-      headers: { Authorization: `Bearer ${storedToken}` },
-    })
-    .then((response) => {
-      console.log(response);
-      navigate("/restaurants");
-    })
-    .catch((error) => {
-      console.error("Error al crear el restaurante:", error);
-    });
-};
-
+    e.preventDefault();
+    console.log("Form Data:", formData);
+    axios
+      .post("/api/restaurants/create", formData, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
+      .then((response) => {
+        console.log(response);
+        navigate("/restaurants");
+      })
+      .catch((error) => {
+        console.error("Error al crear el restaurante:", error);
+      });
+  };
 
   return (
     <div className="form create-rest-form">
@@ -139,49 +128,49 @@ const CreateRestPage = () => {
                 />
             </div>
             <div>
-                <label htmlFor="category">Category:</label>
-                <select
-                    id="category"
-                    name="category"
-                    value={formData.category}
-                    onChange={handleInputChange}
-                    required
-                    className="create-rest-input"
-                >
-                    <option value="italian">Italian</option>
-            <option value="mexican">Mexican</option>
-            <option value="chinese">Chinese</option>
-            <option value="turkish">Turkish</option>
-            <option value="russian">Russian</option>
-            <option value="french">French</option>
-            <option value="japanese">Japanese</option>
-            <option value="american">American</option>
-            <option value="vegetarian">Vegetarian</option>
-            <option value="vegan">Vegan</option>
-            <option value="fast food">Fast Food</option>
-            <option value="sushi">Sushi</option>
-            <option value="bbq">BBQ</option>
-            <option value="indian">Indian</option>
-            <option value="thai">Thai</option>
-            <option value="mediterranean">Mediterranean</option>
-            <option value="brazilian">Brazilian</option>
-            <option value="african">African</option>
-            <option value="fusion">Fusion</option>
-            <option value="other">Other</option>
-            <option value="spanish">Spanish</option>
-            <option value="german">German</option>
-            <option value="greek">Greek</option>
-                </select>
+              <label htmlFor="category">Category:</label>
+              <select
+                id="category"
+                name="category"
+                value={formData.category}
+                onChange={handleInputChange}
+                required
+                className="create-rest-input"
+              >
+                <option value="Italian">Italian</option>
+                <option value="Mexican">Mexican</option>
+                <option value="Chinese">Chinese</option>
+                <option value="Turkish">Turkish</option>
+                <option value="Russian">Russian</option>
+                <option value="French">French</option>
+                <option value="Japanese">Japanese</option>
+                <option value="American">American</option>
+                <option value="Vegetarian">Vegetarian</option>
+                <option value="Vegan">Vegan</option>
+                <option value="Fast food">Fast Food</option>
+                <option value="Sushi">Sushi</option>
+                <option value="BBQ">BBQ</option>
+                <option value="Indian">Indian</option>
+                <option value="Thai">Thai</option>
+                <option value="Mediterranean">Mediterranean</option>
+                <option value="Brazilian">Brazilian</option>
+                <option value="African">African</option>
+                <option value="Fusion">Fusion</option>
+                <option value="Other">Other</option>
+                <option value="Spanish">Spanish</option>
+                <option value="German">German</option>
+                <option value="Greek">Greek</option>
+              </select>
             </div>
             <div>
-                <label htmlFor="image">Image:</label>
-                <input
-                    type="file"
-                    id="image"
-                    name="image"
-                    onChange={handleImageChange}
-                    className="create-rest-input"
-                />
+              <label htmlFor="image">Image:</label>
+              <input
+                type="file"
+                id="image"
+                name="image"
+                onChange={handleImageChange}
+                className="create-rest-input"
+              />
             </div>
             <div>
                 <label htmlFor="street">Street:</label>
@@ -229,37 +218,12 @@ const CreateRestPage = () => {
                     onChange={handleInputChange}
                     className="create-rest-input"
                 />
-            </div>
-            <div>
-                <label>Opening Hours:</label>
-                {formData.openingHours.map((day, index) => (
-                    <div key={index} className="opening-hours">
-                    <label>{day.day}</label>
-                <input
-                  type="time"
-                  value={day.open}
-                  onChange={(e) => {
-                    const newOpeningHours = [...formData.openingHours];
-                    newOpeningHours[index].open = e.target.value;
-                    setFormData({ ...formData, openingHours: newOpeningHours });
-                  }}
-                />
-                <input
-                  type="time"
-                  value={day.close}
-                  onChange={(e) => {
-                    const newOpeningHours = [...formData.openingHours];
-                    newOpeningHours[index].close = e.target.value;
-                    setFormData({ ...formData, openingHours: newOpeningHours });
-                  }}
-                />
-                    </div>
-                ))}
-            </div>
-            <button className="btn-create" type="submit">Create Restaurant</button>
+            </div>            
+             <button className="btn-create" type="submit">Create Restaurant</button>
         </form>
     </div>
   );
-  }
+}
 
 export default CreateRestPage;
+

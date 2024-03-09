@@ -4,8 +4,6 @@ import axios from "axios";
 import "./EditRestPage.css";
 import { Link } from "react-router-dom";
 
-
-
 const EditRestPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -20,27 +18,19 @@ const EditRestPage = () => {
     description: "",
     category: "other",
     owner: "",
-    openingHours: [
-      { day: "Monday", open: "", close: "" },
-      { day: "Tuesday", open: "", close: "" },
-      { day: "Wednesday", open: "", close: "" },
-      { day: "Thursday", open: "", close: "" },
-      { day: "Friday", open: "", close: "" },
-      { day: "Saturday", open: "", close: "" },
-      { day: "Sunday", open: "", close: "" },
-    ],
     address: {
       street: "",
       number: "",
       city: "",
       postcode: "",
-      
     },
   });
 
   useEffect(() => {
     axios
-      .get(`/api/restaurants/read/${id}`,{ headers: { Authorization: `Bearer ${storedToken}` } })
+      .get(`/api/restaurants/read/${id}`, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
       .then((response) => {
         const fetchedRestaurant = response.data;
         setFormData(fetchedRestaurant);
@@ -51,7 +41,9 @@ const EditRestPage = () => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     axios
-      .put(`/api/restaurants/update/${id}`, formData,{ headers: { Authorization: `Bearer ${storedToken}` } })
+      .put(`/api/restaurants/update/${id}`, formData, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
       .then(() => {
         navigate(`/restaurants/${id}`);
       })
@@ -61,8 +53,8 @@ const EditRestPage = () => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
-    if (name.includes('.')) {
-      const [parent, child] = name.split('.');
+    if (name.includes(".")) {
+      const [parent, child] = name.split(".");
       setFormData((prevFormData) => ({
         ...prevFormData,
         [parent]: {
@@ -103,12 +95,13 @@ const EditRestPage = () => {
         </div>
 
         <div>
-          <label>Image:</label>
+          <label htmlFor="image">Image:</label>
           <input
-            type="text"
+            type="file"
+            id="image"
             name="image"
-            value={formData.image}
             onChange={handleInputChange}
+            className="create-rest-input"
           />
         </div>
 
@@ -142,35 +135,38 @@ const EditRestPage = () => {
         </div>
 
         <div>
-          <label>Category:</label>
+          <label htmlFor="category">Category:</label>
           <select
+            id="category"
             name="category"
             value={formData.category}
             onChange={handleInputChange}
+            required
+            className="create-rest-input"
           >
-            <option value="italian">Italian</option>
-          <option value="mexican">Mexican</option>
-          <option value="chinese">Chinese</option>
-          <option value="turkish">Turkish</option>
-          <option value="russian">Russian</option>
-          <option value="french">French</option>
-          <option value="japanese">Japanese</option>
-          <option value="american">American</option>
-          <option value="vegetarian">Vegetarian</option>
-          <option value="vegan">Vegan</option>
-          <option value="fast food">Fast Food</option>
-          <option value="sushi">Sushi</option>
-          <option value="bbq">BBQ</option>
-          <option value="indian">Indian</option>
-          <option value="thai">Thai</option>
-          <option value="mediterranean">Mediterranean</option>
-          <option value="brazilian">Brazilian</option>
-          <option value="african">African</option>
-          <option value="fusion">Fusion</option>
-          <option value="other">Other</option>
-          <option value="spanish">Spanish</option>
-          <option value="german">German</option>
-          <option value="greek">Greek</option>
+            <option value="Italian">Italian</option>
+            <option value="Mexican">Mexican</option>
+            <option value="Chinese">Chinese</option>
+            <option value="Turkish">Turkish</option>
+            <option value="Russian">Russian</option>
+            <option value="French">French</option>
+            <option value="Japanese">Japanese</option>
+            <option value="American">American</option>
+            <option value="Vegetarian">Vegetarian</option>
+            <option value="Vegan">Vegan</option>
+            <option value="Fast food">Fast Food</option>
+            <option value="Sushi">Sushi</option>
+            <option value="BBQ">BBQ</option>
+            <option value="Indian">Indian</option>
+            <option value="Thai">Thai</option>
+            <option value="Mediterranean">Mediterranean</option>
+            <option value="Brazilian">Brazilian</option>
+            <option value="African">African</option>
+            <option value="Fusion">Fusion</option>
+            <option value="Other">Other</option>
+            <option value="Spanish">Spanish</option>
+            <option value="German">German</option>
+            <option value="Greek">Greek</option>
           </select>
         </div>
 
@@ -221,7 +217,9 @@ const EditRestPage = () => {
           />
         </div>
 
-        <button className=" btn-create" type="submit">Update Restaurant</button>
+        <button className=" btn-create" type="submit">
+          Update Restaurant
+        </button>
         <button className=" btn-create">
           <Link to={`/restaurants/${id}`}>Discard</Link>
         </button>
@@ -231,4 +229,3 @@ const EditRestPage = () => {
 };
 
 export default EditRestPage;
-

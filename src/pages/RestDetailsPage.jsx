@@ -61,8 +61,7 @@ function RestDetailPage() {
     <div className="RestDetailPage">
       {restaurant && (
         <>
-          <h2>{restaurant.name}</h2>
-          <hr />
+          <h3 id="rest-name" >{restaurant.name}</h3>
           <div className="restaurant-details">
             <div className="section">
               <div className="restaurant-image">
@@ -115,7 +114,7 @@ function RestDetailPage() {
               </div>
             </div>
             <div className="section">
-              <div className="ratings-comments">
+              <div className="comments">
                 {user && (
                   <>
                     <Comments restaurantId={id} />
