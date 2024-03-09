@@ -32,8 +32,8 @@ function App() {
           <Route path="/profile" element={<IsPrivate><ProfilePage /></IsPrivate>} />
           <Route path="/edit-profile" element={<IsPrivate><EditProfilePage /></IsPrivate>} />
         </Routes>
-      </div>
       <Footer />
+      </div>
     </div>
   );
 }

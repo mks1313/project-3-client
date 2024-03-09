@@ -1,10 +1,10 @@
+
 h1 {
   margin-bottom: 20px;
 }
 
-body, form {
-  margin: 0;
-  padding: 0;
+.edit-page-container {
+  margin-bottom: 5rem;
 }
 
 .form {
@@ -66,6 +66,7 @@ textarea {
 
 .discard-btn {
   background-color: #f44336;
+
     color: white;
     padding: 15px 30px;
     border: 2px solid #080808;

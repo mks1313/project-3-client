@@ -1,7 +1,7 @@
 .home-link {
   display: block;
-  width: 40px; /* Ajusta el tamaño según sea necesario */
-  height: 40px; /* Ajusta el tamaño según sea necesario */
+  width: 40px;
+  height: 40px; 
   text-decoration: none;
   background-color: transparent;
 }
