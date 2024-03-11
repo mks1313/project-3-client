@@ -1,5 +1,6 @@
 
 h1 {
+  margin-top: 2cm;
   margin-bottom: 20px;
   text-align: center;
 }
@@ -10,7 +11,7 @@ h1 {
 
 .form {
   display: flex;
-  justify-content: space-between; /* Distribuye los elementos en tres columnas */
+  justify-content: space-between; 
   margin-top: 60px; 
   margin-bottom: 4rem;
 }
@@ -22,15 +23,15 @@ h1 {
   margin-top: 0;
   border: 1px solid #ccc;
   border-radius: 40px;
-  box-sizing: border-box; /* Asegura que el ancho incluya el padding y el borde */
+  box-sizing: border-box; 
 }
 .form input[type="number"] {
   text-align: center;
 }
 
 .form > div {
-  flex: 0 0 calc(33.33% - 20px); /* Ancho de cada columna */
-  margin-right: 20px; /* Espacio entre las columnas */
+  flex: 0 0 calc(33.33% - 20px); 
+  margin-right: 20px; 
 }
 
 .EditRestForm {

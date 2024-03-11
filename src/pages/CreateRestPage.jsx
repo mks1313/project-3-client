@@ -6,6 +6,7 @@ import "./CreateRestPage.css";
 const CreateRestPage = () => {
   const storedToken = localStorage.getItem("authToken");
   const navigate = useNavigate();
+  
   const [formData, setFormData] = useState({
     name: "",
     capacity: "",
