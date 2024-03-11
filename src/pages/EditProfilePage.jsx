@@ -125,10 +125,11 @@ const EditProfilePage = () => {
             name="image"
             onChange={(e) => setProfileImage(e.target.files[0])}
           />
-          <button type="submit">Save Changes</button>
-          <button className="discard-btn">
-            <Link to={`/profile`}>Discard</Link>
-          </button>
+          <button className="edit-button" type="submit" style={{ marginRight: '20px' }}>Save Changes</button>
+            <Link to={`/profile`}>
+            <button className="delete-button">Discard</button>
+            </Link>
+          
         </form>
       ) : (
         <p className="loading-message">Loading user data...</p>

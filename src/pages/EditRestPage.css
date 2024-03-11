@@ -64,7 +64,7 @@ textarea {
   resize: none;
   font-family: sans-serif;
 }
-
+/* 
 .btn-create {
   background-color: #26798c;
   color: white;
@@ -115,4 +115,4 @@ select {
 select:hover,
 select:focus {
   border-color: #26798c; 
-}
+} */

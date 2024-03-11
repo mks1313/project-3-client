@@ -117,21 +117,23 @@
     display: inline-block;
     margin-top: 10px;
     padding: 8px 16px;
-    background-color: #009688; 
+    background-color: #001e96; 
     color: #fff;
     text-decoration: none;
     border-radius: 4px;
     transition: background-color 0.3s ease;
+    
   }
   
   .read-more-button:hover {
     background-color: #00796b; 
+    
   }
   .card .content a {
     display: inline-block;
     margin-top: 10px;
     padding: 8px 16px;
-    background-color: #0e7167; 
+    background-color: #87ceeb; 
     color: #fff; 
     text-decoration: none;
     border-radius: 4px;

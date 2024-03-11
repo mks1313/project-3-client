@@ -58,7 +58,7 @@ function LogInPage() {
     };
 //TODO modificar los estilos de inputs para cada uno
 return (
-    <>
+    <div className="container-main">
 
        <div className="video-container">
             <ReactPlayer
@@ -112,7 +112,7 @@ return (
             </div>
         </div>
     </div>
-    </>
+    </div>
 );
 }
 

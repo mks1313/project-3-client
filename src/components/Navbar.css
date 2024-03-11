@@ -35,9 +35,6 @@ a {
   transition: color 0.3s ease;
 }
 
-a:hover {
-  color: #41e77e;
-}
 #sidebar a.active {
   color: red;
 }

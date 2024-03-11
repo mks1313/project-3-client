@@ -1,16 +1,25 @@
 .footer {
-  position: fixed;
+  /* position: fixed; */
   left: 0;
   bottom: 0;
   width: 100%;
   background-color: #001529;
   color: #fff;
-
+  height: 15rem;
   padding: 20px 0;
 }
 
 .footer a {
   color: #fff; 
+}
+.fagitub {
+  display: flex;
+  justify-content: space-between;
+  width: '40px';
+  height: '40px';
+  color: '#b0bfd8';
+  
+
 }
 
 

@@ -236,12 +236,13 @@ const EditRestPage = () => {
           />
         </div>
 
-        <button className=" btn-create" type="submit">
+        <button className="edit-button" type="submit" style={{ marginRight: '20px', marginTop: '20px' }}>
           Update Restaurant
         </button>
-        <button className="discard-btn">
-          <Link to={`/restaurants/${id}`}>Discard</Link>
-        </button>
+        <Link to={`/restaurants/${id}`}>
+            <button className="delete-button">Discard</button>
+            </Link>
+        
         </form>
         </div>
       </div>
