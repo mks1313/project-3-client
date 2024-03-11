@@ -6,7 +6,6 @@ import "./CreateRestPage.css";
 const CreateRestPage = () => {
   const storedToken = localStorage.getItem("authToken");
   const navigate = useNavigate();
-  
   const [formData, setFormData] = useState({
     name: "",
     capacity: "",
@@ -65,10 +64,10 @@ const CreateRestPage = () => {
 const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Form Data:", formData);
-    // if (!formData.image) {
-    //     console.error("La URL de la imagen no está disponible.");
-    //     return;
-    // }
+    if (!formData.image) {
+        console.error("La URL de la imagen no está disponible.");
+        return;
+    }
     
     axios
       .post("/api/restaurants/create", formData, {
