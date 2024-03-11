@@ -1,6 +1,7 @@
 
 h1 {
   margin-bottom: 20px;
+  text-align: center;
 }
 
 .edit-page-container {
@@ -9,18 +10,33 @@ h1 {
 
 .form {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: space-between; /* Distribuye los elementos en tres columnas */
   margin-top: 60px; 
   margin-bottom: 4rem;
 }
+.form input,
+.form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 16px;
+  margin-top: 0;
+  border: 1px solid #ccc;
+  border-radius: 40px;
+  box-sizing: border-box; /* Asegura que el ancho incluya el padding y el borde */
+}
+.form input[type="number"] {
+  text-align: center;
+}
+
+.form > div {
+  flex: 0 0 calc(33.33% - 20px); /* Ancho de cada columna */
+  margin-right: 20px; /* Espacio entre las columnas */
+}
 
 .EditRestForm {
-  max-width: 400px;
   width: 100%;
   padding: 20px;
   border-radius: 50px;
-  margin-top: 20px;
   border: none;
 }
 
