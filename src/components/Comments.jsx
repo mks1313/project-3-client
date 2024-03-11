@@ -54,7 +54,7 @@ const Comments = ({ restaurantId }) => {
             <div className="comment-content">
               <p>{comment.content}</p>
               <p>By: {comment.author ? comment.author.name : 'Anónimo'}</p>
-              <p>Replies: {comment.replies}</p>
+              {/* <p>Replies: {comment.replies}</p> */}
             </div>
           </div>
         ))}

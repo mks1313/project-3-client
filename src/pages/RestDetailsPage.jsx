@@ -15,10 +15,10 @@ function RestDetailPage() {
   const [restaurant, setRestaurant] = useState(null);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const storedToken = localStorage.getItem("authToken");
-  const [averageRating, setAverageRating] = useState(0); // Estado para almacenar el averageRating
+  const [averageRating, setAverageRating] = useState(0); 
 
   const handleAverageRatingChange = (newAverageRating) => {
-    setAverageRating(newAverageRating); // Actualizar el estado con el nuevo averageRating
+    setAverageRating(newAverageRating);
   };
 
   useEffect(() => {
@@ -61,7 +61,7 @@ function RestDetailPage() {
     <div className="RestDetailPage">
       {restaurant && (
         <>
-          <h3 id="rest-name" >{restaurant.name}</h3>
+          <h3 id="rest-name">{restaurant.name}</h3>
           <div className="restaurant-details">
             <div className="section">
               <div className="restaurant-image">
@@ -69,14 +69,17 @@ function RestDetailPage() {
               </div>
               {user && user._id === restaurant.owner && (
                 <div className="buttons">
-                  <button onClick={handleDeleteRestaurant}>
+                  <button
+                    className="delete-button"
+                    onClick={handleDeleteRestaurant}
+                  >
                     Delete restaurant
                   </button>
                   <Link
                     to={`/restaurants/edit/${id}`}
                     style={{ color: "black" }}
                   >
-                    <button>Edit Restaurant</button>
+                    <button className="edit-button">Edit Restaurant</button>
                   </Link>
                 </div>
               )}
@@ -84,7 +87,7 @@ function RestDetailPage() {
               <Ratings
                 restaurantId={restaurant._id}
                 totalVotes={restaurant.ratings.length}
-                averageRating={averageRating} 
+                averageRating={averageRating}
                 onAverageRatingChange={handleAverageRatingChange} //
               />
             </div>

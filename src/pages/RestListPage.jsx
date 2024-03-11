@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import "./RestListPage.css";
+import AnimatedCards from "../components/AnimatedCards";
 
 function RestListPage() {
   const [restaurants, setRestaurants] = useState([]);
@@ -36,24 +36,13 @@ function RestListPage() {
           onChange={handleSearchTerm}
         />
       </div>
-      <div className="restaurant-cards-restlistpage">
-        {filteredRestaurants.map((restaurant) => (
-          <div key={restaurant._id} className="restaurant-card-restlistpage">
-            <Link to={`/restaurants/${restaurant._id}`}>
-              <div className="card-content-restlistpage">
-                <h2 className="restaurant-name-restlistpage">{restaurant.name}</h2>
-                <div className="image-container-restlistpage" style={{ backgroundImage: `url(${restaurant.image})` }} />
-                <p className="restaurant-city-restlistpage">{restaurant.city}</p>
-              </div>
-            </Link>
-          </div>
-        ))}
-      </div>
+      <AnimatedCards restaurants={filteredRestaurants} />
     </div>
   );
 }
 
 export default RestListPage;
+
 
 
 

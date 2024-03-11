@@ -1,11 +1,15 @@
+
+import Button from './Button'; 
+
 const ConfirmationDialog = ({ message, onConfirm, onCancel }) => {
   return (
     <div className="confirmation-dialog">
       <p>{message}</p>
-      <button onClick={onConfirm}>Confirmar</button>
-      <button onClick={onCancel}>Cancelar</button>
+      <Button onClick={onConfirm}>Confirm</Button>
+      <Button onClick={onCancel}>Discard</Button>
     </div>
   );
 };
 
 export default ConfirmationDialog;
+

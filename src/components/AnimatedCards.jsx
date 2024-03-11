@@ -1,0 +1,26 @@
+import { Link } from 'react-router-dom';
+import './AnimatedCards.css';
+
+const AnimatedCards = ({ restaurants }) => {
+  return (
+    <div className="container">
+      {restaurants.map((restaurant) => (
+        <div key={restaurant._id} className="card" style={{ '--clr': restaurant.color, backgroundImage: `url(https://i.postimg.cc/pdjRc68d/img-02.png)` }}>
+          <div className="img-box">
+            <img src={restaurant.image} alt={restaurant.name} />
+          </div>
+          <div className="content">
+            <h2>{restaurant.name}</h2>
+            <p>{restaurant.description}</p>
+            <Link to={`/restaurants/${restaurant._id}`} className="read-more-button">
+              Read More
+            </Link>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default AnimatedCards;
+
