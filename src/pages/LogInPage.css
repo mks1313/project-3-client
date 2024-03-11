@@ -215,12 +215,26 @@ input[type=text]:placeholder {
 }
 
 .video-container {
-  position: fixed;
+  position: absolute; 
   top: 0;
   left: 0;
   right: 0;
-
   width: 100% !important;
   height: 100%;
-  z-index: -1;
+  z-index: -1; 
 }
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  min-height: 100%;
+  padding: 20px;
+  margin-top: 10rem; 
+  position: relative;
+}
+
+
+

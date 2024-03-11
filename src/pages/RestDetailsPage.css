@@ -43,21 +43,20 @@
   background-color: blanchedalmond;
 }
 .delete-button {
-  background-color: #ff6347; /* Color rojo para el botón de eliminar */
-  color: white; /* Texto blanco */
-  border: none; /* Sin borde */
-  padding: 8px 16px; /* Espaciado interno */
-  border-radius: 4px; /* Borde redondeado */
-  cursor: pointer; /* Cursor de puntero al pasar el ratón */
+  background-color: #ff6347; 
+  color: white; 
+  border: none; 
+  padding: 8px 16px; 
+  border-radius: 4px; 
+  cursor: pointer; 
 }
 
 .edit-button {
-  background-color: #87ceeb; /* Color azul claro para el botón de editar */
-  color: white; /* Texto blanco */
-  border: none; /* Sin borde */
-  padding: 8px 16px; /* Espaciado interno */
-  border-radius: 4px; /* Borde redondeado */
-  cursor: pointer; /* Cursor de puntero al pasar el ratón */
+  background-color: #87ceeb; 
+  color: white; 
+  border: none; 
+  padding: 8px 16px; 
+  border-radius: 4px; 
+  cursor: pointer; 
 }
 
-/* Estilos adicionales según sea necesario */

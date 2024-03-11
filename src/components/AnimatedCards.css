@@ -148,7 +148,7 @@
 
 .container .card .content h2 {
     font-size: 1.5rem;
-    font-weight: 800; /* Ajustar el grosor de la fuente */
+    font-weight: 800; 
     color: var(--clr);
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7); /* Aplicar una sombra de texto negra */
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7); 
 }

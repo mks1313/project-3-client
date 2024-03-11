@@ -9,4 +9,4 @@ const ErrorAlert = ({ message, onClose }) => {
 
 export default ErrorAlert;
 
-//sustituir por este componente todos los console.log!!!!!!! mejora experiencia de ususario
+//TODO sustituir por este componente todos los console.log!!!!!!! mejora experiencia de ususario

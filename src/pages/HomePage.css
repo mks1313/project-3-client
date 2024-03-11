@@ -20,13 +20,13 @@
   color: #fff;
   font-family: "Inter", "DM Sans", Arial, sans-serif;
 }
-
+/* 
 *,
 *::before,
 *::after {
   font-family: inherit;
   box-sizing: border-box;
-}
+} */
 
 .content-homepage {
   text-align: center;

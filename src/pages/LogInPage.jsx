@@ -58,7 +58,8 @@ function LogInPage() {
     };
 //TODO modificar los estilos de inputs para cada uno
 return (
-    <div className="login-page">
+    <>
+
        <div className="video-container">
             <ReactPlayer
                 url='https://player.vimeo.com/video/157269920?title=0&portrait=0&byline=0&autoplay=1&loop=1&transparent=1&muted=1'
@@ -70,6 +71,7 @@ return (
                 style={{ position: 'absolute', top: 0, left: 0 }} 
             />
         </div>
+    <div className="login-page">
         <div className="wrapper fadeInDown" style={{ zIndex: 1 }}> 
             <div id="formContentLogin">
                 <h2 className={isSignUp ? "inactive underlineHover" : "active"} onClick={handleFormToggle}> Login </h2>
@@ -110,6 +112,7 @@ return (
             </div>
         </div>
     </div>
+    </>
 );
 }
 
