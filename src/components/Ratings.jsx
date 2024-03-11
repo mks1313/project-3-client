@@ -86,7 +86,7 @@ function Ratings({ restaurantId, onAverageRatingChange }) {
             value={rating}
             onChange={handleRatingChange}
           />
-          <button onClick={handleRatingSubmit}>Rate this restaurant</button>
+          <button onClick={handleRatingSubmit} className="edit-button">Rate this restaurant</button>
         </div>
       )}
       {hasUserRated && (

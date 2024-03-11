@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import "./CreateRestPage.css";
 
@@ -219,8 +219,11 @@ const CreateRestPage = () => {
                     className="create-rest-input"
                 />
             </div>            
-             <button className="btn-create" type="submit">Create Restaurant</button>
-        </form>
+             <button className="edit-button" type="submit" style={{ marginRight: '20px' }}>Create</button>
+             <button className="delete-button">
+            <Link to={`/restaurants`}>Discard</Link>
+          </button>
+             </form>
     </div>
   );
 }

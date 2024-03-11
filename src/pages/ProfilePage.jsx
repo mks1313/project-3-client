@@ -7,7 +7,6 @@ import ConfirmationDialog from "../components/ConfirmationDialog";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-
 const ProfilePage = () => {
   const [userData, setUserData] = useState(null);
   const storedToken = localStorage.getItem("authToken");
@@ -17,36 +16,39 @@ const ProfilePage = () => {
 
   useEffect(() => {
     const fetchUserData = () => {
-      axios.get("/api/users/profile", {
-        headers: { Authorization: `Bearer ${storedToken}` },
-      })
-      .then((response) => {
-        const user = response.data.user;
-        if (user.isOwner && user.restaurant.length > 0) {
-          const restaurantPromises = user.restaurant.map((restaurantId) => {
-            return axios.get(`/api/restaurants/read/${restaurantId}`, {
-              headers: { Authorization: `Bearer ${storedToken}` },
+      axios
+        .get("/api/users/profile", {
+          headers: { Authorization: `Bearer ${storedToken}` },
+        })
+        .then((response) => {
+          const user = response.data.user;
+          if (user.isOwner && user.restaurant.length > 0) {
+            const restaurantPromises = user.restaurant.map((restaurantId) => {
+              return axios.get(`/api/restaurants/read/${restaurantId}`, {
+                headers: { Authorization: `Bearer ${storedToken}` },
+              });
             });
-          });
-      
-          Promise.all(restaurantPromises)
-          .then((restaurantResponses) => {
-            const restaurants = restaurantResponses.map((restaurantResponse) => restaurantResponse.data);
-            user.restaurantDetails = restaurants;
+
+            Promise.all(restaurantPromises)
+              .then((restaurantResponses) => {
+                const restaurants = restaurantResponses.map(
+                  (restaurantResponse) => restaurantResponse.data
+                );
+                user.restaurantDetails = restaurants;
+                setUserData(user);
+              })
+              .catch((error) => {
+                console.error("Error fetching restaurant data:", error);
+                setUserData(user);
+              });
+          } else {
             setUserData(user);
-          })
-          .catch((error) => {
-            console.error("Error fetching restaurant data:", error);
-            setUserData(user);
-          });
-        } else {
-          setUserData(user);
-        }
-      })
-      
-      .catch((error) => {
-        console.error("Error fetching user data:", error);
-      });
+          }
+        })
+
+        .catch((error) => {
+          console.error("Error fetching user data:", error);
+        });
     };
 
     if (storedToken) {
@@ -59,17 +61,18 @@ const ProfilePage = () => {
   };
 
   const confirmDeleteProfile = () => {
-    axios.delete('/api/users/profile/delete', {
+    axios
+      .delete("/api/users/profile/delete", {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then(() => {
-        localStorage.removeItem('authToken');
-        logOutUser(); 
-        navigate("/"); 
+        localStorage.removeItem("authToken");
+        logOutUser();
+        navigate("/");
         toast.success("Profile deleted successfully");
       })
-      .catch(error => {
-        console.error('Error deleting profile:', error);
+      .catch((error) => {
+        console.error("Error deleting profile:", error);
         toast.error("An error occurred while deleting the profile");
       });
   };
@@ -79,7 +82,8 @@ const ProfilePage = () => {
   };
 
   return (
-    <div className="profile-page">
+    <div className="container-main">
+    <div className="profile-page container-main">
       <h1>Welcome, {userData && userData.name} </h1>
       {userData ? (
         <div className="user-info">
@@ -88,20 +92,30 @@ const ProfilePage = () => {
           <p>Email: {userData.email}</p>
           <p>Sex: {userData.sex}</p>
           <p>Birthday: {new Date(userData.birthday).toLocaleDateString()}</p>
-          <p>Owner: {userData.isOwner ? 'Yes' : 'No'}</p>
+          <p>Owner: {userData.isOwner ? "Yes" : "No"}</p>
           {userData.isOwner && userData.restaurantDetails && (
             <div>
-              <p>Restaurants: {userData.restaurantDetails.map((restaurant) => restaurant.name).join(', ')}</p>
+              <p>
+                Restaurants:{" "}
+                {userData.restaurantDetails
+                  .map((restaurant) => restaurant.name)
+                  .join(", ")}
+              </p>
             </div>
           )}
         </div>
       ) : (
         <p className="loading-message">Loading user data...</p>
       )}
-      <Link to="/edit-profile">
-      <button className="btn-edit">Edit</button>
-      </Link>
-      <button className="btn-delete" onClick={handleDeleteProfile}>Delete Profile</button>
+      <div className="buttons">
+        <Link to="/edit-profile"
+        style={{ color: "black", marginRight: "20px" }}>
+          <button className="edit-button">Edit Profile</button>
+        </Link>
+        <button className="delete-button" onClick={handleDeleteProfile}>
+          Delete Profile
+        </button>
+      </div>
       {showConfirmation && (
         <ConfirmationDialog
           message="Are you sure you want to delete your profile? This action can not be undone."
@@ -111,9 +125,8 @@ const ProfilePage = () => {
       )}
       <ToastContainer autoClose={5000} />
     </div>
+    </div>
   );
-}
+};
 
 export default ProfilePage;
-
-

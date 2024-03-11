@@ -58,7 +58,7 @@ function RestDetailPage() {
   };
 
   return (
-    <div className="RestDetailPage">
+    <div className="RestDetailPage container-main">
       {restaurant && (
         <>
           <h3 id="rest-name">{restaurant.name}</h3>
@@ -67,6 +67,7 @@ function RestDetailPage() {
               <div className="restaurant-image">
                 <img src={restaurant.image} alt="Descripción de la imagen" />
               </div>
+              
               {user && user._id === restaurant.owner && (
                 <div className="buttons">
                   <button
@@ -77,12 +78,19 @@ function RestDetailPage() {
                   </button>
                   <Link
                     to={`/restaurants/edit/${id}`}
-                    style={{ color: "black" }}
+                    style={{ color: "black", marginLeft: "20px" }}
                   >
                     <button className="edit-button">Edit Restaurant</button>
                   </Link>
                 </div>
               )}
+      {showConfirmation && (
+        <ConfirmationDialog
+          message="Are you sure you want to delete this restaurant? This action can not be undone."
+          onConfirm={confirmDeleteRestaurant}
+          onCancel={cancelDeleteRestaurant}
+        />
+      )}
               <br />
               <Ratings
                 restaurantId={restaurant._id}
@@ -127,13 +135,6 @@ function RestDetailPage() {
             </div>
           </div>
         </>
-      )}
-      {showConfirmation && (
-        <ConfirmationDialog
-          message="Are you sure you want to delete this restaurant? This action can not be undone."
-          onConfirm={confirmDeleteRestaurant}
-          onCancel={cancelDeleteRestaurant}
-        />
       )}
     </div>
   );
