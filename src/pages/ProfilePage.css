@@ -1,85 +1,102 @@
+#profile-main {
+  background-image: url("https://cdn.pixabay.com/photo/2016/03/15/02/42/floor-1256804_1280.jpg");
+}
+
 .profile-page {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    margin-top: 9rem;
-    
-  }
-  
-  .user-info {
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    padding: 20px;
-    margin-top: 20px;
-  }
-  
-  .user-info img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    margin-bottom: 10px;
-  }
-  
-  .user-info p {
-    margin: 10px 0;
-  }
-  
-  .loading-message {
-    font-style: italic;
-    color: #888;
-  }
-  
-  .delete-button {
-    position: relative;
-    background-color: #ff6347;
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    overflow: hidden;
-    transition: background-color 0.5s ease, color 0.5s ease; 
-  }
-  
-  .edit-button {
-    position: relative;
-    background-color:  #87ceeb;
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    overflow: hidden;
-    transition: background-color 0.5s ease, color 0.5s ease; 
-  }
-  
-  .delete-button::before,
-  .edit-button::before {
-    
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 0;
-    background-color: white; 
-    transition: height 0.5s ease; 
-    z-index: -1;
-  }
-  
-  .delete-button:hover::before,
-  .edit-button:hover::before {
-    height: 100%; 
-  }
-  
-  .delete-button:hover {
-    background-color: transparent;
-    color: #ff6347 !important; 
-    border-radius: 16px;
-  }
-  
-  .edit-button:hover {
-    background-color: transparent;
-    color: #87ceeb !important; 
-    border-radius: 16px;
-  }
-  
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  margin-top: 6rem;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  background-color: bisque;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.user-details {
+  flex: 1; 
+}
+
+.user-avatar {
+  margin-right: 40px; 
+}
+#user-card {
+  color: beige;
+}
+
+.user-avatar img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+
+.user-details p {
+  margin: 10px 0;
+}
+
+.loading-message {
+  font-style: italic;
+  color: #888;
+}
+
+.delete-button {
+  position: relative;
+  background-color: #ff6347;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  overflow: hidden;
+  transition:
+    background-color 0.5s ease,
+    color 0.5s ease;
+}
+
+.edit-button {
+  position: relative;
+  background-color: #87ceeb;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  overflow: hidden;
+  transition:
+    background-color 0.5s ease,
+    color 0.5s ease;
+}
+
+.delete-button::before,
+.edit-button::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background-color: white;
+  transition: height 0.5s ease;
+  z-index: -1;
+}
+
+.delete-button:hover::before,
+.edit-button:hover::before {
+  height: 100%;
+}
+
+.delete-button:hover {
+  background-color: transparent;
+  color: #ff6347 !important;
+  border-radius: 16px;
+}
+
+.edit-button:hover {
+  background-color: transparent;
+  color: #87ceeb !important;
+  border-radius: 16px;
+}

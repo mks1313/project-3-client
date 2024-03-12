@@ -18,13 +18,11 @@ function Ratings({ restaurantId, onAverageRatingChange }) {
           headers: { Authorization: `Bearer ${storedToken}` },
         })
         .then((response) => {
-          // console.log(response);
           const { averageRating, ratings } = response.data;
           onAverageRatingChange(averageRating);
           setAverageRating(averageRating);
 
           const userRatingData = ratings.find(
-            
             (rating) => rating.author._id === user._id 
           );
           if (userRatingData) {
@@ -69,9 +67,7 @@ function Ratings({ restaurantId, onAverageRatingChange }) {
 
   return (
     <div className="ratings-container">
-      {/* <p className="votes-text">Total votes: {totalVotes}</p> */}
       <p className="rating-text">
-        {" "}
         <span className="average-rating">
           {averageRating !== null ? averageRating.toFixed(1) : "0"}
         </span>{" "}
@@ -86,7 +82,7 @@ function Ratings({ restaurantId, onAverageRatingChange }) {
             value={rating}
             onChange={handleRatingChange}
           />
-          <button onClick={handleRatingSubmit} className="edit-button">Rate this restaurant</button>
+          <button className="rating-button" onClick={handleRatingSubmit}>Rate this restaurant</button>
         </div>
       )}
       {hasUserRated && (
@@ -97,4 +93,5 @@ function Ratings({ restaurantId, onAverageRatingChange }) {
 }
 
 export default Ratings;
+
 

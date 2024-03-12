@@ -47,7 +47,7 @@ const Comments = ({ restaurantId }) => {
 
   return (
     <div className="comments-container">
-      <h2>Comments:</h2>
+      <h2 id='comment'>Comments:</h2>
       <div className="comments-list">
         {comments.map(comment => (
           <div key={comment._id} className="comment-item">

@@ -1,19 +1,44 @@
 .RestDetailPage {
   padding: 20px;
-  margin-bottom: 5rem;
-  margin-top: 3rem;
+  position: relative; 
 }
+
+.RestDetailPage::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("https://cdn.pixabay.com/photo/2015/04/12/03/34/culinary-718467_1280.jpg");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.8;
+  /* filter: blur(2px); */
+  z-index: -1; 
+}
+
 #rest-name {
   font-size: 60px; 
   text-align: center;
   margin-top: 20px; 
   margin-bottom: 20px; 
-  opacity: 0.5;
+  opacity: 0.9;
 }
+
+.restaurant-info-container {
+  font-size: 23px; 
+
+
+}
+
 
 .restaurant-details {
   display: flex;
   flex-wrap: wrap;
+  color: rgb(236, 235, 228); 
+  /* text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.8);  */
+ 
 }
 
 .section {
@@ -23,8 +48,12 @@
 
 .restaurant-image img {
   width: 100%;
-  max-width: 400px;
+  max-width: 700px;
   height: auto;
+  border: 10px solid #a29b9b; 
+  border-radius: 20px; 
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); 
+  align-self: flex-start; 
 }
 
 .buttons {
@@ -33,20 +62,20 @@
   top: 7rem;
   right: 40px;
   z-index: 999;
-  
 }
 
 .comments {
   margin-top: 20px;
-  
 }
+
 .description-rest {
   margin-top: 3rem;
-  
 }
+
 .comment-item {
   background-color: blanchedalmond;
 }
+
 .delete-button {
   position: relative;
   background-color: #ff6347;
@@ -100,3 +129,4 @@
   color: #87ceeb; 
   border-radius: 16px;
 }
+

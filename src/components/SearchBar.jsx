@@ -10,9 +10,9 @@ const SearchBar = ({ handleSearch }) => {
   };
 
   return (
-    <div className="restaurant-search-bar">
+    <div id="search-bar" className="restaurant-search-bar">
       <input
-        className="search-input"
+        className="search"
         type="text"
         id="search"
         placeholder="Search restaurants..."
@@ -24,4 +24,5 @@ const SearchBar = ({ handleSearch }) => {
 };
 
 export default SearchBar;
+
 

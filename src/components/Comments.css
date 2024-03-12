@@ -7,6 +7,11 @@
   border-radius: 5px;
   margin-bottom: 10px;
   padding: 10px;
+  color: black;
+}
+
+.comment-item p:nth-child(2) {
+  color: black; 
 }
 
 .comment-form {
@@ -20,16 +25,46 @@
 }
 
 .comment-form button {
-  padding: 8px 16px;
-  background-color: #007bff;
-  color: #fff;
+  position: relative;
+  background-color: #87ceeb;
+  color: white;
   border: none;
-  border-radius: 5px;
+  padding: 8px 16px;
+  border-radius: 4px;
   cursor: pointer;
+  overflow: hidden;
+  transition: background-color 0.5s ease, color 0.5s ease; 
+}
+
+.comment-form button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background-color: white; 
+  transition: height 0.5s ease; 
+  z-index: -1;
+}
+
+.comment-form button:hover::before {
+  height: 100%; 
 }
 
 .comment-form button:hover {
-  background-color: #0056b3;
+  background-color: transparent;
+  color: #87ceeb !important; 
+  border-radius: 16px;
 }
 
-  
+
+
+/* .comment-form button:hover {
+  background-color: #0056b3;
+} */
+
+  #comment {
+    color: black;
+    font-size: 23px;
+  }

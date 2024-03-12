@@ -15,7 +15,7 @@ function RestDetailPage() {
   const [restaurant, setRestaurant] = useState(null);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const storedToken = localStorage.getItem("authToken");
-  const [averageRating, setAverageRating] = useState(0); 
+  const [averageRating, setAverageRating] = useState(0);
 
   const handleAverageRatingChange = (newAverageRating) => {
     setAverageRating(newAverageRating);
@@ -65,9 +65,8 @@ function RestDetailPage() {
           <div className="restaurant-details">
             <div className="section">
               <div className="restaurant-image">
-                <img src={restaurant.image} alt="Descripción de la imagen" />
+                <img src={restaurant.image} alt="Restaurant" />
               </div>
-              
               {user && user._id === restaurant.owner && (
                 <div className="buttons">
                   <button
@@ -84,53 +83,66 @@ function RestDetailPage() {
                   </Link>
                 </div>
               )}
-      {showConfirmation && (
-        <ConfirmationDialog
-          message="Are you sure you want to delete this restaurant? This action can not be undone."
-          onConfirm={confirmDeleteRestaurant}
-          onCancel={cancelDeleteRestaurant}
-        />
-      )}
+              {showConfirmation && (
+                <ConfirmationDialog
+                  message="Are you sure you want to delete this restaurant? This action can not be undone."
+                  onConfirm={confirmDeleteRestaurant}
+                  onCancel={cancelDeleteRestaurant}
+                />
+              )}
               <br />
               <Ratings
                 restaurantId={restaurant._id}
                 totalVotes={restaurant.ratings.length}
                 averageRating={averageRating}
-                onAverageRatingChange={handleAverageRatingChange} //
+                onAverageRatingChange={handleAverageRatingChange}
               />
             </div>
-            <div className="section">
+            <div className="section restaurant-info-container">
               <div className="restaurant-info">
-                <h3>Restaurant details</h3>
                 <p>
-                  <strong>Dirección:</strong> {restaurant.address.street}{" "}
-                  {restaurant.address.number}, {restaurant.address.city}{" "}
-                  {restaurant.address.postcode}
+                  <strong>
+                    <span style={{ color: "black" }}>Dirección:</span>
+                  </strong>{" "}
+                  {restaurant.address.street} {restaurant.address.number},{" "}
+                  {restaurant.address.city} {restaurant.address.postcode}
+                </p>
+
+                <p>
+                  <strong>
+                    <span style={{ color: "black" }}>Capacity:</span>
+                  </strong>{" "}
+                  {restaurant.capacity}
                 </p>
                 <p>
-                  <strong>Capacity:</strong> {restaurant.capacity}
+                  <strong>
+                    <span style={{ color: "black" }}>Category:</span>
+                  </strong>{" "}
+                  {restaurant.category}
                 </p>
                 <p>
-                  <strong>Category:</strong> {restaurant.category}
+                  <strong>
+                    <span style={{ color: "black" }}>Phone:</span>
+                  </strong>{" "}
+                  {restaurant.phone}
                 </p>
                 <p>
-                  <strong>Phone:</strong> {restaurant.phone}
-                </p>
-                <p>
-                  <strong>Price:</strong> {restaurant.price}
+                  <strong>
+                    <span style={{ color: "black" }}>Price:</span>
+                  </strong>{" "}
+                  {restaurant.price}
                 </p>
                 <p className="description-rest">
-                  <strong>Description:</strong> {restaurant.description}
+                  <strong>
+                    <span style={{ color: "black" }}>Description:</span>
+                  </strong>{" "}
+                  {restaurant.description}
                 </p>
               </div>
             </div>
             <div className="section">
               <div className="comments">
-                {user && (
-                  <>
-                    <Comments restaurantId={id} />
-                  </>
-                )}
+                {user && <Comments restaurantId={id} />}
               </div>
             </div>
           </div>

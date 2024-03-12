@@ -82,28 +82,32 @@ const ProfilePage = () => {
   };
 
   return (
-    <div className="container-main">
-    <div className="profile-page container-main">
-      <h1>Welcome, {userData && userData.name} </h1>
-      {userData ? (
-        <div className="user-info">
-          <img src={userData.profileImage} alt="Profile" />
-          <p>Name: {userData.name}</p>
-          <p>Email: {userData.email}</p>
-          <p>Sex: {userData.sex}</p>
-          <p>Birthday: {new Date(userData.birthday).toLocaleDateString()}</p>
-          <p>Owner: {userData.isOwner ? "Yes" : "No"}</p>
-          {userData.isOwner && userData.restaurantDetails && (
-            <div>
-              <p>
-                Restaurants:{" "}
-                {userData.restaurantDetails
-                  .map((restaurant) => restaurant.name)
-                  .join(", ")}
-              </p>
+    <div className="container-main" id="profile-main">
+      <div className="profile-page container-main">
+        <h1 id="user-card">Welcome, {userData && userData.name} </h1>
+        {userData ? (
+          <div className="user-info">
+            <div className="user-avatar">
+              <img src={userData.profileImage} alt="Profile" />
             </div>
-          )}
-        </div>
+            <div className="user-details">
+              <p><strong>Name:</strong> {userData.name}</p>
+              <p><strong>Email:</strong> {userData.email}</p>
+              <p><strong>Sex:</strong> {userData.sex}</p>
+              <p><strong>Birthday:</strong> {new Date(userData.birthday).toLocaleDateString()}</p>
+              <p><strong>Owner:</strong> {userData.isOwner ? "Yes" : "No"}</p>
+              {userData.isOwner && userData.restaurantDetails && (
+                <div>
+                  <p>
+                    <strong>Restaurants:</strong>{" "}
+                    {userData.restaurantDetails
+                      .map((restaurant) => restaurant.name)
+                      .join(", ")}
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>
       ) : (
         <p className="loading-message">Loading user data...</p>
       )}
@@ -115,6 +119,7 @@ const ProfilePage = () => {
         <button className="delete-button" onClick={handleDeleteProfile}>
           Delete Profile
         </button>
+        
       </div>
       {showConfirmation && (
         <ConfirmationDialog

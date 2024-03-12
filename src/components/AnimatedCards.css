@@ -144,8 +144,8 @@
     background-color: #53bcb0;
   }
   .container .card .content p {
-    color: #fff; 
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7); 
+    color: #171515; 
+    /* text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);  */
 }
 
 .container .card .content h2 {

@@ -38,31 +38,29 @@ const EditRestPage = () => {
       .catch((error) => console.log(error));
   }, [id, storedToken]);
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
 
-    const uploadData = new FormData();
-    uploadData.append("image", image);
+    try {
+      const uploadData = new FormData();
+      uploadData.append("image", image);
 
-    axios.post(`/api/restaurants/upload`, uploadData, {
+      const uploadResponse = await axios.post(`/api/restaurants/upload`, uploadData, {
         headers: { Authorization: `Bearer ${storedToken}` },
-    })
-    .then(uploadResponse => {
-        const newImage = uploadResponse.data.fileURlImage;
-        formData.image = newImage;
+      });
 
-        return axios.put(`/api/restaurants/update/${id}`, formData, {
-            headers: { Authorization: `Bearer ${storedToken}` },
-        });
-    })
-    .then(() => {
-        navigate(`/restaurants/${id}`);
-    })
-    .catch(error => {
-        console.log(error);
-    });
-};
+      const newImage = uploadResponse.data.fileURlImage;
+      formData.image = newImage;
 
+      await axios.put(`/api/restaurants/update/${id}`, formData, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      });
+
+      navigate(`/restaurants/${id}`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -86,12 +84,12 @@ const EditRestPage = () => {
 
   return (
     <div className="edit-page-container">
-        <h1>Edit Restaurant</h1>
     <div className="image-preview">
       {image && <img src={URL.createObjectURL(image)} alt="Preview" />}
     </div>
     <div className="form-container">
       <div className="form">
+        <h1>Edit Restaurant</h1>
         <form className="EditRestForm" onSubmit={handleFormSubmit}>
         <div>
           <label>Name:</label>
@@ -239,10 +237,10 @@ const EditRestPage = () => {
         <button className="edit-button" type="submit" style={{ marginRight: '20px', marginTop: '20px' }}>
           Update Restaurant
         </button>
-        <Link to={`/restaurants/${id}`}>
-            <button className="delete-button">Discard</button>
-            </Link>
         
+        <button className="delete-button">
+          <Link to={`/restaurants/${id}`}>Discard</Link>
+        </button>
         </form>
         </div>
       </div>
