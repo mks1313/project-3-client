@@ -1,31 +1,41 @@
+// Footer.js
 import "./Footer.css";
-import { FaGithub } from "react-icons/fa";
-import { CiLinkedin } from "react-icons/ci";
-import { CiFacebook } from "react-icons/ci";
-import { BsInstagram } from "react-icons/bs";
+import { FaGithub, FaLinkedin, FaFacebook, FaInstagram } from "react-icons/fa";
 
 const Footer = () => {
   return (
     <footer className="footer">
-      <div>
-        <div>
-          <p>Este es un sitio esta hecho para ti!!!</p>
-          <p>
-            Creado con amor por{" "}
-            <a className="footer-link" href="https://github.com/mks1313">
-              Maksim y Jose
-            </a>
-          </p>
+      <div className="footer-left">
+        <div className="footer-icons">
+          <a href="https://github.com/mks1313" target="_blank" rel="noopener noreferrer">
+            <FaGithub className="footer-icon" />
+          </a>
+          <a href="https://www.linkedin.com/in/maksim-georgiev-marinov-225b20200?original_referer=" target="_blank" rel="noopener noreferrer">
+            <FaLinkedin className="footer-icon" />
+          </a>
+          <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
+            <FaFacebook className="footer-icon" />
+          </a>
+          <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
+            <FaInstagram className="footer-icon" />
+          </a>
         </div>
-        <div className="fagitub">
-        <FaGithub style={{ width: '40px', height: '40px', color: '#b0bfd8' }} />
-        <CiLinkedin style={{ width: '40px', height: '40px', color: '#b0bfd8' }}/>
-        <CiFacebook style={{ width: '40px', height: '40px', color: '#b0bfd8' }}/>
-        <BsInstagram style={{ width: '40px', height: '40px', color: '#b0bfd8' }} />
-
-        </div>
+      </div>
+      <div className="footer-center">
+        <p>Este sitio está hecho para ti!!!</p>
+        <p>
+          Creado con amor por{" "}
+          <a className="footer-link" href="https://github.com/mks1313">
+            Maksim y Jose
+          </a>
+        </p>
+      </div>
+      <div className="footer-right">
         <span>
-        Promotional offers are subject to the conditions listed on the restaurants website. Offers on alcoholic beverages are intended for adults only. Excessive alcohol consumption is harmful to health. Drink in moderation.
+          Promotional offers are subject to the conditions listed on the
+          restaurants website. Offers on alcoholic beverages are intended for
+          adults only. Excessive alcohol consumption is harmful to health. Drink
+          in moderation.
         </span>
       </div>
     </footer>

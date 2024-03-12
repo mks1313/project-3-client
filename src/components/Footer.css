@@ -1,25 +1,36 @@
 .footer {
-  /* position: fixed; */
   left: 0;
   bottom: 0;
   width: 100%;
   background-color: #001529;
   color: #fff;
-  height: 15rem;
   padding: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .footer a {
-  color: #fff; 
+  color: #fff;
+  margin-right: 20px;
 }
-.fagitub {
-  display: flex;
-  justify-content: space-between;
-  width: '40px';
-  height: '40px';
-  color: '#b0bfd8';
-  
 
+.footer-icons {
+  display: flex;
+}
+
+.footer-icon {
+  width: 40px;
+  height: 40px;
+  color: #b0bfd8;
+}
+
+.footer-center {
+  text-align: center;
+}
+
+.footer-right {
+  max-width: 60%;
 }
 
 

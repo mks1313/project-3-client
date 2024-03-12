@@ -1,40 +1,27 @@
-import "./HomePage.css"; 
 import { Link } from 'react-router-dom';
-import ReactPlayer from "react-player";
+import "./HomePage.css"; 
 
 function HomePage() {
   return (
     <div className="homepage">
-    <div className="video-container">
-            <ReactPlayer
-                url='https://player.vimeo.com/video/157269920?title=0&portrait=0&byline=0&autoplay=1&loop=1&transparent=1&muted=1'
-                playing
-                loop
-                muted
-                width='100%'
-                height='100%'
-                style={{ position: 'absolute', top: 0, left: 0, zIndex: 2 }} 
-            />
+      <div className="background-image">
+        <div className="content-homepage">
+          <Link to="/restaurants">
+            <h1 className="title title-3d">Nyam Nyam😋</h1>
+            <h3 className="subtitle subtitle-2d">Hungry Today?</h3>
+            <p className='homep'>Find Your Favorite Restaurant!</p>
+          </Link>
         </div>
-    <div className="content-homepage">
-    <Link to="/restaurants">
-    <h1 className="title"> Nyam Nyam😋
-      <div className="aurora">
-        <div className="aurora__item"></div>
-        <div className="aurora__item"></div>
-        <div className="aurora__item"></div>
-        <div className="aurora__item"></div>
       </div>
-    </h1>
-    <h3 className="subtitle">Hungry Today?</h3>
-    <p>Find Your Favorite Restaurant!</p>
-    </Link>
-  </div>
     </div>
   );
 }
 
 export default HomePage;
+
+
+
+
 
 
 // import "./HomePage.css"; 

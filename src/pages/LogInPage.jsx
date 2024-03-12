@@ -62,7 +62,7 @@ return (
 
        <div className="video-container">
             <ReactPlayer
-                url='https://player.vimeo.com/video/157269920?title=0&portrait=0&byline=0&autoplay=1&loop=1&transparent=1&muted=1'
+                url='https://youtu.be/Ki9AGLZYpmU'
                 playing
                 loop
                 muted
