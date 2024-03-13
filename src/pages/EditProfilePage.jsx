@@ -77,7 +77,7 @@ const EditProfilePage = () => {
     <div className="edit-profile-page">
       <h1>Edit Profile</h1>
       {userData ? (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="formulario-especifico">
           <label>Name:</label>
           <input
             type="text"
@@ -125,9 +125,9 @@ const EditProfilePage = () => {
             name="image"
             onChange={(e) => setProfileImage(e.target.files[0])}
           />
-          <button className="edit-button" type="submit" style={{ marginRight: '20px' }}>Save Changes</button>
+          <button className="edit-button" type="submit" style={{ marginLeft: '60px', marginTop: '30px' }}>Save Changes</button>
             <Link to={`/profile`}>
-            <button className="delete-button">Discard</button>
+            <button className="delete-button" style={{ marginLeft: '20px', marginTop: '30px' }}>Discard</button>
             </Link>
           
         </form>
