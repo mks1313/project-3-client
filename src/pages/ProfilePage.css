@@ -1,5 +1,8 @@
 #profile-main {
   background-image: url("https://cdn.pixabay.com/photo/2016/03/15/02/42/floor-1256804_1280.jpg");
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat;
 }
 
 .profile-page {
