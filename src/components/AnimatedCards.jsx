@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 import './AnimatedCards.css';
+import Ratings from './Ratings';
+
 
 
 const AnimatedCards = ({ restaurants }) => {
@@ -13,7 +15,10 @@ const AnimatedCards = ({ restaurants }) => {
           </div>
           <div className="content">
             <h2>{restaurant.name}</h2>
-            <p>{restaurant.description}</p>
+            <Ratings
+                restaurantId={restaurant._id}
+                averageRating={restaurant.averageRating}               
+              />
             <Link to={`/restaurants/${restaurant._id}`} className="read-more-button">
               Read More
             </Link>

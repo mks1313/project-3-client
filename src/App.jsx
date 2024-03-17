@@ -7,8 +7,7 @@ import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage";
 import RestListPage from "./pages/RestListPage";
 import RestDetailPage from "./pages/RestDetailsPage";
-// import SignupPage from "./pages/SignUpPage";
-import LogInPage from "./pages/LogInPage";
+import LoginPage from "./pages/LoginPage";
 import EditRestPage from "./pages/EditRestPage";
 import CreateRestPage from "./pages/CreateRestPage";
 import ProfilePage from "./pages/ProfilePage";
@@ -27,7 +26,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/restaurants" element={<RestListPage />} />
           <Route path="/restaurants/:id" element={<RestDetailPage />} />
-          <Route path="/login" element={<LogInPage />} />
+          <Route path="/login" element={<LoginPage />} />
           <Route path="/restaurants/edit/:id" element={<IsPrivate><EditRestPage /></IsPrivate>} />
           <Route path="/create" element={<IsPrivate><CreateRestPage /></IsPrivate>} />
           <Route path="/profile" element={<IsPrivate><ProfilePage /></IsPrivate>} />

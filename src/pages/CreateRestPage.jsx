@@ -7,18 +7,18 @@ const CreateRestPage = () => {
   const storedToken = localStorage.getItem("authToken");
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    name: "",
-    capacity: "",
-    phone: "",
-    price: "",
-    description: "",
+    name: "Big Mac",
+    capacity: "20",
+    phone: "934500600",
+    price: "$$",
+    description: "Buen restaurante",
     category: "Other",
     owner: "",
     address: {
-      street: "",
-      number: "",
-      city: "",
-      postcode: "",
+      street: "Valencia",
+      number: "200",
+      city: "Barcelona",
+      postcode: "08900",
     },
     image: null,
   });
