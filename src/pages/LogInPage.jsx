@@ -5,7 +5,7 @@ import "./LoginPage.css";
 import { AuthContext } from "../context/auth.context";
 import ReactPlayer from "react-player";
 
-function LogInPage() {
+function LoginPage() {
     const { storeToken, authenticateUser } = useContext(AuthContext);
     const [isSignUp, setIsSignUp] = useState(false);
     const [email, setEmail] = useState("");
@@ -117,4 +117,4 @@ return (
 );
 }
 
-export default LogInPage;
+export default LoginPage;
