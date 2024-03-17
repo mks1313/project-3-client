@@ -1,11 +1,11 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./LoginPage.css";
+import "./LogInPage.css";
 import { AuthContext } from "../context/auth.context";
 import ReactPlayer from "react-player";
 
-function LoginPage() {
+function LogInPage() {
     const { storeToken, authenticateUser } = useContext(AuthContext);
     const [isSignUp, setIsSignUp] = useState(false);
     const [email, setEmail] = useState("");
@@ -117,4 +117,4 @@ return (
 );
 }
 
-export default LoginPage;
+export default LogInPage;
