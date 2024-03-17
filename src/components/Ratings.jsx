@@ -12,7 +12,7 @@ function Ratings({ restaurantId, onAverageRatingChange }) {
   const [rating, setRating] = useState(0);
 
   useEffect(() => {
-    if (isLoggedIn && user && storedToken) { 
+    if (isLoggedIn && user && storedToken) {
       axios
         .get(`/api/ratings/${restaurantId}`, {
           headers: { Authorization: `Bearer ${storedToken}` },
@@ -23,7 +23,7 @@ function Ratings({ restaurantId, onAverageRatingChange }) {
           setAverageRating(averageRating);
 
           const userRatingData = ratings.find(
-            (rating) => rating.author._id === user._id 
+            (rating) => rating.author._id === user._id
           );
           if (userRatingData) {
             setUserRating(userRatingData.value);
@@ -69,11 +69,10 @@ function Ratings({ restaurantId, onAverageRatingChange }) {
     <div className="ratings-container">
       <p className="rating-text">
         <span className="average-rating">
-          {averageRating !== null ? averageRating.toFixed(1) : "0"}
-        </span>{" "}
-        /10
+          {averageRating !== null ? averageRating.toFixed(1) : "0"} /10
+        </span>
       </p>
-      {!hasUserRated && (
+      {!hasUserRated && isLoggedIn && (
         <div className="rating-input">
           <input
             type="number"
@@ -82,7 +81,9 @@ function Ratings({ restaurantId, onAverageRatingChange }) {
             value={rating}
             onChange={handleRatingChange}
           />
-          <button className="rating-button" onClick={handleRatingSubmit}>Rate this restaurant</button>
+          <button className="rating-button" onClick={handleRatingSubmit}>
+            Rate this restaurant
+          </button>
         </div>
       )}
       {hasUserRated && (
@@ -93,5 +94,6 @@ function Ratings({ restaurantId, onAverageRatingChange }) {
 }
 
 export default Ratings;
+
 
 

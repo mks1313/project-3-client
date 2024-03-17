@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./LogInPage.css";
+import "./LoginPage.css";
 import { AuthContext } from "../context/auth.context";
 import ReactPlayer from "react-player";
 
