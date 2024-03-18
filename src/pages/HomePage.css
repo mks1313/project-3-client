@@ -45,8 +45,25 @@
 .homep {
   font-size: 2rem; 
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  color: #333333;
+  /* color: #333333; */
+  background: linear-gradient(90deg, black 50%, rgb(251, 251, 6) 50%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: texto-rallado-animacion 5s infinite linear;
 }
+
+@keyframes texto-rallado-animacion {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+
+
 .title, .subtitle {
   color: #ffcc00; 
 }

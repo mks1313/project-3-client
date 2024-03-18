@@ -1,6 +1,7 @@
 .RestListPage {
   padding: 20px;
   background-image: url("https://cdn.pixabay.com/photo/2019/05/07/09/01/spices-4185324_1280.jpg");
+  background-size: cover;
 }
 
 .search-container-restlistpage {
@@ -10,7 +11,8 @@
 }
 
 .search-input-restlistpage {
-  width: 50%;
+  display: flex;
+  width: 30%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 20px;
