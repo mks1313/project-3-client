@@ -12,8 +12,9 @@ const AnimatedCards = ({ restaurants }) => {
           </div>
           <div className="content">
             <h2>{restaurant.name}</h2>
+            {console.log("Valor de averageRating:", restaurant.averageRating)} 
             {restaurant.averageRating !== undefined && (
-              <RatingDisplay averageRating={restaurant.averageRating} />
+              <RatingDisplay averageRating={restaurant.averageRating} /> 
             )}
             <Link to={`/restaurants/${restaurant._id}`} className="read-more-button">
               Read More

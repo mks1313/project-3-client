@@ -24,9 +24,9 @@ const Footer = () => {
       <div className="footer-center">
         <p>Este sitio está hecho para ti!!!</p>
         <p>
-          Creado con amor por{" "}
+          Creado por{" "}
           <a className="footer-link" href="https://github.com/mks1313">
-            Maksim y Jose
+            Maksim 
           </a>
         </p>
       </div>

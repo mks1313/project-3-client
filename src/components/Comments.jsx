@@ -6,7 +6,7 @@ import "./Comments.css";
 const Comments = ({ restaurantId }) => {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState('');
-  const [showCommentForm, setShowCommentForm] = useState(true); 
+  const [showCommentForm, setShowCommentForm] = useState(false); 
   const storedToken = localStorage.getItem("authToken");
   const { user } = useContext(AuthContext);
 
@@ -14,17 +14,14 @@ const Comments = ({ restaurantId }) => {
     axios.get(`/api/comments/${restaurantId}`, { headers: { Authorization: `Bearer ${storedToken}` } })
       .then(response => {
         setComments(response.data);
+        // Verificar si el usuario ha realizado un comentario
+        const userHasCommented = response.data.some(comment => comment.author._id === user._id);
+        setShowCommentForm(!userHasCommented); // Cambiar a true si el usuario no ha realizado un comentario
       })
       .catch(error => {
         console.error('Error al obtener comentarios:', error);
       });
-  }, [restaurantId, storedToken]); 
-
-  useEffect(() => {
-    if (comments.some(comment => comment.author === user._id)) {
-      setShowCommentForm(false);
-    }
-  }, [comments, user]);
+  }, [restaurantId, storedToken, user]);
 
   const handleNewCommentChange = (event) => {
     setNewComment(event.target.value);
@@ -38,7 +35,7 @@ const Comments = ({ restaurantId }) => {
       .then(response => {
         setComments([...comments, response.data]);
         setNewComment('');
-        setShowCommentForm(false);
+        setShowCommentForm(false); 
       })
       .catch(error => {
         console.error('Error al enviar el comentario:', error);
@@ -54,7 +51,6 @@ const Comments = ({ restaurantId }) => {
             <div className="comment-content">
               <p>{comment.content}</p>
               <p>By: {comment.author ? comment.author.name : 'Anónimo'}</p>
-              {/* <p>Replies: {comment.replies}</p> */}
             </div>
           </div>
         ))}
@@ -74,6 +70,7 @@ const Comments = ({ restaurantId }) => {
 };
 
 export default Comments;
+
 
 
 

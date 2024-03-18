@@ -1,6 +1,5 @@
 import "./App.css";
 import "./pages/RestListPage.css";
-// import "./components/Footer.css"
 import Footer from "./components/Footer"
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";

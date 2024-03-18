@@ -40,14 +40,14 @@ h2 {
   text-align: center;
 }
 
-#formFooter {
+/* #formFooter {
   background-color: #f6f6f6;
   border-top: 1px solid #dce8f1;
   padding: 25px;
   text-align: center;
   -webkit-border-radius: 0 0 10px 10px;
   border-radius: 0 0 10px 10px;
-}
+} */
 
 h2.inactive {
   color: #cccccc;
@@ -58,9 +58,9 @@ h2.active {
   border-bottom: 2px solid #5fbae9;
 }
 
-input[type="button"],
-input[type="submit"],
-input[type="reset"] {
+.login-form-input[type="button"],
+.login-form-input[type="submit"],
+.login-form-input[type="reset"] {
   background-color: #56baed;
   border: none;
   color: white;
@@ -83,15 +83,15 @@ input[type="reset"] {
   transition: all 0.3s ease-in-out;
 }
 
-input[type="button"]:hover,
-input[type="submit"]:hover,
-input[type="reset"]:hover {
+.login-form-input[type="button"],
+.login-form-input[type="submit"],
+.login-form-input[type="reset"] {
   background-color: #39ace7;
 }
 
-input[type="button"]:active,
-input[type="submit"]:active,
-input[type="reset"]:active {
+.login-form-input[type="button"],
+.login-form-input[type="submit"],
+.login-form-input[type="reset"]  {
   -moz-transform: scale(0.95);
   -webkit-transform: scale(0.95);
   -o-transform: scale(0.95);
@@ -99,7 +99,7 @@ input[type="reset"]:active {
   transform: scale(0.95);
 }
 
-input[type="text"] {
+.login-form-input[type="text"] {
   background-color: #f6f6f6;
   border: none;
   color: #0d0d0d;
@@ -120,12 +120,12 @@ input[type="text"] {
   border-radius: 25px 25px 25px 25px;
 }
 
-input[type="text"]:focus {
+.login-form-input[type="text"]:focus {
   background-color: #fff;
   border-bottom: 2px solid #5fbae9;
 }
 
-input[type="text"]:placeholder {
+.login-form-input[type="text"]:placeholder {
   color: #cccccc;
 }
 

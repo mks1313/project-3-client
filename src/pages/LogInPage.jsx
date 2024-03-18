@@ -78,36 +78,41 @@ return (
                 <h2 className={isSignUp ? "inactive underlineHover" : "active"} onClick={handleFormToggle}> Login </h2>
                 <h2 className={isSignUp ? "active" : "inactive underlineHover"} onClick={handleFormToggle}> Sign Up </h2>
 
-                <form onSubmit={handleFormSubmit}>
-                    {isSignUp && (
-                        <input
-                            type="text"
-                            name="name"
-                            value={name}
-                            onChange={handleName}
-                            placeholder="Name"
-                        />
-                    )}
-                    <input
-                        type="text"
-                        name="email"
-                        value={email}
-                        onChange={handleEmail}
-                        placeholder="Email"
-                    />
-                    <input
-                        type="password"
-                        name="password"
-                        value={password}
-                        onChange={handlePassword}
-                        placeholder="Password"
-                        style={{ width: '85%', marginTop: '10px' }}
-                    />
-                    <input
-                        type="submit"
-                        value={isSignUp ? "Sign Up" : "Log In"}
-                    />
-                </form>
+                <form className="login-form" onSubmit={handleFormSubmit}>
+    {isSignUp && (
+        <input
+            type="text"
+            name="name"
+            value={name}
+            onChange={handleName}
+            placeholder="Name"
+            className={isSignUp ? "login-form-input" : ""}
+        />
+    )}
+    <input
+        type="text"
+        name="email"
+        value={email}
+        onChange={handleEmail}
+        placeholder="Email"
+        className="login-form-input"
+    />
+    <input
+        type="password"
+        name="password"
+        value={password}
+        onChange={handlePassword}
+        placeholder="Password"
+        style={{ width: '85%', marginTop: '10px' }}
+        className="login-form-input"
+    />
+    <input
+        type="submit"
+        value={isSignUp ? "Sign Up" : "Log In"}
+        className="login-form-input"
+    />
+</form>
+
 
                 {errorMessage && <p className="error-message">{errorMessage}</p>}
             </div>
