@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import './AnimatedCards.css';
-import RatingDisplay from './RatingDisplay';
+
 
 const AnimatedCards = ({ restaurants }) => {
   return (
@@ -12,12 +12,10 @@ const AnimatedCards = ({ restaurants }) => {
           </div>
           <div className="content">
             <h2>{restaurant.name}</h2>
-            {console.log("Valor de averageRating:", restaurant.averageRating)} 
-            {restaurant.averageRating !== undefined && (
-              <RatingDisplay averageRating={restaurant.averageRating} /> 
-            )}
-            <Link to={`/restaurants/${restaurant._id}`} className="read-more-button">
+            <Link to={`/restaurants/${restaurant._id}`} >
+            <button className="readmorebtn">
               Read More
+            </button>
             </Link>
           </div>
         </div>
@@ -27,6 +25,7 @@ const AnimatedCards = ({ restaurants }) => {
 };
 
 export default AnimatedCards;
+
 
 
 

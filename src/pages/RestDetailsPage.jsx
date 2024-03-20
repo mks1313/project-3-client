@@ -62,6 +62,7 @@ function RestDetailPage() {
       {restaurant && (
         <>
           <h3 id="rest-name">{restaurant.name}</h3>
+          <div className="restaurant-content"></div>
           <div className="restaurant-details">
             <div className="section">
               <div className="restaurant-image">
@@ -91,12 +92,14 @@ function RestDetailPage() {
                 />
               )}
               <br />
-              <Ratings
-                restaurantId={restaurant._id}
-                totalVotes={restaurant.ratings.length}
-                averageRating={averageRating}
-                onAverageRatingChange={handleAverageRatingChange}
-              />
+              <div className="ratings-overlay">
+                <Ratings
+                  restaurantId={restaurant._id}
+                  totalVotes={restaurant.ratings.length}
+                  averageRating={averageRating}
+                  onAverageRatingChange={handleAverageRatingChange}
+                />
+              </div>
             </div>
             <div className="section restaurant-info-container">
               <div className="restaurant-info">

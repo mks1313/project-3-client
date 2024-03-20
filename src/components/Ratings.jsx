@@ -18,6 +18,7 @@ function Ratings({ restaurantId, onAverageRatingChange }) {
           headers: { Authorization: `Bearer ${storedToken}` },
         })
         .then((response) => {
+          console.log(response.data);
           const { averageRating, ratings } = response.data;
           onAverageRatingChange(averageRating);
           setAverageRating(averageRating);
@@ -69,7 +70,7 @@ function Ratings({ restaurantId, onAverageRatingChange }) {
     <div className="ratings-container">
       <p className="rating-text">
         <span className="average-rating">
-          {averageRating !== null ? averageRating.toFixed(1) : "0"} /10
+          {averageRating !== null ? averageRating.toFixed(1) : "0"} /10 
         </span>
       </p>
       {!hasUserRated && isLoggedIn && (

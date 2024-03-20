@@ -49,7 +49,7 @@ function Navbar() {
             <>
             <li>
                 <NavLink to="/create">
-                  Register my: <GrRestaurant style={{ width: '40px', height: '40px', color: '#b0bfd8' }}/>
+                  Register my: <GrRestaurant style={{ width: '40px', height: '40px', color: '#ffffff' }}/>
                 </NavLink>
               </li>
 
@@ -73,66 +73,3 @@ function Navbar() {
 
 export default Navbar;
 
-// import { useState } from 'react';
-// import './Navbar.css';
-
-// function Navbar() {
-//   const [selectedNavItem, setSelectedNavItem] = useState('m-home');
-
-//   const handleNavItemClick = (navItemId) => {
-//     setSelectedNavItem(navItemId);
-//   };
-
-//   return (
-//     <nav className="menu">
-//       <input
-//         type="radio"
-//         name="nav-item"
-//         id="m-home"
-//         checked={selectedNavItem === 'm-home'}
-//         onChange={() => handleNavItemClick('m-home')}
-//       />
-//       <label htmlFor="m-home">Home</label>
-
-//       <input
-//         type="radio"
-//         name="nav-item"
-//         id="m-search"
-//         checked={selectedNavItem === 'm-search'}
-//         onChange={() => handleNavItemClick('m-search')}
-//       />
-//       <label htmlFor="m-search">Restaurants</label>
-
-//       <input
-//         type="radio"
-//         name="nav-item"
-//         id="m-notification"
-//         checked={selectedNavItem === 'm-notification'}
-//         onChange={() => handleNavItemClick('m-notification')}
-//       />
-//       <label htmlFor="m-notification">Notification</label>
-
-//       <input
-//         type="radio"
-//         name="nav-item"
-//         id="m-favorites"
-//         checked={selectedNavItem === 'm-favorites'}
-//         onChange={() => handleNavItemClick('m-favorites')}
-//       />
-//       <label htmlFor="m-favorites">Favorites</label>
-
-//       <input
-//         type="radio"
-//         name="nav-item"
-//         id="m-profile"
-//         checked={selectedNavItem === 'm-profile'}
-//         onChange={() => handleNavItemClick('m-profile')}
-//       />
-//       <label htmlFor="m-profile">Profile</label>
-
-//       <div className="selector"></div>
-//     </nav>
-//   );
-// }
-
-// export default Navbar;

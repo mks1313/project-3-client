@@ -11,13 +11,29 @@ h1 {
 
 .form {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between; 
   margin-top: 60px; 
   margin-bottom: 4rem;
 }
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+/* .form-group {
+  flex: 0 0 calc(33.33% - 20px);
+  margin-right: 20px;
+} */
+.form-group {
+  flex: 0 0 calc(50% - 20px); /* Para que cada input ocupe la mitad del contenedor */
+}
+
+
 .form input,
 .form textarea {
-  width: 100%;
+  width: 30%;
   padding: 10px;
   margin-bottom: 16px;
   margin-top: 0;
@@ -43,10 +59,10 @@ h1 {
 
 label {
   display: block;
-  margin-bottom: 0;
+  margin-bottom: 8px; 
   font-weight: bolder;
   font-size: 14px;
-  margin-left: 20px;
+  /* margin-left: 20px; */
 }
 
 input,
@@ -64,55 +80,4 @@ textarea {
   resize: none;
   font-family: sans-serif;
 }
-/* 
-.btn-create {
-  background-color: #26798c;
-  color: white;
-  padding: 15px 30px;
-  border: 2px solid #0b0b0b;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, border-color 0.3s ease;
-  margin-right: 10px;
-}
 
-.btn-create:hover {
-  background-color: #45a049;
-  border-color: #080808;
-}
-
-.discard-btn {
-  background-color: #f44336;
-
-    color: white;
-    padding: 15px 30px;
-    border: 2px solid #080808;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
-}
-
-.discard-btn:hover {
-  background-color: #d32f2f;
-  border-color: #080808;
-}
-
-.discard-btn:hover,
-.discard-btn:focus {
-  color: white;
-}
-
-select {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
-  background-color: #fff;
-  cursor: pointer;
-  transition: border-color 0.3s ease;
-}
-
-select:hover,
-select:focus {
-  border-color: #26798c; 
-} */

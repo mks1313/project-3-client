@@ -113,7 +113,7 @@ const ProfilePage = () => {
       )}
       <div className="buttons">
         <Link to="/edit-profile"
-        style={{ color: "black", marginRight: "20px" }}>
+        style={{ marginRight: "20px" }}>
           <button className="edit-button">Edit Profile</button>
         </Link>
         <button className="delete-button" onClick={handleDeleteProfile}>
