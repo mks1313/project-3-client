@@ -38,41 +38,35 @@ const EditRestPage = () => {
       .catch((error) => console.log(error));
   }, [id, storedToken]);
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
 
-    const uploadData = new FormData();
-    uploadData.append("image", image);
+    try {
+      const uploadData = new FormData();
+      uploadData.append("image", image);
 
-    axios
-      .post(`/api/restaurants/upload`, uploadData, {
+      const uploadResponse = await axios.post(`/api/restaurants/upload`, uploadData, {
         headers: { Authorization: `Bearer ${storedToken}` },
-      })
-      .then((uploadResponse) => {
-        const newImage = uploadResponse.data.fileURlImage;
-        formData.image = newImage;
-
-        axios
-          .put(`/api/restaurants/update/${id}`, formData, {
-            headers: { Authorization: `Bearer ${storedToken}` },
-          })
-          .then(() => {
-            navigate(`/restaurants/${id}`);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      })
-      .catch((error) => {
-        console.log(error);
       });
+
+      const newImage = uploadResponse.data.fileURlImage;
+      formData.image = newImage;
+
+      await axios.put(`/api/restaurants/update/${id}`, formData, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      });
+
+      navigate(`/restaurants/${id}`);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
-    if (name.includes(".")) {
-      const [parent, child] = name.split(".");
+    if (name.includes('.')) {
+      const [parent, child] = name.split('.');
       setFormData((prevFormData) => ({
         ...prevFormData,
         [parent]: {
@@ -90,7 +84,9 @@ const EditRestPage = () => {
 
   return (
     <div className="edit-page-container">
-
+    <div className="image-preview">
+      {image && <img src={URL.createObjectURL(image)} alt="Preview" />}
+    </div>
     <div className="form-container">
       <div className="form">
         <h1>Edit Restaurant</h1>
@@ -123,15 +119,6 @@ const EditRestPage = () => {
             // value={formData.image}
             onChange={(e) => setImage(e.target.files[0])}
           />
-          <div className="image-preview">
-                  {image && (
-                    <img
-                      src={URL.createObjectURL(image)}
-                      alt="Preview"
-                      style={{ width: "100px" }}
-                    />
-                  )}
-                </div>
         </div>
 
 

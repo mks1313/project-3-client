@@ -1,24 +1,25 @@
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./CreateRestPage.css";
 
 const CreateRestPage = () => {
   const storedToken = localStorage.getItem("authToken");
   const navigate = useNavigate();
+  
   const [formData, setFormData] = useState({
-    name: "Big Mac",
-    capacity: "20",
-    phone: "934500600",
-    price: "$$",
-    description: "Buen restaurante",
+    name: "Zaragoza",
+    capacity: "45",
+    phone: "934555666",
+    price: "$",
+    description: "Excelente restaurante-bar en inmediaciones de Sagrada Familia",
     category: "Other",
     owner: "",
     address: {
-      street: "Valencia",
-      number: "200",
+      street: "Balmes",
+      number: "234",
       city: "Barcelona",
-      postcode: "08900",
+      postcode: "08005",
     },
     image: null,
   });
@@ -64,10 +65,10 @@ const CreateRestPage = () => {
 const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Form Data:", formData);
-    if (!formData.image) {
-        console.error("La URL de la imagen no está disponible.");
-        return;
-    }
+    // if (!formData.image) {
+    //     console.error("La URL de la imagen no está disponible.");
+    //     return;
+    // }
     
     axios
       .post("/api/restaurants/create", formData, {
@@ -234,13 +235,10 @@ const handleSubmit = (e) => {
             className="create-rest-input"
           />
         </div>
-        <button className="edit-button" type="submit" style={{ marginRight: '20px' }}>
-          Create</button>
-             <button className="delete-button">
-            <Link to={`/restaurants`}>Discard</Link>
-          
+        <button className="btn-create" type="submit">
+          Create Restaurant
         </button>
-           </form>
+      </form>
     </div>
   );
 };

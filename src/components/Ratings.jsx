@@ -18,7 +18,7 @@ function Ratings({ restaurantId, onAverageRatingChange }) {
           headers: { Authorization: `Bearer ${storedToken}` },
         })
         .then((response) => {
-          console.log(response.data);
+          // console.log(response.data);
           const { averageRating, ratings } = response.data;
           onAverageRatingChange(averageRating);
           setAverageRating(averageRating);

@@ -49,7 +49,7 @@ function Navbar() {
             <>
             <li>
                 <NavLink to="/create">
-                  Register my: <GrRestaurant style={{ width: '40px', height: '40px', color: '#ffffff' }}/>
+                  Register my: <GrRestaurant style={{ width: '40px', height: '40px', color: '#b0bfd8' }}/>
                 </NavLink>
               </li>
 
