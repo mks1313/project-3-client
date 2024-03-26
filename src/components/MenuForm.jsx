@@ -18,7 +18,7 @@ const MenuForm = ({ menus, handleMenuChange, handleAddMenu, handleRemoveMenu }) 
         </div>
       ))}
       <button type="button" onClick={handleAddMenu}>
-        Add Menu
+        Add Menu, best for you
       </button>
     </div>
   );
