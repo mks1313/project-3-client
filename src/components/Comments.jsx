@@ -3,6 +3,8 @@ import axios from 'axios';
 import { AuthContext } from "../context/auth.context";
 import "./Comments.css";
 
+const API_BASE_URL = "/api";
+
 const Comments = ({ restaurantId }) => {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState('');
@@ -11,7 +13,7 @@ const Comments = ({ restaurantId }) => {
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
-    axios.get(`/api/comments/${restaurantId}`, { headers: { Authorization: `Bearer ${storedToken}` } })
+    axios.get(`${API_BASE_URL}/comments/${restaurantId}`, { headers: { Authorization: `Bearer ${storedToken}` } })
       .then(response => {
         setComments(response.data);
         // Verificar si el usuario ha realizado un comentario
@@ -28,7 +30,7 @@ const Comments = ({ restaurantId }) => {
   };
 
   const handleNewCommentSubmit = () => {
-    axios.post('/api/comments/create', {
+    axios.post('${API_BASE_URL}/comments/create', {
       content: newComment,
       restaurant: restaurantId,
     }, { headers: { Authorization: `Bearer ${storedToken}` } })

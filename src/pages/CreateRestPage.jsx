@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./CreateRestPage.css";
 
+const API_BASE_URL = "/api";
+
 const CreateRestPage = () => {
   const storedToken = localStorage.getItem("authToken");
   const navigate = useNavigate();
@@ -49,7 +51,7 @@ const CreateRestPage = () => {
     const uploadData = new FormData();
     uploadData.append("image", file);
 
-    axios.post(`/api/restaurants/upload`, uploadData, {
+    axios.post(`${API_BASE_URL}/restaurants/upload`, uploadData, {
         headers: { Authorization: `Bearer ${storedToken}` },
     })
     .then(uploadResponse => {
@@ -71,7 +73,7 @@ const handleSubmit = (e) => {
     // }
     
     axios
-      .post("/api/restaurants/create", formData, {
+      .post(`${API_BASE_URL}/restaurants/create`, formData, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {

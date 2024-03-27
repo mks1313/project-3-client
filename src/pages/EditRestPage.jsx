@@ -4,6 +4,8 @@ import axios from "axios";
 import "./EditRestPage.css";
 import { Link } from "react-router-dom";
 
+const API_BASE_URL = "/api";
+
 const EditRestPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -28,7 +30,7 @@ const EditRestPage = () => {
 
   useEffect(() => {
     axios
-      .get(`/api/restaurants/read/${id}`, {
+      .get(`${API_BASE_URL}/restaurants/read/${id}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
@@ -45,14 +47,14 @@ const EditRestPage = () => {
       const uploadData = new FormData();
       uploadData.append("image", image);
 
-      const uploadResponse = await axios.post(`/api/restaurants/upload`, uploadData, {
+      const uploadResponse = await axios.post(`${API_BASE_URL}/restaurants/upload`, uploadData, {
         headers: { Authorization: `Bearer ${storedToken}` },
       });
 
       const newImage = uploadResponse.data.fileURlImage;
       formData.image = newImage;
 
-      await axios.put(`/api/restaurants/update/${id}`, formData, {
+      await axios.put(`${API_BASE_URL}/restaurants/update/${id}`, formData, {
         headers: { Authorization: `Bearer ${storedToken}` },
       });
 

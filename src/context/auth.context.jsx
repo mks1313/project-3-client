@@ -4,6 +4,8 @@ import axios from "axios";
 
 const AuthContext = React.createContext();
 
+const API_BASE_URL = "/api";
+
 function AuthProviderWrapper({ children }) {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
@@ -23,7 +25,7 @@ function AuthProviderWrapper({ children }) {
         if (storedToken) {
             // We must send the JWT token in the request's "Authorization" Headers
             return axios.get(
-                `api/auth/verify`,
+                `${API_BASE_URL}/auth/verify`,
                 { headers: { Authorization: `Bearer ${storedToken}` } }
             )
                 .then((response) => {

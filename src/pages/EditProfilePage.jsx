@@ -4,6 +4,8 @@ import { useNavigate, Link } from "react-router-dom";
 import "./EditProfilePage.css";
 
 
+const API_BASE_URL = "/api";
+
 const EditProfilePage = () => {
   const [userData, setUserData] = useState(null);
   const [name, setName] = useState("");
@@ -18,7 +20,7 @@ const EditProfilePage = () => {
 
   useEffect(() => {
     const fetchUserData = () => {
-      axios.get("/api/users/profile", {
+      axios.get(`${API_BASE_URL}/users/profile`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
@@ -56,7 +58,7 @@ const EditProfilePage = () => {
      
   
     axios
-      .post("/api/users/profile/update", uploadData, {
+      .post(`${API_BASE_URL}/users/profile/update`, uploadData, {
         headers: {
           Authorization: `Bearer ${storedToken}`,
         },

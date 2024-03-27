@@ -3,6 +3,8 @@ import axios from "axios";
 import { AuthContext } from "../context/auth.context";
 import "./Ratings.css";
 
+const API_BASE_URL = "/api";
+
 function Ratings({ restaurantId, onAverageRatingChange }) {
   const [averageRating, setAverageRating] = useState(null);
   const [userRating, setUserRating] = useState(null);
@@ -14,7 +16,7 @@ function Ratings({ restaurantId, onAverageRatingChange }) {
   useEffect(() => {
     if (isLoggedIn && user && storedToken) {
       axios
-        .get(`/api/ratings/${restaurantId}`, {
+        .get(`${API_BASE_URL}/ratings/${restaurantId}`, {
           headers: { Authorization: `Bearer ${storedToken}` },
         })
         .then((response) => {
@@ -45,7 +47,7 @@ function Ratings({ restaurantId, onAverageRatingChange }) {
     if (isLoggedIn) {
       axios
         .post(
-          "/api/ratings/rate",
+          `${API_BASE_URL}/ratings/rate`,
           {
             author: user._id,
             value: rating,

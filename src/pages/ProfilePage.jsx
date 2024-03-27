@@ -7,6 +7,8 @@ import ConfirmationDialog from "../components/ConfirmationDialog";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+const API_BASE_URL = "/api";
+
 const ProfilePage = () => {
   const [userData, setUserData] = useState(null);
   const storedToken = localStorage.getItem("authToken");
@@ -17,7 +19,7 @@ const ProfilePage = () => {
   useEffect(() => {
     const fetchUserData = () => {
       axios
-        .get("/api/users/profile", {
+        .get(`${API_BASE_URL}/users/profile`, {
           headers: { Authorization: `Bearer ${storedToken}` },
         })
         .then((response) => {
@@ -62,7 +64,7 @@ const ProfilePage = () => {
 
   const confirmDeleteProfile = () => {
     axios
-      .delete("/api/users/profile/delete", {
+      .delete(`${API_BASE_URL}/users/profile/delete`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then(() => {

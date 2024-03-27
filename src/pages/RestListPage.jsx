@@ -3,6 +3,8 @@ import axios from "axios";
 import "./RestListPage.css";
 import AnimatedCards from "../components/AnimatedCards";
 
+const API_BASE_URL = "/api";
+
 function RestListPage() {
   const [restaurants, setRestaurants] = useState([]);
   const [searchTerm, setSearchTerm] = useState(""); 
@@ -10,7 +12,7 @@ function RestListPage() {
 
   useEffect(() => {
     axios
-      .get(`/api/restaurants/read`, { headers: { Authorization: `Bearer ${storedToken}` } })
+      .get(`${API_BASE_URL}/restaurants/read`, { headers: { Authorization: `Bearer ${storedToken}` } })
       .then((response) => {
         setRestaurants(response.data);
       })

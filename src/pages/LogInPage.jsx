@@ -5,6 +5,8 @@ import "./LogInPage.css";
 import { AuthContext } from "../context/auth.context";
 import ReactPlayer from "react-player";
 
+const API_BASE_URL = "/api";
+
 function LogInPage() {
     const { storeToken, authenticateUser } = useContext(AuthContext);
     const [isSignUp, setIsSignUp] = useState(false);
@@ -22,7 +24,7 @@ function LogInPage() {
                 e.preventDefault();
                 const requestBody = { email, password };
         
-                 axios.post(`api/auth/login`, requestBody)
+                 axios.post(`${API_BASE_URL}/auth/login`, requestBody)
                      .then((response) => {
                          storeToken(response.data.authToken);
                          authenticateUser().then(() => {
@@ -39,7 +41,7 @@ function LogInPage() {
         e.preventDefault();
         const requestBody = { email, password, name };
 
-        axios.post("api/auth/signup", requestBody)
+        axios.post(`${API_BASE_URL}/auth/signup`, requestBody)
             .then(() => {
                 setIsSignUp(false); 
                 setErrorMessage(undefined);

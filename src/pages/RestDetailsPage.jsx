@@ -8,6 +8,8 @@ import "./RestDetailsPage.css";
 import ConfirmationDialog from "../components/ConfirmationDialog";
 import { AuthContext } from "../context/auth.context";
 
+const API_BASE_URL = "/api";
+
 function RestDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -23,7 +25,7 @@ function RestDetailPage() {
 
   useEffect(() => {
     axios
-      .get(`/api/restaurants/read/${id}`, {
+      .get(`${API_BASE_URL}/restaurants/read/${id}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
@@ -44,7 +46,7 @@ function RestDetailPage() {
 
   const confirmDeleteRestaurant = () => {
     axios
-      .delete(`/api/restaurants/delete/${id}`, {
+      .delete(`${API_BASE_URL}/restaurants/delete/${id}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then(() => {
