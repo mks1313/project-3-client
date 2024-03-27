@@ -3,7 +3,7 @@ import axios from "axios";
 import "./RestListPage.css";
 import AnimatedCards from "../components/AnimatedCards";
 
-const API_BASE_URL = "/api";
+const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 function RestListPage() {
   const [restaurants, setRestaurants] = useState([]);

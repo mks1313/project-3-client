@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./CreateRestPage.css";
 
-const API_BASE_URL = "/api";
+const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 const CreateRestPage = () => {
   const storedToken = localStorage.getItem("authToken");

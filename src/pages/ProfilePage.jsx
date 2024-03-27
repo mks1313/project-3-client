@@ -7,7 +7,7 @@ import ConfirmationDialog from "../components/ConfirmationDialog";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const API_BASE_URL = "/api";
+const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 const ProfilePage = () => {
   const [userData, setUserData] = useState(null);

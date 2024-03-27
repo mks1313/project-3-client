@@ -3,7 +3,7 @@ import axios from 'axios';
 import { AuthContext } from "../context/auth.context";
 import "./Comments.css";
 
-const API_BASE_URL = "/api";
+const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 const Comments = ({ restaurantId }) => {
   const [comments, setComments] = useState([]);

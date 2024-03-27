@@ -4,7 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import "./EditProfilePage.css";
 
 
-const API_BASE_URL = "/api";
+const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 const EditProfilePage = () => {
   const [userData, setUserData] = useState(null);

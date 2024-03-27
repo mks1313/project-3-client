@@ -4,7 +4,7 @@ import axios from "axios";
 
 const AuthContext = React.createContext();
 
-const API_BASE_URL = "/api";
+const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 function AuthProviderWrapper({ children }) {
     const [isLoggedIn, setIsLoggedIn] = useState(false);

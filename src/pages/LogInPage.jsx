@@ -5,7 +5,7 @@ import "./LogInPage.css";
 import { AuthContext } from "../context/auth.context";
 import ReactPlayer from "react-player";
 
-const API_BASE_URL = "/api";
+const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 function LogInPage() {
     const { storeToken, authenticateUser } = useContext(AuthContext);

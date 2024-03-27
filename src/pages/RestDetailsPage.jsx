@@ -8,7 +8,7 @@ import "./RestDetailsPage.css";
 import ConfirmationDialog from "../components/ConfirmationDialog";
 import { AuthContext } from "../context/auth.context";
 
-const API_BASE_URL = "/api";
+const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 function RestDetailPage() {
   const { id } = useParams();
