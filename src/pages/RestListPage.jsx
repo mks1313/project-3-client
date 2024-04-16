@@ -29,6 +29,7 @@ function RestListPage() {
 
   return (
     <div className="RestListPage container-main ">
+    
       <div className="search-container-restlistpage">
         <input
           className="search-input-restlistpage"

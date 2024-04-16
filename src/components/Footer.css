@@ -6,8 +6,6 @@
   color: #fff;
   padding: 20px 0;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
 .footer a {
@@ -18,6 +16,18 @@
 .footer-icons {
   display: flex;
 }
+@media (max-width: 600px) { 
+  .footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+  }
+  
+  .footer-icons {
+    margin-left: 5rem;
+    margin-bottom: 2rem;
+  }
+}
 
 .footer-icon {
   width: 40px;
@@ -27,11 +37,15 @@
 
 .footer-center {
   text-align: center;
+  flex-basis: 100%; 
+  margin-bottom: 10px; 
 }
 
 .footer-right {
-  max-width: 60%;
+  flex-basis: 100%; 
+  max-width: 100%; 
 }
+
 
 
   

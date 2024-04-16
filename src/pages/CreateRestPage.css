@@ -1,112 +1,97 @@
-/* .EditRestaurantPage {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin-top: 20px;
-  }
-  
-  .EditRestForm {
-    max-width: 400px;
-    width: 100%;
-    padding: 20px;
-    border-radius: 50px;
-    margin-top: 20px;
-    border: none;
-  }
-  
-  label {
-    display: block;
-    margin-bottom: 0;
-    font-weight: bolder;
-    font-size: 14px;
-    margin-left: 20px;
-  }
-  
-  input,
-  textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 16px;
-    margin-top: 0;
-    border: 1px solid #ccc;
-    border-radius: 40px;
-  }
-  
-  textarea {
-    height: 200px;
-    resize: none;
-    font-family: sans-serif;
-  }
-  
-  btn-create {
-    width: 450px;
-    padding: 10px;
-    background-color: rgb(103, 193, 247);
-    color: white;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  btn-create:hover {
-    background-color: #0069a0;
-  } */
-  .EditRestaurantPage {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin-top: 20px;
+/* Estilos generales */
+.create-genral {
+  display: flex;
 }
 
 .create-rest-form {
-    max-width: 400px;
-    width: 100%;
-    padding: 20px;
-    border-radius: 50px;
-    margin-top: 20px;
-    border: none;
-    margin-bottom: 7rem;
+  max-width: 800px; 
+  width: 100%;
+  padding: 20px;
+  border-radius: 50px;
+  margin-top: 20px;
+  border: none;
+  margin-bottom: 7rem;
+  display: grid; 
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+  gap: 20px; 
 }
 
 .create-rest-form label {
-    display: block;
-    margin-bottom: 0;
-    font-weight: bolder;
-    font-size: 14px;
-    margin-left: 20px;
+  display: block;
+  margin-bottom: 0;
+  font-weight: bolder;
+  font-size: 14px;
 }
 
 .create-rest-form input,
 .create-rest-form textarea,
 .create-rest-form select {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 16px;
-    margin-top: 0;
-    border: 1px solid #ccc;
-    border-radius: 40px;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 16px;
+  margin-top: 0;
+  border: 1px solid #ccc;
+  border-radius: 40px;
 }
 
 .create-rest-form textarea {
-    height: 200px;
-    resize: none;
-    font-family: sans-serif;
+  height: 200px;
+  resize: none;
+  font-family: sans-serif;
 }
 
 .create-rest-form .btn-create {
-    width: 100%;
-    padding: 10px;
-    background-color: rgb(103, 193, 247);
-    color: white;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    font-size: 16px;
+  width: 100%;
+  max-width: 300px;
+  padding: 10px;
+  background-color: rgb(103, 193, 247);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 16px;
 }
 
 .create-rest-form .btn-create:hover {
-    background-color: #0069a0;
+  background-color: #0069a0;
 }
+
+.create-rest-capacity {
+  max-width: 200px;
+}
+
+.create-h {
+  opacity: 0.3;
+  margin-top: 5px;
+}
+
+.form-group {
+  flex: none; 
+  margin-right: 1px; 
+}
+
+.form-row {
+  justify-content: space-around;
+}
+
+
+
+/* 
+@media only screen and (max-width: 480px) {
+  .create-rest-form {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .form-group {
+    display: flex;
+    flex-direction: column; 
+  }
+
+  .preview-image {
+    order: 1; 
+    margin-top: 1rem; 
+  }
+} */
+

@@ -40,29 +40,34 @@ const EditRestPage = () => {
       .catch((error) => console.log(error));
   }, [id, storedToken]);
 
-  const handleFormSubmit = async (e) => {
+  const handleFormSubmit = (e) => {
     e.preventDefault();
-
-    try {
-      const uploadData = new FormData();
-      uploadData.append("image", image);
-
-      const uploadResponse = await axios.post(`${API_BASE_URL}/restaurants/upload`, uploadData, {
-        headers: { Authorization: `Bearer ${storedToken}` },
-      });
-
+  
+    const uploadData = new FormData();
+    uploadData.append("image", image);
+  
+    axios.post(`${API_BASE_URL}/restaurants/upload`, uploadData, {
+      headers: { Authorization: `Bearer ${storedToken}` },
+    })
+    .then(uploadResponse => {
       const newImage = uploadResponse.data.fileURlImage;
       formData.image = newImage;
-
-      await axios.put(`${API_BASE_URL}/restaurants/update/${id}`, formData, {
+  
+      axios.put(`${API_BASE_URL}/restaurants/update/${id}`, formData, {
         headers: { Authorization: `Bearer ${storedToken}` },
+      })
+      .then(() => {
+        navigate(`/restaurants/${id}`);
+      })
+      .catch(error => {
+        console.log("Error updating restaurant:", error);
       });
-
-      navigate(`/restaurants/${id}`);
-    } catch (error) {
-      console.log(error);
-    }
+    })
+    .catch(error => {
+      console.log("Error uploading image:", error);
+    });
   };
+  
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -86,9 +91,6 @@ const EditRestPage = () => {
 
   return (
     <div className="edit-page-container">
-    <div className="image-preview">
-      {image && <img src={URL.createObjectURL(image)} alt="Preview" />}
-    </div>
     <div className="form-container">
       <div className="form">
         <h1>Edit Restaurant</h1>
@@ -121,6 +123,9 @@ const EditRestPage = () => {
             // value={formData.image}
             onChange={(e) => setImage(e.target.files[0])}
           />
+          <div className="image-preview">
+      {image && <img src={URL.createObjectURL(image)} alt="Preview" style={{ maxWidth: '200px' }}  />}
+    </div>
         </div>
 
 

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import "./CreateRestPage.css";
 
@@ -10,7 +10,7 @@ const CreateRestPage = () => {
   const navigate = useNavigate();
   
   const [formData, setFormData] = useState({
-    name: "Zaragoza",
+    name: "Moloko",
     capacity: "45",
     phone: "934555666",
     price: "$",
@@ -25,6 +25,7 @@ const CreateRestPage = () => {
     },
     image: null,
   });
+  const [previewImage, setPreviewImage] = useState(null);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -48,21 +49,13 @@ const CreateRestPage = () => {
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
-    const uploadData = new FormData();
-    uploadData.append("image", file);
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      image: file,
+    }));
 
-    axios.post(`${API_BASE_URL}/restaurants/upload`, uploadData, {
-        headers: { Authorization: `Bearer ${storedToken}` },
-    })
-    .then(uploadResponse => {
-        const newImage = uploadResponse.data.fileURlImage;
-        const updatedFormData = { ...formData, image: newImage };
-        setFormData(updatedFormData);
-    })
-    .catch(error => {
-        console.log(error);
-    });
-};
+    setPreviewImage(URL.createObjectURL(file));
+  };
 
 const handleSubmit = (e) => {
     e.preventDefault();
@@ -86,9 +79,10 @@ const handleSubmit = (e) => {
 };
 
   return (
+    <div className="create-genral">
     <div className="form create-rest-form">
-      <h2>New Restaurant</h2>
       <form onSubmit={handleSubmit} id="create-rest-form">
+    <h1 className="create-h">Create Restaurant</h1>
         <div>
           <label htmlFor="name">Name of the Restaurant:</label>
           <input
@@ -101,7 +95,8 @@ const handleSubmit = (e) => {
             className="create-rest-input"
           />
         </div>
-        <div>
+      <div className="form-row">
+        <div className="form-group">
           <label htmlFor="capacity">Capacity:</label>
           <input
             type="number"
@@ -110,21 +105,10 @@ const handleSubmit = (e) => {
             value={formData.capacity}
             onChange={handleInputChange}
             required
-            className="create-rest-input"
+            className="create-rest-capacity"
           />
         </div>
-        <div>
-          <label htmlFor="phone">Phone:</label>
-          <input
-            type="text"
-            id="phone"
-            name="phone"
-            value={formData.phone}
-            onChange={handleInputChange}
-            className="create-rest-input"
-          />
-        </div>
-        <div>
+        <div className="form-group">
           <label htmlFor="price">Price:</label>
           <input
             type="text"
@@ -132,20 +116,10 @@ const handleSubmit = (e) => {
             name="price"
             value={formData.price}
             onChange={handleInputChange}
-            className="create-rest-input"
+            className="create-rest-capacity"
           />
         </div>
-        <div>
-          <label htmlFor="description">Description:</label>
-          <textarea
-            id="description"
-            name="description"
-            value={formData.description}
-            onChange={handleInputChange}
-            className="create-rest-input"
-          />
-        </div>
-        <div>
+        <div className="form-group">
           <label htmlFor="category">Category:</label>
           <select
             id="category"
@@ -153,7 +127,7 @@ const handleSubmit = (e) => {
             value={formData.category}
             onChange={handleInputChange}
             required
-            className="create-rest-input"
+            className="create-rest-capacity"
           >
             <option value="Italian">Italian</option>
             <option value="Mexican">Mexican</option>
@@ -180,16 +154,21 @@ const handleSubmit = (e) => {
             <option value="Greek">Greek</option>
           </select>
         </div>
+      </div>
+        <h1 className="create-h">Dirección</h1>
         <div>
-          <label htmlFor="image">Image:</label>
+          <label htmlFor="city">City:</label>
           <input
-            type="file"
-            id="image"
-            name="image"
-            onChange={(e) => handleImageChange(e)}
+            type="text"
+            id="city"
+            name="address.city"
+            value={formData.address.city}
+            onChange={handleInputChange}
+            required
             className="create-rest-input"
           />
         </div>
+        <div className="form-row">
         <div>
           <label htmlFor="street">Street:</label>
           <input
@@ -215,18 +194,6 @@ const handleSubmit = (e) => {
           />
         </div>
         <div>
-          <label htmlFor="city">City:</label>
-          <input
-            type="text"
-            id="city"
-            name="address.city"
-            value={formData.address.city}
-            onChange={handleInputChange}
-            required
-            className="create-rest-input"
-          />
-        </div>
-        <div>
           <label htmlFor="postcode">Postcode:</label>
           <input
             type="text"
@@ -237,12 +204,61 @@ const handleSubmit = (e) => {
             className="create-rest-input"
           />
         </div>
+        <div>
+          <label htmlFor="phone">Phone:</label>
+          <input
+            type="text"
+            id="phone"
+            name="phone"
+            value={formData.phone}
+            onChange={handleInputChange}
+            className="create-rest-input"
+          />
+        </div>
+        </div>
+        <div>
+          <label htmlFor="description">Description:</label>
+          <textarea
+            id="description"
+            name="description"
+            value={formData.description}
+            onChange={handleInputChange}
+            className="create-rest-input"
+          />
+        </div>
+        <div>
+          <label htmlFor="image">Image:</label>
+          <input
+            type="file"
+            id="image"
+            name="image"
+            onChange={(e) => handleImageChange(e)}
+            className="create-rest-input"
+          />
+        </div>
         <button className="btn-create" type="submit">
           Create Restaurant
         </button>
+        <Link to={`/restaurants`}>
+          <button className="btn-create" style={{ marginTop: '30px', color: "white", backgroundColor: "red" }}>Discard</button>
+        </Link>
       </form>
+    </div>
+    <div className="preview-image" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', maxWidth: '100%', marginTop: '5rem' }}>
+        {previewImage && (
+          <img
+            src={previewImage}
+            alt="Preview"
+            style={{ maxWidth: '100%', maxHeight: '200px', marginLeft: 'auto', marginRight: 'auto' }}
+          />
+        )}
+      </div>
+
     </div>
   );
 };
 
 export default CreateRestPage;
+
+
+       

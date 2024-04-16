@@ -21,35 +21,35 @@ function LogInPage() {
     const handleName = (e) => setName(e.target.value);
 
     const handleLoginSubmit = (e) => {
-                e.preventDefault();
-                const requestBody = { email, password };
+        e.preventDefault();
+        const requestBody = { email, password };
         
-                 axios.post(`${API_BASE_URL}/auth/login`, requestBody)
-                     .then((response) => {
-                         storeToken(response.data.authToken);
-                         authenticateUser().then(() => {
-                             navigate('/profile');
-                         });
-                     })
-                     .catch((error) => {
-                         const errorDescription = error.response.data.message;
-                         setErrorMessage(errorDescription);
-                     });
-             };
+        axios.post(`${API_BASE_URL}/auth/login`, requestBody)
+             .then((response) => {
+                 storeToken(response.data.authToken);
+                 authenticateUser().then(() => {
+                     navigate('/profile');
+                 });
+             })
+             .catch((error) => {
+                 const errorDescription = error.response.data.message;
+                 setErrorMessage(errorDescription);
+             });
+    };
 
     const handleSignUpSubmit = (e) => {
         e.preventDefault();
         const requestBody = { email, password, name };
 
         axios.post(`${API_BASE_URL}/auth/signup`, requestBody)
-            .then(() => {
-                setIsSignUp(false); 
-                setErrorMessage(undefined);
-            })
-            .catch((error) => {
-                const errorDescription = error.response.data.message;
-                setErrorMessage(errorDescription);
-            });
+             .then(() => {
+                 setIsSignUp(false); 
+                 setErrorMessage(undefined);
+             })
+             .catch((error) => {
+                 const errorDescription = error.response.data.message;
+                 setErrorMessage(errorDescription);
+             });
     };
 
     const handleFormSubmit = isSignUp ? handleSignUpSubmit : handleLoginSubmit;
@@ -58,11 +58,9 @@ function LogInPage() {
         setIsSignUp(!isSignUp);
         setErrorMessage(undefined); 
     };
-//TODO modificar los estilos de inputs para cada uno
-return (
-    <div className="container-main">
 
-       <div className="video-container">
+    return (
+        <div className="container-main">
             <ReactPlayer
                 url='https://youtu.be/Ki9AGLZYpmU'
                 playing
@@ -70,58 +68,55 @@ return (
                 muted
                 width='100%'
                 height='100%'
-                style={{ position: 'absolute', top: 0, left: 0 }} 
-
+                style={{ position: 'absolute', top: 0, left: 0, zIndex: -1 }} 
             />
-        </div>
-    <div className="login-page">
-        <div className="wrapper fadeInDown" style={{ zIndex: 1 }}> 
-            <div id="formContentLogin">
-                <h2 className={isSignUp ? "inactive underlineHover" : "active"} onClick={handleFormToggle}> Login </h2>
-                <h2 className={isSignUp ? "active" : "inactive underlineHover"} onClick={handleFormToggle}> Sign Up </h2>
+            <div className="login-page">
+                <div className="wrapper fadeInDown" style={{ zIndex: 1 }}> 
+                    <div id="formContentLogin">
+                        <h2 className={isSignUp ? "inactive underlineHover" : "active"} onClick={handleFormToggle}> Login </h2>
+                        <h2 className={isSignUp ? "active" : "inactive underlineHover"} onClick={handleFormToggle}> Sign Up </h2>
 
-                <form className="login-form" onSubmit={handleFormSubmit}>
-    {isSignUp && (
-        <input
-            type="text"
-            name="name"
-            value={name}
-            onChange={handleName}
-            placeholder="Name"
-            className={isSignUp ? "login-form-input" : ""}
-        />
-    )}
-    <input
-        type="text"
-        name="email"
-        value={email}
-        onChange={handleEmail}
-        placeholder="Email"
-        className="login-form-input"
-    />
-    <input
-        type="password"
-        name="password"
-        value={password}
-        onChange={handlePassword}
-        placeholder="Password"
-        style={{ width: '85%', marginTop: '10px' }}
-        className="login-form-input"
-    />
-    <input
-        type="submit"
-        value={isSignUp ? "Sign Up" : "Log In"}
-        className="login-form-input"
-    />
-</form>
+                        <form className="login-form" onSubmit={handleFormSubmit}>
+                            {isSignUp && (
+                                <input
+                                    type="text"
+                                    name="name"
+                                    value={name}
+                                    onChange={handleName}
+                                    placeholder="Name"
+                                    className={isSignUp ? "login-form-input" : ""}
+                                />
+                            )}
+                            <input
+                                type="text"
+                                name="email"
+                                value={email}
+                                onChange={handleEmail}
+                                placeholder="Email"
+                                className="login-form-input"
+                            />
+                            <input
+                                type="password"
+                                name="password"
+                                value={password}
+                                onChange={handlePassword}
+                                placeholder="Password"
+                                style={{ width: '85%', marginTop: '10px' }}
+                                className="login-form-input"
+                            />
+                            <input
+                                type="submit"
+                                value={isSignUp ? "Sign Up" : "Log In"}
+                                className="login-form-input"
+                            />
+                        </form>
 
-
-                {errorMessage && <p className="error-message">{errorMessage}</p>}
+                        {errorMessage && <p className="error-message">{errorMessage}</p>}
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    </div>
-);
+    );
 }
 
 export default LogInPage;

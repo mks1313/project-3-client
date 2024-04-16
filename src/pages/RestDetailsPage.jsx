@@ -3,7 +3,6 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import Comments from "../components/Comments";
 import Ratings from "../components/Ratings";
-// import MenuComponent from "../components/MenuComponent";
 import "./RestDetailsPage.css";
 import ConfirmationDialog from "../components/ConfirmationDialog";
 import { AuthContext } from "../context/auth.context";

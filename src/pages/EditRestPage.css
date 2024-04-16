@@ -1,4 +1,10 @@
-
+ .EditRestaurantPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin-top: 20px;
+} 
 h1 {
   margin-top: 2cm;
   margin-bottom: 20px;
@@ -22,12 +28,8 @@ h1 {
   margin-bottom: 20px;
 }
 
-/* .form-group {
-  flex: 0 0 calc(33.33% - 20px);
-  margin-right: 20px;
-} */
 .form-group {
-  flex: 0 0 calc(50% - 20px); /* Para que cada input ocupe la mitad del contenedor */
+  flex: 0 0 calc(50% - 20px); 
 }
 
 
@@ -62,7 +64,6 @@ label {
   margin-bottom: 8px; 
   font-weight: bolder;
   font-size: 14px;
-  /* margin-left: 20px; */
 }
 
 input,

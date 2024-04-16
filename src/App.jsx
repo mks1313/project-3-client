@@ -11,11 +11,11 @@ import EditRestPage from "./pages/EditRestPage";
 import CreateRestPage from "./pages/CreateRestPage";
 import ProfilePage from "./pages/ProfilePage";
 import EditProfilePage from "./pages/EditProfilePage";
-import IsPrivate from './components/IsPrivate';
+import IsPrivate from "./components/IsPrivate";
 
 
 
-function App() {
+const App = () => {
   return (
     <div className="App">
       <div className="content">

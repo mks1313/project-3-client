@@ -14,7 +14,6 @@
   background-size: cover;
   background-position: center;
   opacity: 0.8;
-  /* filter: blur(2px); */
   z-index: -1; 
 }
 
@@ -28,17 +27,12 @@
 
 .restaurant-info-container {
   font-size: 23px; 
-
-
 }
-
 
 .restaurant-details {
   display: flex;
   flex-wrap: wrap;
   color: rgb(236, 235, 228); 
-  /* text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.8);  */
- 
 }
 
 .section {
@@ -76,21 +70,10 @@
   background-color: blanchedalmond;
 }
 
-.delete-button {
-  position: relative;
-  background-color: #ff6347;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 4px;
-  cursor: pointer;
-  overflow: hidden;
-  transition: background-color 0.5s ease, color 0.5s ease; 
-}
-
+.delete-button,
 .edit-button {
   position: relative;
-  background-color:  #87ceeb;
+  background-color: transparent;
   color: white;
   border: none;
   padding: 8px 16px;
@@ -118,15 +101,11 @@
   height: 100%; 
 }
 
-.delete-button:hover {
-  background-color: transparent;
-  color: #ff6347; 
+.delete-button:hover,
+.edit-button:hover {
+  background-color: #ff6347;
+  color: white; 
   border-radius: 16px;
 }
 
-.edit-button:hover {
-  background-color: transparent;
-  color: #87ceeb; 
-  border-radius: 16px;
-}
 

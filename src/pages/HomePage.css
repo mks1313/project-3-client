@@ -1,3 +1,5 @@
+/* Estilos base */
+
 .homepage {
   min-height: 100vh;
   display: flex;
@@ -45,15 +47,27 @@
 .homep {
   font-size: 2rem; 
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  color: #e5f416;
-  
+  color: #e5f416;  
 }
-
-
 
 .title, .subtitle {
   color: #ffcc00; 
 }
+
+@media screen and (max-width: 768px) {
+  .title {
+    font-size: 5rem; 
+  }
+
+  .subtitle {
+    font-size: 2.5rem;
+  }
+
+  .homep {
+    font-size: 1.5rem;
+  }
+}
+
 
 
   

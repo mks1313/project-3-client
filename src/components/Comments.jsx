@@ -18,7 +18,7 @@ const Comments = ({ restaurantId }) => {
         setComments(response.data);
         // Verificar si el usuario ha realizado un comentario
         const userHasCommented = response.data.some(comment => comment.author._id === user._id);
-        setShowCommentForm(!userHasCommented); // Cambiar a true si el usuario no ha realizado un comentario
+        setShowCommentForm(!userHasCommented); 
       })
       .catch(error => {
         console.error('Error al obtener comentarios:', error);
@@ -30,7 +30,7 @@ const Comments = ({ restaurantId }) => {
   };
 
   const handleNewCommentSubmit = () => {
-    axios.post('${API_BASE_URL}/comments/create', {
+    axios.post(`${API_BASE_URL}/comments/create`, {
       content: newComment,
       restaurant: restaurantId,
     }, { headers: { Authorization: `Bearer ${storedToken}` } })

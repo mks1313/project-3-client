@@ -1,4 +1,3 @@
-// Navbar.jsx
 import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
@@ -49,7 +48,7 @@ function Navbar() {
             <>
             <li>
                 <NavLink to="/create">
-                  Register my: <GrRestaurant style={{ width: '40px', height: '40px', color: '#b0bfd8' }}/>
+                 <GrRestaurant style={{ width: '40px', height: '40px', color: '#b0bfd8' }}/>
                 </NavLink>
               </li>
 
