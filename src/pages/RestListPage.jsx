@@ -8,7 +8,7 @@ const API_BASE_URL = import.meta.env.VITE_API_URL;
 function RestListPage() {
   const [restaurants, setRestaurants] = useState([]);
   const [searchTerm, setSearchTerm] = useState(""); 
-  const storedToken = localStorage.getItem("authToken");
+  // const storedToken = localStorage.getItem("authToken");
 
   useEffect(() => {
     axios
@@ -18,7 +18,7 @@ function RestListPage() {
         setRestaurants(response.data);
       })
       .catch((error) => console.log(error));
-  }, [storedToken]); 
+  }, []); 
 
   const handleSearchTerm = (event) => {
     setSearchTerm(event.target.value);
