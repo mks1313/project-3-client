@@ -3,7 +3,6 @@ import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import "./EditProfilePage.css";
 
-
 const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 const EditProfilePage = () => {
@@ -20,29 +19,30 @@ const EditProfilePage = () => {
 
   useEffect(() => {
     const fetchUserData = () => {
-      axios.get(`${API_BASE_URL}/users/profile`, {
-        headers: { Authorization: `Bearer ${storedToken}` },
-      })
-      .then((response) => {
-        const user = response.data.user;
-        setUserData(user);
-        const userBirthday = new Date(user.birthday).toISOString().split('T')[0];
-        setBirthday(userBirthday);
-        setName(user.name);
-        setEmail(user.email);
-        setSex(user.sex);
-      })
-      .catch((error) => {
-        console.error("Error fetching user data:", error);
-      });
+      axios
+        .get(`${API_BASE_URL}/users/profile`, {
+          headers: { Authorization: `Bearer ${storedToken}` },
+        })
+        .then((response) => {
+          const user = response.data.user;
+          setUserData(user);
+          const userBirthday = new Date(user.birthday)
+            .toISOString()
+            .split("T")[0];
+          setBirthday(userBirthday);
+          setName(user.name);
+          setEmail(user.email);
+          setSex(user.sex);
+        })
+        .catch((error) => {
+          console.error("Error fetching user data:", error);
+        });
     };
-  
+
     if (storedToken) {
       fetchUserData();
     }
   }, [storedToken]);
-  
-  
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -54,9 +54,6 @@ const EditProfilePage = () => {
     uploadData.append("sex", sex);
     uploadData.append("email", email);
 
-    
-     
-  
     axios
       .post(`${API_BASE_URL}/users/profile/update`, uploadData, {
         headers: {
@@ -66,15 +63,14 @@ const EditProfilePage = () => {
       .then((response) => {
         if (response.status === 200) {
           setUserData(response.data.user);
-          navigate("/profile"); 
+          navigate("/profile");
         }
       })
       .catch((error) => {
         console.error("Error updating profile:", error);
-       
       });
   };
-  
+
   return (
     <div className="edit-profile-page">
       <h1 className="create-h">Edit Profile</h1>
@@ -90,7 +86,7 @@ const EditProfilePage = () => {
           <label>Email:</label>
           <input
             type="email"
-            name="email" 
+            name="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -116,7 +112,11 @@ const EditProfilePage = () => {
             onChange={(e) => setBirthday(e.target.value)}
           />
           <label>Sex:</label>
-          <select name="sex" value={sex} onChange={(e) => setSex(e.target.value)}>
+          <select
+            name="sex"
+            value={sex}
+            onChange={(e) => setSex(e.target.value)}
+          >
             <option value="male">Male</option>
             <option value="female">Female</option>
             <option value="N/A">Prefer not to say</option>
@@ -127,22 +127,27 @@ const EditProfilePage = () => {
             name="image"
             onChange={(e) => setProfileImage(e.target.files[0])}
           />
-          <button className="edit-button" type="submit" style={{ marginLeft: '60px', marginTop: '30px' }}>Save Changes</button>
-            <Link to={`/profile`}>
-            <button className="delete-button" style={{ marginLeft: '20px', marginTop: '30px' }}>Discard</button>
-            </Link>
-          
+          <button
+            className="edit-button"
+            type="submit"
+            style={{ marginLeft: "60px", marginTop: "30px" }}
+          >
+            Save Changes
+          </button>
+          <Link to={`/profile`}>
+            <button
+              className="delete-button"
+              style={{ marginLeft: "20px", marginTop: "30px" }}
+            >
+              Discard
+            </button>
+          </Link>
         </form>
       ) : (
         <p className="loading-message">Loading user data...</p>
       )}
     </div>
   );
-}
+};
 
 export default EditProfilePage;
-
-
-
-
-
