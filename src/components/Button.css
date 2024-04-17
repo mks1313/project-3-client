@@ -6,15 +6,15 @@
   padding: 0.75rem 1.25rem;
   border: none;
   border-radius: 10px; 
-  color: #c73d92; 
+  color: #0e0c0d; 
   background-color: transparent; 
   transition: color 0.7s ease-out, background-color 0.8s ease-out, border-radius 0.7s ease-out;
   overflow: hidden; 
 }
 
 .chulo-button:hover {
-  color: #000; 
-  background-color: #fff; 
+  color: #6f6565; 
+  background-color: #f3eaea; 
   border-radius: 50px; 
 }
 
@@ -25,5 +25,5 @@
   left: 0;
   width: 200%; 
   height: 200%; 
-  background: linear-gradient(-45deg, #2407a5, transparent); 
+  background: linear-gradient(-45deg, #040703, transparent); 
 }

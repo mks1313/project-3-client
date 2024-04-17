@@ -77,7 +77,7 @@ const EditProfilePage = () => {
   
   return (
     <div className="edit-profile-page">
-      <h1>Edit Profile</h1>
+      <h1 className="create-h">Edit Profile</h1>
       {userData ? (
         <form onSubmit={handleSubmit} className="formulario-especifico">
           <label>Name:</label>

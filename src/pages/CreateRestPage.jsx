@@ -155,7 +155,7 @@ const handleSubmit = (e) => {
           </select>
         </div>
       </div>
-        <h1 className="create-h">Dirección</h1>
+        <h1 className="create-h">Address</h1>
         <div>
           <label htmlFor="city">City:</label>
           <input
@@ -236,12 +236,14 @@ const handleSubmit = (e) => {
             className="create-rest-input"
           />
         </div>
+        <div className="buttons-create-form">
         <button className="btn-create" type="submit">
           Create Restaurant
         </button>
         <Link to={`/restaurants`}>
-          <button className="btn-create" style={{ marginTop: '30px', color: "white", backgroundColor: "red" }}>Discard</button>
+          <button className="btn-create btn-discart">Discard</button>
         </Link>
+        </div>
       </form>
     </div>
     <div className="preview-image" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', maxWidth: '100%', marginTop: '5rem' }}>
@@ -249,7 +251,7 @@ const handleSubmit = (e) => {
           <img
             src={previewImage}
             alt="Preview"
-            style={{ maxWidth: '100%', maxHeight: '200px', marginLeft: 'auto', marginRight: 'auto' }}
+            style={{ maxWidth: '100%', maxHeight: '400px', marginLeft: 'auto', marginRight: 'auto', border: '5px solid gray' }}
           />
         )}
       </div>

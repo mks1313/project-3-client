@@ -74,6 +74,16 @@
   justify-content: space-around;
 }
 
+.btn-discart {
+  margin-left: 1rem;
+  background-color: #ff6f6f !important;
+  color: white;
+}
+
+.btn-discart:hover {
+  background-color: #d45353 !important; 
+}
+
 
 
 /* 
