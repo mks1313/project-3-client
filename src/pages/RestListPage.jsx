@@ -12,7 +12,8 @@ function RestListPage() {
 
   useEffect(() => {
     axios
-      .get(`${API_BASE_URL}/restaurants/read`, { headers: { Authorization: `Bearer ${storedToken}` } })
+    .get(`${API_BASE_URL}/restaurants/read`)
+      // .get(`${API_BASE_URL}/restaurants/read`, { headers: { Authorization: `Bearer ${storedToken}` } })
       .then((response) => {
         setRestaurants(response.data);
       })
