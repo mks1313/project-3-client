@@ -10,8 +10,8 @@ const API_BASE_URL = import.meta.env.VITE_API_URL;
 function LogInPage() {
     const { storeToken, authenticateUser } = useContext(AuthContext);
     const [isSignUp, setIsSignUp] = useState(false);
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState("auri@gmail.com");
+    const [password, setPassword] = useState("Auri123!");
     const [name, setName] = useState("");
     const [errorMessage, setErrorMessage] = useState(undefined);
     const navigate = useNavigate();
@@ -24,8 +24,8 @@ function LogInPage() {
         e.preventDefault();
         const requestBody = { email, password };
         
-        // axios.post(`${API_BASE_URL}/auth/login`, requestBody)
-        axios.post('/auth/login', requestBody)
+        axios.post(`${API_BASE_URL}/auth/login`, requestBody)
+        // axios.post('/auth/login', requestBody)
              .then((response) => {
                  storeToken(response.data.authToken);
                  authenticateUser().then(() => {
