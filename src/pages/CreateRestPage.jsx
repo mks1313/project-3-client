@@ -10,7 +10,7 @@ const CreateRestPage = () => {
   const navigate = useNavigate();
   
   const [formData, setFormData] = useState({
-    name: "Moloko",
+    name: "Ironhack",
     capacity: "45",
     phone: "934555666",
     price: "$",
