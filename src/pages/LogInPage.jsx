@@ -24,7 +24,8 @@ function LogInPage() {
         e.preventDefault();
         const requestBody = { email, password };
         
-        axios.post(`${API_BASE_URL}/auth/login`, requestBody)
+        // axios.post(`${API_BASE_URL}/auth/login`, requestBody)
+        axios.post('/auth/login', requestBody)
              .then((response) => {
                  storeToken(response.data.authToken);
                  authenticateUser().then(() => {
