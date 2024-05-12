@@ -10,8 +10,8 @@ const API_BASE_URL = import.meta.env.VITE_API_URL;
 function LogInPage() {
     const { storeToken, authenticateUser } = useContext(AuthContext);
     const [isSignUp, setIsSignUp] = useState(false);
-    const [email, setEmail] = useState("auri@gmail.com");
-    const [password, setPassword] = useState("Auri123!");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const [name, setName] = useState("");
     const [errorMessage, setErrorMessage] = useState(undefined);
     const navigate = useNavigate();
