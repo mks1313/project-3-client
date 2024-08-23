@@ -15,12 +15,12 @@ import IsPrivate from "./components/IsPrivate";
 
 
 
-const App = () => {
+function App() {
   return (
     <div className="App">
       <div className="content">
-      <Navbar />
-      
+        <Navbar />
+
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/restaurants" element={<RestListPage />} />
@@ -31,7 +31,7 @@ const App = () => {
           <Route path="/profile" element={<IsPrivate><ProfilePage /></IsPrivate>} />
           <Route path="/edit-profile" element={<IsPrivate><EditProfilePage /></IsPrivate>} />
         </Routes>
-      <Footer />
+        <Footer />
       </div>
     </div>
   );

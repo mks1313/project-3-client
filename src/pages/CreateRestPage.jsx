@@ -10,18 +10,18 @@ const CreateRestPage = () => {
   const navigate = useNavigate();
   
   const [formData, setFormData] = useState({
-    name: "Ironhack",
-    capacity: "45",
-    phone: "934555666",
-    price: "$",
-    description: "Excelente restaurante-bar en inmediaciones de Sagrada Familia",
-    category: "Other",
+    name: "",
+    capacity: "",
+    phone: "",
+    price: "",
+    description: "",
+    category: "",
     owner: "",
     address: {
-      street: "Balmes",
-      number: "234",
-      city: "Barcelona",
-      postcode: "08005",
+      street: "",
+      number: "",
+      city: "",
+      postcode: "",
     },
     image: null,
   });

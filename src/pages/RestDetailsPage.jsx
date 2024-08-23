@@ -33,7 +33,6 @@ function RestDetailPage() {
         if (user && restaurantData.owner === user._id) {
           // console.log("El usuario puede editar el restaurante.");
         }
-
         setRestaurant(restaurantData);
       })
       .catch((error) => console.log(error));
