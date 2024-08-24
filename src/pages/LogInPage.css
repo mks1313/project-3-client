@@ -229,3 +229,51 @@ h2.active {
   margin-top: 10rem;
   position: relative;
 }
+
+
+.password-container {
+  position: relative;
+  width: 85%; 
+  margin: 5px auto; 
+}
+
+.password-container input[type="password"],
+.password-container input[type="text"] {
+  background-color: #f6f6f6;
+  border: none;
+  color: #0d0d0d;
+  padding: 15px 32px; 
+  text-align: center;
+  font-size: 16px;
+  width: 100%;
+  border: 2px solid #f6f6f6;
+  transition: all 0.5s ease-in-out;
+  border-radius: 25px;
+  box-sizing: border-box; 
+  padding-right: 40px;
+}
+
+.password-container input[type="password"]:focus,
+.password-container input[type="text"]:focus {
+  background-color: #fff;
+  border-bottom: 2px solid #5fbae9;
+}
+
+.password-container span {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #cccccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px; 
+  height: 100%;
+}
+
+.password-container span svg {
+  width: 26px; 
+  height: 20px;
+}
