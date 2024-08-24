@@ -7,26 +7,42 @@ const Footer = () => {
     <footer className="footer">
       <div className="footer-left">
         <div className="footer-icons">
-          <a href="https://github.com/mks1313" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://github.com/mks1313"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <FaGithub className="footer-icon" />
           </a>
-          <a href="https://www.linkedin.com/in/maksim-georgiev-marinov-225b20200?original_referer=" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://www.linkedin.com/in/maksim-georgiev-marinov-225b20200?original_referer="
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <FaLinkedin className="footer-icon" />
           </a>
-          <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://www.facebook.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <FaFacebook className="footer-icon" />
           </a>
-          <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://www.instagram.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <FaInstagram className="footer-icon" />
           </a>
         </div>
       </div>
       <div className="footer-center">
-        <p>Este sitio está hecho para ti!!!</p>
+        <p>This site is made for you!!!</p>
         <p>
-          Creado por{" "}
+          Created by{" "}
           <a className="footer-link" href="https://github.com/mks1313">
-            Maksim 
+            Maksim
           </a>
         </p>
       </div>
