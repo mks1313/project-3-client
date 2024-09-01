@@ -8,14 +8,14 @@ The frontend of this project allows users to interact with the application, view
 
 🛠️ **Technologies Used**
 
-    React: JavaScript library for building user interfaces.
-    Vite: Build tool that provides a fast development environment and optimized production builds.
-    FontAwesome: Library for scalable vector icons and social logos.
-    axios: Library for making HTTP requests to the backend API.
-    Cloudinary: Used for handling and displaying images.
-    Payload: Content management system for managing data (if applicable on the frontend).
-    jsonwebtoken (JWT): For managing authentication tokens (if applicable on the frontend).
-    bcrypt: For password hashing (if applicable on the frontend).
+      - ** React**: JavaScript library for building user interfaces.
+      Vite: Build tool that provides a fast development environment and optimized production builds.
+      FontAwesome: Library for scalable vector icons and social logos.
+      axios: Library for making HTTP requests to the backend API.
+      Cloudinary: Used for handling and displaying images.
+      Payload: Content management system for managing data (if applicable on the frontend).
+      jsonwebtoken (JWT): For managing authentication tokens (if applicable on the frontend).
+      bcrypt: For password hashing (if applicable on the frontend).
 
 🎨 **Styles and CSS**
 
@@ -27,17 +27,17 @@ Prerequisites
 
 Make sure you have the following installed:
 
-    Node.js
-    Vite (usually installed via npm or yarn)
-    Cloudinary account (for image management)
+      Node.js
+      Vite (usually installed via npm or yarn)
+      Cloudinary account (for image management)
 
 **Installation**
 
   1. **Clone the repository:**
 
-    ```bash
-
-    git clone [URL_DEL_REPOSITORIO_FRONTEND]
+     ```bash
+     git clone [URL_DEL_REPOSITORIO_FRONTEND]
+    
 
  2. **Navigate to the project directory:**
 
