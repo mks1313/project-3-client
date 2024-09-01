@@ -4,6 +4,8 @@ This is the frontend component of the Restaurant Web Application project, named 
 🌟 **Project Overview**
 
 The frontend of this project allows users to interact with the application, view restaurants, leave comments, rate establishments, and manage their profiles. Restaurant owners can also manage their listings and view feedback from users.
+
+
 🛠️ **Technologies Used**
 
     React: JavaScript library for building user interfaces.
