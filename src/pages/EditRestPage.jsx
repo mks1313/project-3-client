@@ -43,30 +43,39 @@ const EditRestPage = () => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
+    // Crear FormData para enviar los datos del restaurante + imagen
     const uploadData = new FormData();
-    uploadData.append("image", image);
+    
+    // Añadir todos los campos del formulario
+    uploadData.append("name", formData.name);
+    uploadData.append("capacity", formData.capacity);
+    uploadData.append("phone", formData.phone);
+    uploadData.append("price", formData.price);
+    uploadData.append("description", formData.description);
+    uploadData.append("category", formData.category);
+    uploadData.append("address.street", formData.address.street);
+    uploadData.append("address.number", formData.address.number);
+    uploadData.append("address.city", formData.address.city);
+    uploadData.append("address.postcode", formData.address.postcode);
 
+    // Si hay una imagen, añadirla al FormData
+    if (image) {
+      uploadData.append("image", image);
+    }
+
+    // Realizar la solicitud PUT
     axios
-      .post(`${API_BASE_URL}/restaurants/upload`, uploadData, {
-        headers: { Authorization: `Bearer ${storedToken}` },
+      .put(`${API_BASE_URL}/restaurants/update/${id}`, uploadData, {
+        headers: { 
+          Authorization: `Bearer ${storedToken}`,
+          "Content-Type": "multipart/form-data" 
+        },
       })
-      .then((uploadResponse) => {
-        const newImage = uploadResponse.data.fileURlImage;
-        formData.image = newImage;
-
-        axios
-          .put(`${API_BASE_URL}/restaurants/update/${id}`, formData, {
-            headers: { Authorization: `Bearer ${storedToken}` },
-          })
-          .then(() => {
-            navigate(`/restaurants/${id}`);
-          })
-          .catch((error) => {
-            console.log("Error updating restaurant:", error);
-          });
+      .then(() => {
+        navigate(`/restaurants/${id}`);
       })
       .catch((error) => {
-        console.log("Error uploading image:", error);
+        console.log("Error updating restaurant:", error);
       });
   };
 
@@ -152,7 +161,6 @@ const EditRestPage = () => {
                 <option value="brazilian">Brazilian</option>
                 <option value="african">African</option>
                 <option value="fusion">Fusion</option>
-                <option value="other">Other</option>
                 <option value="spanish">Spanish</option>
                 <option value="german">German</option>
                 <option value="greek">Greek</option>
@@ -227,7 +235,6 @@ const EditRestPage = () => {
             <input
               type="file"
               name="image"
-              // value={formData.image}
               onChange={(e) => setImage(e.target.files[0])}
             />
           </div>
