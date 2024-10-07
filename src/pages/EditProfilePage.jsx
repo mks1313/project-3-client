@@ -14,6 +14,7 @@ const EditProfilePage = () => {
   const [birthday, setBirthday] = useState("");
   const [sex, setSex] = useState("");
   const [profileImage, setProfileImage] = useState("");
+
   const storedToken = localStorage.getItem("authToken");
   const navigate = useNavigate();
 
@@ -74,45 +75,57 @@ const EditProfilePage = () => {
   return (
     <div className="edit-profile-page">
       <h1 className="create-h">Edit Profile</h1>
+
       {userData ? (
         <form onSubmit={handleSubmit} className="formulario-especifico">
-          <label>Name:</label>
+          <label htmlFor="name">Name:</label>
           <input
+            id="name"
             type="text"
             value={name}
             name="name"
             onChange={(e) => setName(e.target.value)}
           />
-          <label>Email:</label>
+
+          <label htmlFor="email">Email:</label>
           <input
+            id="email"
             type="email"
             name="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-          <label>Password:</label>
+
+          <label htmlFor="password">Password:</label>
           <input
+            id="password"
             type="password"
             name="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <label>Confirm Password:</label>
+
+          <label htmlFor="confirmPassword">Confirm Password:</label>
           <input
+            id="confirmPassword"
             type="password"
             name="confirmPassword"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
-          <label>Birthday:</label>
+
+          <label htmlFor="birthday">Birthday:</label>
           <input
+            id="birthday"
             type="date"
             value={birthday}
             name="birthday"
             onChange={(e) => setBirthday(e.target.value)}
           />
-          <label>Sex:</label>
+
+          <label htmlFor="sex">Sex:</label>
           <select
+            id="sex"
             name="sex"
             value={sex}
             onChange={(e) => setSex(e.target.value)}
@@ -121,12 +134,15 @@ const EditProfilePage = () => {
             <option value="female">Female</option>
             <option value="N/A">Prefer not to say</option>
           </select>
-          <label>Profile Image:</label>
+
+          <label htmlFor="profileImage">Profile Image:</label>
           <input
+            id="profileImage"
             type="file"
             name="image"
             onChange={(e) => setProfileImage(e.target.files[0])}
           />
+
           <button
             className="edit-button"
             type="submit"
@@ -134,6 +150,7 @@ const EditProfilePage = () => {
           >
             Save Changes
           </button>
+
           <Link to={`/profile`}>
             <button
               className="delete-button"
