@@ -1,6 +1,18 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins");
 
-.wrapper fadeInDown {
+.wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  min-height: 100%;
+  padding: 20px;
+  margin-top: 10rem;
+  position: relative;
+}
+
+.wrapper .fadeInDown {
   height: 100vh;
   background-color: #56baed;
 }
@@ -15,31 +27,16 @@ h2 {
   color: #cccccc;
 }
 
-.wrapper {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
-  min-height: 100%;
-  padding: 20px;
-  margin-top: 17rem;
-}
-
 #formContentLogin {
-  -webkit-border-radius: 10px 10px 10px 10px;
-  border-radius: 10px 10px 10px 10px;
+  border-radius: 10px;
   background: #fff;
   padding: 30px;
   width: 90%;
   max-width: 450px;
   position: relative;
-  padding: 0px;
-  -webkit-box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
   box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
   text-align: center;
 }
-
 
 h2.inactive {
   color: #cccccc;
@@ -53,41 +50,18 @@ h2.active {
 .login-form-input[type="button"],
 .login-form-input[type="submit"],
 .login-form-input[type="reset"] {
-  background-color: #56baed;
+  background-color: #39ace7;
   border: none;
   color: white;
   width: 85%;
   padding: 15px 80px;
   text-align: center;
-  text-decoration: none;
-  display: inline-block;
   text-transform: uppercase;
   font-size: 13px;
-  -webkit-box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
   box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
-  -webkit-border-radius: 5px 5px 5px 5px;
-  border-radius: 5px 5px 5px 5px;
+  border-radius: 5px;
   margin: 5px 20px 40px 20px;
-  -webkit-transition: all 0.3s ease-in-out;
-  -moz-transition: all 0.3s ease-in-out;
-  -ms-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
-}
-
-.login-form-input[type="button"],
-.login-form-input[type="submit"],
-.login-form-input[type="reset"] {
-  background-color: #39ace7;
-}
-
-.login-form-input[type="button"],
-.login-form-input[type="submit"],
-.login-form-input[type="reset"]  {
-  -moz-transform: scale(0.95);
-  -webkit-transform: scale(0.95);
-  -o-transform: scale(0.95);
-  -ms-transform: scale(0.95);
   transform: scale(0.95);
 }
 
@@ -96,20 +70,11 @@ h2.active {
   border: none;
   color: #0d0d0d;
   padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
   font-size: 16px;
-  margin: 5px;
   width: 85%;
   border: 2px solid #f6f6f6;
-  -webkit-transition: all 0.5s ease-in-out;
-  -moz-transition: all 0.5s ease-in-out;
-  -ms-transition: all 0.5s ease-in-out;
-  -o-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
-  -webkit-border-radius: 5px 5px 5px 5px;
-  border-radius: 25px 25px 25px 25px;
+  border-radius: 25px;
 }
 
 .login-form-input[type="text"]:focus {
@@ -117,66 +82,36 @@ h2.active {
   border-bottom: 2px solid #5fbae9;
 }
 
-.login-form-input[type="text"]:placeholder {
-  color: #cccccc;
-}
-
 .fadeInDown {
-  -webkit-animation-name: fadeInDown;
   animation-name: fadeInDown;
-  -webkit-animation-duration: 1s;
   animation-duration: 1s;
-  -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
-}
-
-@-webkit-keyframes fadeInDown {
-  0% {
-    opacity: 0;
-    -webkit-transform: translate3d(0, -100%, 0);
-    transform: translate3d(0, -100%, 0);
-  }
-  100% {
-    opacity: 1;
-    -webkit-transform: none;
-    transform: none;
-  }
 }
 
 @keyframes fadeInDown {
   0% {
     opacity: 0;
-    -webkit-transform: translate3d(0, -100%, 0);
-    transform: translate3d(0, -100%, 0);
+    transform: translateY(-100%);
   }
   100% {
     opacity: 1;
-    -webkit-transform: none;
     transform: none;
   }
 }
 
 .fadeIn.first {
-  -webkit-animation-delay: 0.4s;
-  -moz-animation-delay: 0.4s;
   animation-delay: 0.4s;
 }
 
 .fadeIn.second {
-  -webkit-animation-delay: 0.6s;
-  -moz-animation-delay: 0.6s;
   animation-delay: 0.6s;
 }
 
 .fadeIn.third {
-  -webkit-animation-delay: 0.8s;
-  -moz-animation-delay: 0.8s;
   animation-delay: 0.8s;
 }
 
 .fadeIn.fourth {
-  -webkit-animation-delay: 1s;
-  -moz-animation-delay: 1s;
   animation-delay: 1s;
 }
 
@@ -204,7 +139,8 @@ h2.active {
 }
 
 #icon {
-  width: 60%;
+  width: 100%;
+  max-width: 60%;
 }
 
 .video-container {
@@ -218,23 +154,10 @@ h2.active {
   overflow: hidden;
 }
 
-.wrapper {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
-  min-height: 100%;
-  padding: 20px;
-  margin-top: 10rem;
-  position: relative;
-}
-
-
 .password-container {
   position: relative;
-  width: 85%; 
-  margin: 5px auto; 
+  width: 85%;
+  margin: 5px auto;
 }
 
 .password-container input[type="password"],
@@ -242,14 +165,13 @@ h2.active {
   background-color: #f6f6f6;
   border: none;
   color: #0d0d0d;
-  padding: 15px 32px; 
-  text-align: center;
+  padding: 15px 32px;
   font-size: 16px;
   width: 100%;
   border: 2px solid #f6f6f6;
   transition: all 0.5s ease-in-out;
   border-radius: 25px;
-  box-sizing: border-box; 
+  box-sizing: border-box;
   padding-right: 40px;
 }
 
@@ -269,11 +191,12 @@ h2.active {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 25px; 
+  width: 25px;
   height: 100%;
 }
 
 .password-container span svg {
-  width: 26px; 
+  width: 26px;
   height: 20px;
 }
+
