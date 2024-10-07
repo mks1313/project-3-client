@@ -28,6 +28,7 @@ const ProfilePage = () => {
         .map((response) => response.data);
     } catch (error) {
       console.error("Error fetching restaurant data:", error);
+      toast.error("Error fetching restaurant data!");
       return [];
     }
   };
@@ -52,6 +53,7 @@ const ProfilePage = () => {
       }
     } catch (error) {
       console.error("Error fetching user data:", error);
+      toast.error("Error fetching user data!");
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [storedToken]);

@@ -1,12 +1,25 @@
-const ErrorAlert = ({ message, onClose }) => {
+import { useState } from 'react';
+import ErrorAlert from './ErrorAlert';
+
+const SomeComponent = () => {
+  const [error, setError] = useState(null);
+
+  const handleError = (errorMessage) => {
+    setError(errorMessage); 
+  };
+
+  const handleCloseError = () => {
+    setError(null); 
+  };
+
   return (
-    <div className="error-alert">
-      <p>{message}</p>
-      <button onClick={onClose}>Close</button>
+    <div>
+      {error && <ErrorAlert message={error} onClose={handleCloseError} />}
+      
+      <button onClick={() => handleError("Something went wrong!")}>Trigger Error</button>
     </div>
   );
 };
 
-export default ErrorAlert;
+export default SomeComponent;
 
-//TODO sustituir por este componente todos los console.log!!!!!!! mejora experiencia de ususario
