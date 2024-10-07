@@ -1,14 +1,17 @@
 import { useState, useEffect, useContext } from "react";
 import axios from "axios";
+import PropTypes from "prop-types"; 
 import { AuthContext } from "../context/auth.context";
 import "./Ratings.css";
 
 const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 function Ratings({ restaurantId, onAverageRatingChange }) {
+
   const [averageRating, setAverageRating] = useState(null);
   const [userRating, setUserRating] = useState(null);
   const [hasUserRated, setHasUserRated] = useState(false);
+
   const storedToken = localStorage.getItem("authToken");
   const { isLoggedIn, user } = useContext(AuthContext);
   const [rating, setRating] = useState(0);
@@ -20,7 +23,6 @@ function Ratings({ restaurantId, onAverageRatingChange }) {
           headers: { Authorization: `Bearer ${storedToken}` },
         })
         .then((response) => {
-          // console.log(response.data);
           const { averageRating, ratings } = response.data;
           onAverageRatingChange(averageRating);
           setAverageRating(averageRating);
@@ -28,6 +30,7 @@ function Ratings({ restaurantId, onAverageRatingChange }) {
           const userRatingData = ratings.find(
             (rating) => rating.author._id === user._id
           );
+
           if (userRatingData) {
             setUserRating(userRatingData.value);
             setHasUserRated(true);
@@ -72,9 +75,10 @@ function Ratings({ restaurantId, onAverageRatingChange }) {
     <div className="ratings-container">
       <p className="rating-text">
         <span className="average-rating">
-          {averageRating !== null ? averageRating.toFixed(1) : "0"} /10 
+          {averageRating !== null ? averageRating.toFixed(1) : "0"} /10
         </span>
       </p>
+
       {!hasUserRated && isLoggedIn && (
         <div className="rating-input">
           <input
@@ -89,12 +93,18 @@ function Ratings({ restaurantId, onAverageRatingChange }) {
           </button>
         </div>
       )}
+
       {hasUserRated && (
         <p className="user-rating">Your rate is: {userRating}</p>
       )}
     </div>
   );
 }
+
+Ratings.propTypes = {
+  restaurantId: PropTypes.string.isRequired,  
+  onAverageRatingChange: PropTypes.func.isRequired, 
+};
 
 export default Ratings;
 

@@ -1,5 +1,6 @@
 import { useState } from "react";
-import "./SearchBar.css"; 
+import PropTypes from "prop-types"; 
+import "./SearchBar.css";
 
 const SearchBar = ({ handleSearch }) => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -23,6 +24,11 @@ const SearchBar = ({ handleSearch }) => {
   );
 };
 
+SearchBar.propTypes = {
+  handleSearch: PropTypes.func.isRequired,  
+};
+
 export default SearchBar;
+
 
 
