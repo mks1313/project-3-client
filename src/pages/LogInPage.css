@@ -72,7 +72,6 @@ h2.active {
   padding: 15px 32px;
   font-size: 16px;
   width: 85%;
-  border: 2px solid #f6f6f6;
   transition: all 0.5s ease-in-out;
   border-radius: 25px;
 }
@@ -168,7 +167,6 @@ h2.active {
   padding: 15px 32px;
   font-size: 16px;
   width: 100%;
-  border: 2px solid #f6f6f6;
   transition: all 0.5s ease-in-out;
   border-radius: 25px;
   box-sizing: border-box;
