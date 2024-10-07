@@ -15,7 +15,7 @@ function LogInPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false); 
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [errorMessage, setErrorMessage] = useState(undefined);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -144,6 +144,7 @@ function LogInPage() {
                 />
                 <span
                   onClick={togglePasswordVisibility}
+                  onKeyDown={(e) => e.key === 'Enter' && togglePasswordVisibility()} // Add keyboard event
                   role="button"
                   tabIndex="0"
                   aria-label={isPasswordVisible ? "Hide password" : "Show password"}
@@ -168,5 +169,6 @@ function LogInPage() {
 }
 
 export default LogInPage;
+
 
 
