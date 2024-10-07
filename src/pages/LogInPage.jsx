@@ -105,15 +105,13 @@ function LogInPage() {
               className={isSignUp ? "inactive underlineHover" : "active"}
               onClick={handleFormToggle}
             >
-              {" "}
-              Login{" "}
+              Login
             </h2>
             <h2
               className={isSignUp ? "active" : "inactive underlineHover"}
               onClick={handleFormToggle}
             >
-              {" "}
-              Sign Up{" "}
+              Sign Up
             </h2>
 
             <form className="login-form" onSubmit={handleFormSubmit}>
@@ -144,10 +142,13 @@ function LogInPage() {
                   placeholder="Password"
                   className="login-form-input"
                 />
-                <span onClick={togglePasswordVisibility}>
-                  <FontAwesomeIcon
-                    icon={isPasswordVisible ? faEye : faEyeSlash}
-                  />
+                <span
+                  onClick={togglePasswordVisibility}
+                  role="button"
+                  tabIndex="0"
+                  aria-label={isPasswordVisible ? "Hide password" : "Show password"}
+                >
+                  <FontAwesomeIcon icon={isPasswordVisible ? faEye : faEyeSlash} />
                 </span>
               </div>
               <input
@@ -167,3 +168,5 @@ function LogInPage() {
 }
 
 export default LogInPage;
+
+
