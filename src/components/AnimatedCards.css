@@ -77,22 +77,7 @@
   .card .content p {
     color: #333;
   }
-  
-  /* .card .content a {
-    position: relative;
-    top: 15px;
-    display: inline-block;
-    padding: 12px 25px;
-    text-decoration: none;
-    background: var(--clr);
-    color: #FFF;
-    font-weight: 500;
-  }
-  
-  .card .content a:hover {
-    opacity: 0.8;
-  } */
-  
+
   @media (max-width: 480px) {
     .card {
       width: 230px;
@@ -107,45 +92,11 @@
     .card .content p {
       font-size: 0.8rem;
     }
-  
-    /* .card .content a {
-      font-size: 0.9rem;
-    } */
+
   }
   
-  /* .read-more-button {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 8px 16px;
-    background-color: #001e96; 
-    color: #fff;
-    text-decoration: none;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
-    
-  } */
-  
-  /* .read-more-button:hover {
-    background-color: #00796b; 
-    
-  } */
-  /* .card .content a {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 8px 16px;
-    background-color: #87ceeb; 
-    color: #fff; 
-    text-decoration: none;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
-  } */
-  
-  /* .card .content a:hover {
-    background-color: #53bcb0;
-  } */
   .container .card .content p {
     color: #171515; 
-    /* text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);  */
 }
 
 .container .card .content h2 {

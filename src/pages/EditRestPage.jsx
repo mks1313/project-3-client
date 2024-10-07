@@ -18,7 +18,7 @@ const EditRestPage = () => {
     phone: "",
     price: "",
     description: "",
-    category: "other",
+    category: "",
     owner: "",
     address: {
       street: "",
@@ -278,3 +278,4 @@ const EditRestPage = () => {
 };
 
 export default EditRestPage;
+

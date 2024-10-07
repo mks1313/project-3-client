@@ -57,17 +57,35 @@ const CreateRestPage = () => {
     setPreviewImage(URL.createObjectURL(file));
   };
 
-const handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Form Data:", formData);
-    // if (!formData.image) {
-    //     console.error("La URL de la imagen no está disponible.");
-    //     return;
-    // }
-    
+  
+    // Crear un objeto FormData para enviar los datos
+    const formDataToSend = new FormData();
+    formDataToSend.append("name", formData.name);
+    formDataToSend.append("capacity", formData.capacity);
+    formDataToSend.append("phone", formData.phone);
+    formDataToSend.append("price", formData.price);
+    formDataToSend.append("description", formData.description);
+    formDataToSend.append("category", formData.category);
+    formDataToSend.append("address.street", formData.address.street);
+    formDataToSend.append("address.number", formData.address.number);
+    formDataToSend.append("address.city", formData.address.city);
+    formDataToSend.append("address.postcode", formData.address.postcode);
+  
+    // Si hay una imagen, añadirla al FormData
+    if (formData.image) {
+      formDataToSend.append("image", formData.image);
+    }
+  
+    // Realizar la solicitud POST
     axios
-      .post(`${API_BASE_URL}/restaurants/create`, formData, {
-        headers: { Authorization: `Bearer ${storedToken}` },
+      .post(`${API_BASE_URL}/restaurants/create`, formDataToSend, {
+        headers: { 
+          Authorization: `Bearer ${storedToken}`,
+          "Content-Type": "multipart/form-data" 
+        },
       })
       .then((response) => {
         console.log(response);
@@ -76,7 +94,8 @@ const handleSubmit = (e) => {
       .catch((error) => {
         console.error("Error al crear el restaurante:", error);
       });
-};
+  };
+  
 
   return (
     <div className="create-genral">
