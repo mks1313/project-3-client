@@ -1,53 +1,53 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-
+import { useEffect, useState, useCallback } from "react";
+import axios from "axios";
 
 const API_BASE_URL = import.meta.env.VITE_API_URL;
-
 
 const MenuComponent = ({ menuIds }) => {
   const [menuItems, setMenuItems] = useState([]);
   const storedToken = localStorage.getItem("authToken");
 
-  useEffect(() => {
-    const fetchMenuItems = () => {
-      const promises = menuIds.map(menuId =>
-        axios.get(`${API_BASE_URL}/menus/get/${menuId}`,{ headers: { Authorization: `Bearer ${storedToken}` } })
-      );
+  const fetchMenuItem = useCallback((menuId) => {
+    return axios.get(`${API_BASE_URL}/menus/get/${menuId}`, {
+      headers: { Authorization: `Bearer ${storedToken}` }
+    });
+  }, [storedToken]);
 
-      Promise.all(promises)
-        .then(responses => {
-          const menuItemsData = responses.map(response => response.data);
-          setMenuItems(menuItemsData);
-        })
-        .catch(error => {
-          console.error('Error al obtener los detalles del menú:', error);
-        });
+  const getMenuItemsData = useCallback(async () => {
+    const promises = menuIds.map(menuId => fetchMenuItem(menuId));
+    const responses = await Promise.all(promises);
+    return responses.map(response => response.data);
+  }, [menuIds, fetchMenuItem]);
+
+  useEffect(() => {
+    const fetchMenuItems = async () => {
+      try {
+        const menuItemsData = await getMenuItemsData();
+        setMenuItems(menuItemsData);
+      } catch (error) {
+        console.error("Error al obtener los detalles del menú:", error);
+      }
     };
 
     fetchMenuItems();
-  }, [menuIds, storedToken]);
+  }, [getMenuItemsData]);
 
   return (
     <div>
-    <div>
-      <h2>Menu</h2>
-      <ul>
-        {menuItems.map((menuItem, index) => (
-          <li key={index}>
-            <div>{menuItem.name}</div>
-            <div>{menuItem.price}</div>
-          </li>
-        ))}
-      </ul>      
-    </div>
-          <div>
-            
+      {menuItems.length > 0 ? (
+        menuItems.map((item, index) => (
+          <div key={index}>
+            <h3>{item.name}</h3>
+            <p>{item.description}</p>
           </div>
+        ))
+      ) : (
+        <p>Loading menu items...</p>
+      )}
     </div>
-    
   );
 };
 
 export default MenuComponent;
+
 

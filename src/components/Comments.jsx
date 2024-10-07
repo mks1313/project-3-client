@@ -1,11 +1,13 @@
 import { useState, useEffect, useContext } from 'react';
+import PropTypes from 'prop-types'; 
 import axios from 'axios';
 import { AuthContext } from "../context/auth.context";
 import "./Comments.css";
 
 const API_BASE_URL = import.meta.env.VITE_API_URL;
 
-const Comments = ({ restaurantId }) => {
+const Comments = ({ restaurantId }) => { 
+
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState('');
   const [showCommentForm, setShowCommentForm] = useState(false); 
@@ -16,7 +18,6 @@ const Comments = ({ restaurantId }) => {
     axios.get(`${API_BASE_URL}/comments/${restaurantId}`, { headers: { Authorization: `Bearer ${storedToken}` } })
       .then(response => {
         setComments(response.data);
-        // Verificar si el usuario ha realizado un comentario
         const userHasCommented = response.data.some(comment => comment.author._id === user._id);
         setShowCommentForm(!userHasCommented); 
       })
@@ -57,6 +58,7 @@ const Comments = ({ restaurantId }) => {
           </div>
         ))}
       </div>
+
       {showCommentForm && (
         <div className="comment-form">
           <textarea
@@ -69,6 +71,10 @@ const Comments = ({ restaurantId }) => {
       )}
     </div>
   );
+};
+
+Comments.propTypes = {
+  restaurantId: PropTypes.string.isRequired, 
 };
 
 export default Comments;

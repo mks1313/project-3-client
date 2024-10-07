@@ -1,6 +1,8 @@
+import PropTypes from 'prop-types'; 
 import Button from './Button'; 
 
-const ConfirmationDialog = ({ message, onConfirm, onCancel }) => {
+const ConfirmationDialog = ({ message, onConfirm, onCancel }) => {  
+
   return (
     <div className="confirmation-dialog">
       <p>{message}</p>
@@ -10,5 +12,12 @@ const ConfirmationDialog = ({ message, onConfirm, onCancel }) => {
   );
 };
 
+ConfirmationDialog.propTypes = {
+  message: PropTypes.string.isRequired, 
+  onConfirm: PropTypes.func.isRequired,   
+  onCancel: PropTypes.func.isRequired,  
+};
+
 export default ConfirmationDialog;
+
 
