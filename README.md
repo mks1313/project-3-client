@@ -37,13 +37,13 @@ Make sure you have the following installed:
 1. **Clone the repository:**
 
     ```bash
-    git clone [URL_DEL_REPOSITORIO_FRONTEND]
+    git clone [FRONTEND_REPOSITORY_URL]
     ```
 
 2. **Navigate to the project directory:**
 
     ```bash
-    cd [NOMBRE_DEL_DIRECTORIO]
+    cd [DIRECTORY_NAME]
     ```
 
 3. **Install dependencies:**
